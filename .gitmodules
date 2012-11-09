@@ -1,0 +1,3 @@
+[submodule "app/vendor/tgm-bootstrap"]
+	path = app/vendor/tgm-bootstrap
+	url = ssh://git@github.com/TheGlobalMail/tgm-bootstrap.git
