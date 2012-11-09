@@ -1,3 +1,6 @@
 [submodule "app/vendor/tgm-bootstrap"]
 	path = app/vendor/tgm-bootstrap
 	url = ssh://git@github.com/TheGlobalMail/tgm-bootstrap.git
+[submodule "app/vendor/lodash"]
+	path = app/vendor/lodash
+	url = git://github.com/bestiejs/lodash.git

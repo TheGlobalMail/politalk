@@ -1,0 +1,13 @@
+{
+    "name": "politalk",
+    "description": "Politalk",
+    "author": "Andrew Cobby <andrew.cobby@theglobalmail.org>",
+    "version": "0.0.1",
+    "dependencies": {
+        "backbone": "~0.9.2",
+        "jquery": "~1.8.2",
+        "handlebars": "1.0.0-rc.1",
+        "backbone.mutators": "0.3.0",
+        "backbone.collectioncache": "git://gist.github.com/2866702.git"
+    }
+}
