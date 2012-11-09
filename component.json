@@ -8,6 +8,7 @@
         "jquery": "~1.8.2",
         "handlebars": "1.0.0-rc.1",
         "backbone.mutators": "0.3.0",
-        "backbone.collectioncache": "git://gist.github.com/2866702.git"
+        "backbone.collectioncache": "git://gist.github.com/2866702.git",
+        "marionette": "1.0.0-beta5"
     }
 }
