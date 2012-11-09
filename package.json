@@ -1,0 +1,12 @@
+{
+  "author": {
+    "name": "The Global Mail",
+    "url": "http://www.theglobalmail.org/"
+  },
+  "name": "Politalk",
+  "version": "0.0.0",
+  "dependencies": {
+    "grunt-contrib-handlebars": "0.3.2",
+    "grunt-recess": "0.1.3"
+  }
+}

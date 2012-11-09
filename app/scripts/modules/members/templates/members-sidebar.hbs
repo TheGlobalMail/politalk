@@ -1,0 +1,23 @@
+<h3>Refine</h3>
+
+<div class="parties filter-group">
+    <h4>By Party</h4>
+
+    {{#each parties}}
+    <label><input type="checkbox" name="party" value="{{this}}"> {{this}}</label>
+    {{/each}}
+</div>
+
+<div class="houses filter-group">
+    <h4>By House</h4>
+
+    {{#each houses}}
+    <label><input type="checkbox" name="house" value="{{id}}"> {{name}}</label>
+    {{/each}}
+</div>
+
+<div class="filter-group no-speakers">
+    <h4>Speakers</h4>
+
+    <label><input type="checkbox" name="noSpeakers" value="true"> Hide Speakers</label>
+</div>
