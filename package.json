@@ -5,6 +5,9 @@
   },
   "name": "Politalk",
   "version": "0.0.0",
+  "dependencies": {
+    "node-static": "0.6.4"
+  },
   "devDependencies": {
     "grunt-contrib-handlebars": "0.3.2",
     "grunt-recess": "0.1.3"
