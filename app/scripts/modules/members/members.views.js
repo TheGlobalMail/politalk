@@ -32,7 +32,9 @@ PolitalkApp.module('Members.Views', function(Views, App, Backbone, Marionette, $
 
         onRender: function()
         {
-            this.$('.loading').remove();
+            if (this.collection.length) {
+                this.$('.loading').remove();
+            }
         },
 
         sort: function(e)

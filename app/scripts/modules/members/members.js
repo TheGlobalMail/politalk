@@ -56,6 +56,10 @@ PolitalkApp.module('Members', function(Members, App, Backbone, Marionette, $, _)
 
         sort: function(column)
         {
+            if (!this.collection.length) {
+                return this.collection.on('reset', _.bind(this, this.column, column));
+            }
+
             if (this.sortColumn == column) {
                 this.sortReverse = !this.sortReverse;
             } else {
@@ -123,8 +127,6 @@ PolitalkApp.module('Members', function(Members, App, Backbone, Marionette, $, _)
                 return _.include(filters.party, member.get('party'))
                     || _.include(filters.house, member.get('house'));
             });
-
-            console.log(filters.noSpeakers);
 
             if (filters.noSpeakers) {
                 members = _.filter(this.models, function(member) {
