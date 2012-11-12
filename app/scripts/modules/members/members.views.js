@@ -60,7 +60,7 @@ PolitalkApp.module('Members.Views', function(Views, App, Backbone, Marionette, $
     Views.SidebarView = Marionette.ItemView.extend({
 
         template: 'members/templates/members-sidebar',
-        className: 'well members-filters',
+        className: 'members-filters',
 
         events: {
             'change .filter-group input:checkbox': 'filter'
