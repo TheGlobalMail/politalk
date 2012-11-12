@@ -1,13 +1,17 @@
-var static = require('node-static'),
-    http   = require('http');
+var express = require('express');
+var app = express();
 
-var file = new (static.Server)('./dist/');
-var port = process.env.PORT || 8080;
+app.configure(function() {
+    app.use(express.static(__dirname + '/dist'));
+    app.use(express.errorHandler({
+        dumpException: true,
+        showStask: true
+    }))
+});
 
-http.createServer(function(request, response) {
-    request.addListener('end', function() {
-        file.serve(request, response);
-    });
-}).listen(port);
-console.log('App server running on port: ' + port);
-console.log(file);
+app.get('*', function(req, res) {
+    res.redirect("/index.html");
+});
+
+app.listen(process.env.PORT || 8080);
+console.log('Started on', process.env.PORT || 8080);
