@@ -10,3 +10,4 @@ http.createServer(function(request, response) {
     });
 }).listen(port);
 console.log('App server running on port: ' + port);
+console.log(file);
