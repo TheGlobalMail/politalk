@@ -7,11 +7,11 @@
             display: inline-block;
             background: transparent url(/modules/app/img/tgm-strip-logo.png) 0 0 no-repeat;
             width: 390px;
-            margin-top: 12px;
+            margin-top: 8px;
         }
 
         .icons {
-            margin: 8px 0;
+            margin: 6px 0;
             float: right;
             border: 1px solid rgba(255, 255, 255, 0.1);
             .border-radius(5px);
@@ -26,8 +26,8 @@
             font-family: "Open Sans", Helvetica, Arial, sans-serif;
             text-transform: uppercase;
             font-weight: normal;
-            font-size: 12px;
-            padding: 7px 8px;
+            font-size: 11px;
+            padding: 6px 8px;
             float: left;
             color: white;
             margin: 0;
@@ -43,12 +43,12 @@
     .navbar-inner {
         position: relative;
         .box-shadow(0 1px 10px rgba(0, 0, 0, 0.3));
-        min-height: 105px;
+        min-height: 75px;
 
         .brand {
             display: inline-block;
-            padding: 17.5px 0 17.5px 0;
-            margin-top: 35px;
+            padding: 0;
+            margin-top: 52px;
             margin-left: 0;
             font-size: 400%;
             font-style: italic;
@@ -58,20 +58,10 @@
 
         .beta {
             position: absolute;
-            bottom: 35px;
-            left: 194px;
-            width: 45px;
-            height: 20px;
-            text-align: center;
-            padding: 12.5px 0;
-            font-size: 9px;
-            font-weight: bold;
-            color: white;
-            background: #777;
-            .border-radius(50%);
+            bottom: 4px;
+            font-size: 10px;
+            color: #999;
             z-index: 99;
-            .box-shadow(0 1px 1px rgba(0,0,0,.2));
-            .opacity(90);
         }
 
         .nav {
@@ -143,7 +133,7 @@
         float: right;
         font-size: 80%;
         border-left: 1px solid #494a4d;
-        padding: 0 0 60px 20px;
+        padding: 0 0 70px 20px;
 
         a {
             display: block;
@@ -161,27 +151,21 @@
 
 // Large tablet
 @media only screen and (max-width: 1060px) {
-    body {
-        font-size: 90%;
-    }
 
-    .container, .navbar .container {
-        width: 95%;
-        min-width: 746px;
-    }
 
     .navbar .navbar-inner {
+        .brand {
+            font-size: 380%;
+            margin-top: 42px;
+        }
         .beta {
-            left: 198px;
+            // left: 198px;
         }
 
-        .nav li a {
+        .nav > li > a {
             width: 200px;
+            padding-top: 54px;
         }
-    }
-
-    .members-filters .filter-group label {
-        font-size: 12px;
     }
 
 }
@@ -189,22 +173,11 @@
 
 // Smaller tablet
 @media only screen and (max-width: 800px) {
-    body {
-        font-size: 75%;
-    }
 
-    .hero-unit {
-        padding: 20px 0 15px;
-
-        h1 {
-            font-size: 420%;
-            letter-spacing: -3px;
-        }
-    }
 
     .navbar .navbar-inner {
         .beta {
-            left: 158px;
+            // left: 158px;
         }
     }
 }

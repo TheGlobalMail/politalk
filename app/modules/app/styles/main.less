@@ -9,13 +9,14 @@ html, body {
 }
 
 #main {
-    margin-top: 148px;
+    margin-top: 142px;
 }
 
 .container, .navbar .container {
     width: 80%;
     min-width: 900px;
     max-width: 1400px;
+    position: relative;
 }
 
 .hero-unit {
@@ -37,3 +38,40 @@ html, body {
 
 @import "../../nav/styles/navbar.less";
 @import "../../members/styles/members.less";
+
+// Large tablet
+@media only screen and (max-width: 1060px) {
+    body {
+        font-size: 90%;
+    }
+    #main {
+        margin-top: 132px;
+    }
+    .container, .navbar .container {
+        width: 95%;
+        min-width: 746px;
+    }
+    .hero-unit {
+    h1 {
+        font-size: 420%;
+        letter-spacing: -3px;
+    }
+    }
+    }
+
+// Smaller tablet
+@media only screen and (max-width: 900px) {
+    body {
+        font-size: 75%;
+    }
+    .hero-unit {
+    padding: 20px 0 15px;
+    }
+
+}
+
+
+
+
+
+
