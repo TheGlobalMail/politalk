@@ -13,7 +13,7 @@
 
 .members-table {
     counter-reset: row-number;
-    @numberWidth: 50px;
+    @numberWidth: 30px;
     @numberPadding: 10px;
 
     th, .cell {
@@ -42,11 +42,10 @@
                 position: absolute;
                 z-index: -2;
                 left: 0;
-                top: 18px;
+                top: 19px;
                 width: @numberWidth;
                 text-align: right;
-                font-size: 140%;
-                color: darken(@grayLightish, 0);
+                font-size: 80%;
             }
         }
 
@@ -136,13 +135,47 @@ aside {
 
 // Large tablet
 @media only screen and (max-width: 1060px) {
-    .members-filters .filter-group label {
+    .members-filters .filter-group {
+        label {
         font-size: 12px;
+        }
     }
 }
 
 // Smaller tablet
 @media only screen and (max-width: 900px) {
-
+    .members-table td.duration,
+    .members-table td.speeches,
+    .members-table td.interjections {
+        font-size: 160%;
+    }
 
 }
+
+// Phones
+@media only screen and (max-width: 600px) {
+    .hero-unit.people {
+        padding-left: 20px;
+        margin-bottom: 0;
+    }
+    .row-fluid aside.span3 {
+        display: none;
+    }
+    .row-fluid .span9.members-list {
+        width: 100%;
+        margin-left: 0;
+    }
+    .members-table {
+        td, th {
+            &.duration {
+                min-width: 80px;
+            }
+            &.speeches, &.interjections {
+            display: none;
+            }
+
+        }
+        }
+    }
+
+

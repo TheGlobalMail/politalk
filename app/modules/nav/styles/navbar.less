@@ -7,7 +7,7 @@
             display: inline-block;
             background: transparent url(/modules/app/img/tgm-strip-logo.png) 0 0 no-repeat;
             width: 390px;
-            margin-top: 8px;
+            margin: 8px 0;
         }
 
         .icons {
@@ -48,7 +48,7 @@
         .brand {
             display: inline-block;
             padding: 0;
-            margin-top: 52px;
+            margin-top: 54px;
             margin-left: 0;
             font-size: 400%;
             font-style: italic;
@@ -58,7 +58,7 @@
 
         .beta {
             position: absolute;
-            bottom: 4px;
+            bottom: 1px;
             font-size: 10px;
             color: #999;
             z-index: 99;
@@ -71,7 +71,7 @@
             & > li > a {
                 display: table-cell;
                 vertical-align: bottom;
-                padding-top: 64px;
+                padding-top: 70px;
                 width: 250px;
                 font-size: 160%;
                 text-transform: uppercase;
@@ -83,7 +83,8 @@
             .active a {
                 color: @grayDark;
                 background-color: transparent;
-                border-bottom: 4px solid @peopleColor;
+                // border-bottom: 4px solid @peopleColor;
+                .box-shadow(inset 0 -4px 0 #FF835E);
             }
         }
     }
@@ -178,6 +179,56 @@
     .navbar .navbar-inner {
         .beta {
             // left: 158px;
+        }
+    }
+}
+
+// Phones
+@media only screen and (max-width: 600px) {
+    .navbar {
+        .tgm-strip {
+        text-align: center;
+        .tgm {
+            width: 195px;
+            }
+        .icons {
+            display: none;
+        }
+        }
+        .navbar-inner {
+            .brand {
+            margin: 25px 0 15px 20px;
+            font-size: 340%;
+            letter-spacing: -3px;
+            }
+            .beta {
+                left: 20px;
+            }
+
+        .nav {
+            display: none;
+        }
+    }
+    }
+    .footer {
+        padding: 20px 0 30px;
+        text-align: center;
+        .about {
+            width: auto;
+            float: none;
+            padding: 0 20px;
+        }
+        .credit {
+            width: auto;
+            float: none;
+            padding: 10px 0 0 0;
+            margin-top: 20px;
+            border-left: none;
+            border-top: 1px solid #494a4d;
+            a.tgm {
+                text-align: center;
+                background-position: center top;
+            }
         }
     }
 }
