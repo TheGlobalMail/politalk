@@ -125,7 +125,7 @@ module.exports = function( grunt ) {
 
     server: {
       tasks: {
-        app: 'clean lint recess handlebars open-browser watch'
+        app: 'clean lint recess handlebars watch'
       }
     },
 
