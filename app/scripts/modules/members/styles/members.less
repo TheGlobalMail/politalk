@@ -1,7 +1,7 @@
 @peopleColor: #ff835e;
 @filterColor: #444444;
 .container, .navbar .container {
-    width: 80%;
+    width: 90%;
     min-width: 900px;
     max-width: 1400px;
 }
@@ -34,7 +34,7 @@
             font-family: "Open Sans",Helvetica,Arial,sans-serif;
             text-transform: uppercase;
             font-weight: normal;
-            font-size: .85em;
+            font-size: 12px;
             padding: 7px 8px;
             float: left;
             color: white;
@@ -78,7 +78,7 @@
                 vertical-align: bottom;
                 padding-top: 64px;
                 width: 250px;
-                font-size: 24px;
+                font-size: 160%;
                 text-transform: uppercase;
                 color: @grayDark;
                 border-left: 1px solid @tableBorder;
@@ -100,7 +100,7 @@ min-height: 105px;
 
 
 .table th, .table td {
-    padding: 14px 8px 10px;
+    padding: 10px .5%;
     vertical-align: middle;
 }
 
@@ -125,17 +125,20 @@ min-height: 105px;
 }
 
 aside {
-    padding-top: 15px;
+    padding-top: 5px;
 
     h3 {
-        font-size: 80%;
+        font-size: 11px;
         line-height: 90%;
         text-transform: uppercase;
         color: @filterColor;
+        padding-bottom: 6px;
     }
 }
 
-.members-filters .filter-group {
+.members-filters {
+
+    .filter-group {
     border: 1px solid @tableBorder;
     margin-bottom: 20px;
     padding: 0;
@@ -153,11 +156,17 @@ aside {
     label {
         display: block;
         text-transform: uppercase;
+        font-size: 100%;
         font-weight: bold;
-        padding: 10px 15px 5px;
+        margin: 0;
+        padding: 10px 15px 10px;
         border-top: 1px solid @tableBorder;
         &:first-of-type {
             border-top: none;
+        }
+        &:hover, &:active {
+            background-color: #f3f3f3;
+            .transition(background-color 100ms ease-in-out);
         }
     }
 
@@ -165,6 +174,7 @@ aside {
         position: relative;
         // top: -2px;
         float: right;
+    }
     }
 }
 
@@ -188,6 +198,7 @@ aside {
     #gradient.vertical-three-colors(#222,#333,4%,#343539);
     color: #a4a4a5;
     padding: 40px 0 80px;
+    text-shadow: 0 -1px 1px #111;
     a {
         color: white;
     }
@@ -230,3 +241,30 @@ aside {
     }
 }
 
+@media only screen and (max-width: 1060px) {
+    body {
+        font-size: 80%;
+    }
+    .container, .navbar .container {
+        width: 95%;
+        min-width: 746px;
+    }
+    .navbar {
+        .navbar-inner {
+            .beta {
+                margin-left: 172px;
+            }
+            .nav {
+                margin-left: 208px;
+                > li > a {
+                width: 200px;
+                }
+            }
+    }
+    }
+    .members-filters .filter-group label {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+
+}
