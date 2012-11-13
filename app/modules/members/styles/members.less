@@ -25,8 +25,15 @@
     th:first-child {
         padding-left: @numberWidth + @numberPadding;
     }
+    th.sorted {
+            color: #333;
+            &:after {
+                margin-right: 4px;
+            }
+        }
 
     td {
+
         .cell;
         font-size: 100%;
         padding: 15px .75%;
