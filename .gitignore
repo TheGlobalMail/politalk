@@ -2,3 +2,4 @@ node_modules
 temp
 components
 app/components
+.DS_Store
