@@ -1,18 +1,3 @@
-@peopleColor: #ff835e;
-@filterColor: #444444;
-
-html, body {
-    -webkit-font-smoothing: subpixel-antialiased;
-    text-rendering: geometricPrecision;
-}
-
-.container, .navbar .container {
-    width: 90%;
-    min-width: 900px;
-    max-width: 1400px;
-    position: relative;
-}
-
 .navbar {
     .tgm-strip {
         background-color: #1b1b1b;
@@ -38,7 +23,7 @@ html, body {
         }
 
         .icons .about, .icons .comments, .icons .share, .icons .readlater {
-            font-family: "Open Sans",Helvetica,Arial,sans-serif;
+            font-family: "Open Sans", Helvetica, Arial, sans-serif;
             text-transform: uppercase;
             font-weight: normal;
             font-size: 12px;
@@ -58,6 +43,7 @@ html, body {
     .navbar-inner {
         position: relative;
         .box-shadow(0 1px 10px rgba(0, 0, 0, 0.3));
+        min-height: 105px;
 
         .brand {
             display: inline-block;
@@ -72,7 +58,7 @@ html, body {
 
         .beta {
             position: absolute;
-            bottom:35px;
+            bottom: 35px;
             left: 194px;
             width: 45px;
             height: 20px;
@@ -110,145 +96,6 @@ html, body {
                 border-bottom: 4px solid @peopleColor;
             }
         }
-    }
-}
-
-.navbar-inner {
-    min-height: 105px;
-}
-
-.hero-unit {
-    .border-radius(0);
-    .box-shadow(inset 0 0 10px rgba(0,0,0,.2));
-    padding: 40px 0 25px;
-
-    h1 {
-        font-size: 480%;
-        letter-spacing: -0.05em;
-    }
-
-    h2 {
-        font-size: 100%;
-        line-height: 1;
-        text-transform: uppercase;
-        color: @peopleColor;
-    }
-
-    &.people {
-        background: @peopleColor url(/modules/members/img/hero-people-bg.png) 0 0 repeat;
-        color: white;
-        text-shadow: 0 -1px 0 #c55d32;
-    }
-}
-
-
-.table th, .table td {
-    padding: 10px .75%;
-    vertical-align: middle;
-    text-shadow: 0 1px 0 white;
-}
-
-.table td {
-    font-size: 100%;
-    padding: 15px .75%;
-
-    &.speaker {
-        font-size: 140%;
-        font-weight: bold;
-        line-height: 1.2;
-
-        span {
-            display: block;
-            font-size: 12px;
-            line-height: 1.3;
-            color: @grayLight;
-            font-weight: normal;
-        }
-    }
-
-    &.duration, &.speeches, &.interjections {
-        font-size: 200%;
-        font-style: italic;
-        color: @grayLight;
-    }
-
-    &.duration {
-        font-weight: bold;
-    }
-}
-
-aside {
-    padding-top: 5px;
-
-    h3 {
-        font-size: 11px;
-        line-height: 90%;
-        text-transform: uppercase;
-        color: @filterColor;
-        padding-bottom: 6px;
-    }
-}
-
-.members-filters .filter-group {
-    border: 1px solid @tableBorder;
-    margin-bottom: 20px;
-    padding: 0;
-    .border-radius(5px);
-    color: @filterColor;
-    text-shadow: 0 1px 0 white;
-
-    h4 {
-        font-size: 80%;
-        text-transform: uppercase;
-        padding: 0 15px;
-        line-height: 1.0;
-        font-weight: normal;
-    }
-
-    label {
-        display: block;
-        position: relative;
-        padding: 12px 35px 12px 15px;
-        text-transform: uppercase;
-        font-size: 95%;
-        font-weight: bold;
-        line-height: 1;
-        margin: 0;
-        border-top: 1px solid @tableBorder;
-
-        &:first-of-type {
-            border-top: none;
-        }
-
-        &:hover, &:active {
-            background-color: #f3f3f3;
-            .transition(background-color 100ms ease-in-out);
-        }
-    }
-
-    input {
-        position: absolute;
-        right: 15px;
-        top: 30%;
-        clear: both;
-        margin: 0 0 0 10px;
-    }
-}
-
-.hero-unit {
-    .border-radius(0);
-    .box-shadow(inset 0 0 10px rgba(0,0,0,.2));
-    padding: 50px 0;
-
-    h1 {
-        font-size: 500%;
-        letter-spacing: -5px;
-    }
-
-    &.people {
-        background: @peopleColor url(../img/hero-people-bg.png) 0 0 repeat;
-        color: white;
-        text-shadow: 0 -1px 0 #c55d32;
     }
 }
 
@@ -302,6 +149,7 @@ aside {
             display: block;
             font-size: 200%;
             font-weight: bold;
+
             &.tgm {
                 text-indent: -9000px;
                 background: transparent url(../img/footer-logo.png) 0 0 no-repeat;

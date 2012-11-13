@@ -6,5 +6,6 @@ PolitalkApp = new Backbone.Marionette.Application({
 
 PolitalkApp.addRegions({
     main: '#main',
-    navbar: '.navbar'
+    navbar: '.navbar',
+    footer: '.footer'
 });

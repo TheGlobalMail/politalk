@@ -1,5 +1,13 @@
 @import "../../../components/tgm-bootstrap/less/tgm-bootstrap.less";
 
+@peopleColor: #ff835e;
+@filterColor: #444444;
+
+html, body {
+    -webkit-font-smoothing: subpixel-antialiased;
+    text-rendering: geometricPrecision;
+}
+
 #main {
     margin-top: 148px;
 }
@@ -8,6 +16,23 @@
     width: 80%;
     min-width: 900px;
     max-width: 1400px;
+}
+
+.hero-unit {
+    .border-radius(0);
+    .box-shadow(inset 0 0 10px rgba(0,0,0,.2));
+    padding: 40px 0 25px;
+
+    h1 {
+        font-size: 480%;
+        letter-spacing: -0.05em;
+    }
+
+    h2 {
+        font-size: 100%;
+        line-height: 1;
+        text-transform: uppercase;
+    }
 }
 
 @import "../../nav/styles/navbar.less";
