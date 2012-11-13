@@ -151,7 +151,7 @@
 }
 
 // Large tablet
-@media only screen and (max-width: 1060px) {
+@media only screen and (max-width: 1050px) {
 
 
     .navbar .navbar-inner {
@@ -173,7 +173,7 @@
 
 
 // Smaller tablet
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 950px) {
 
 
     .navbar .navbar-inner {
@@ -183,30 +183,27 @@
     }
 }
 
-// Phones
-@media only screen and (max-width: 600px) {
+// Small tablet
+@media only screen and (max-width: 750px) {
     .navbar {
         .tgm-strip {
-        text-align: center;
-        .tgm {
-            width: 195px;
-            }
-        .icons {
-            display: none;
-        }
+            padding: 0 20px;
         }
         .navbar-inner {
+            height: 70px;
             .brand {
-            margin: 20px 0 15px 20px;
-            font-size: 320%;
+            margin: 27px 0 0 20px;
+            font-size: 300%;
             letter-spacing: -2px;
             }
             .beta {
                 left: 20px;
+                top: 47px;
             }
 
-        .nav {
-            display: none;
+        .nav > li > a {
+            width: 160px;
+            padding-top: 33px;
         }
     }
     }
@@ -232,3 +229,27 @@
         }
     }
 }
+
+
+// Phones
+@media only screen and (max-width: 550px) {
+
+    .navbar {
+        .tgm-strip {
+        text-align: center;
+        .tgm {
+            width: 195px;
+            }
+        .icons {
+            display: none;
+        }
+        }
+        .navbar-inner {
+
+
+        .nav {
+            display: none;
+        }
+    }
+    }
+    }
