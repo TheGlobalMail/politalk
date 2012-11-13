@@ -1,4 +1,4 @@
-PolitalkApp.module('Members', function(Members, App, Backbone, Marionette, $, _) {
+PolitalkApp.module('Members', function(Members, App, Backbone, Marionette) {
 
     var Views = App.module('Members.Views');
 
@@ -57,7 +57,7 @@ PolitalkApp.module('Members', function(Members, App, Backbone, Marionette, $, _)
         sort: function(column)
         {
             if (!this.collection.length) {
-                return this.collection.on('reset', _.bind(this, this.column, column));
+                return this.collection.on('reset', _.bind(this.sort, this, column));
             }
 
             if (this.sortColumn == column) {
@@ -124,8 +124,7 @@ PolitalkApp.module('Members', function(Members, App, Backbone, Marionette, $, _)
         filter: function(filters)
         {
             var members = _.filter(this.models, function(member) {
-                return _.include(filters.party, member.get('party'))
-                    || _.include(filters.house, member.get('house'));
+                return _.include(filters.party, member.get('party')) || _.include(filters.house, member.get('house'));
             });
 
             if (filters.noSpeakers) {

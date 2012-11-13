@@ -1,4 +1,4 @@
-PolitalkApp.module('Nav', function(Nav, App, Backbone, Marionette, $, _) {
+PolitalkApp.module('Nav', function(Nav, App) {
 
     var render = Marionette.Renderer.render;
 
@@ -16,7 +16,7 @@ PolitalkApp.module('Nav', function(Nav, App, Backbone, Marionette, $, _) {
             App.vent.on('nav:activateItem', this.activateItem, this);
         },
 
-        addItem: function(name, href, props)
+        addItem: function(name, href)
         {
             var $item = $(render('nav/templates/nav-item', { name: name, href: href }));
             this.items[name] = $item;

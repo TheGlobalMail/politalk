@@ -23,16 +23,15 @@ module.exports = function( grunt ) {
     handlebars: {
       compile: {
         files: {
-          "temp/scripts/compiled-templates.js": [
-            "app/scripts/templates/**/*.hbs",
-            "app/scripts/modules/*/templates/**/*.hbs"
+          "temp/modules/compiled-templates.js": [
+            "app/modules/*/templates/**/*.hbs"
           ]
         },
         options: {
           namespace: 'PolitalkApp.Templates',
           processName: function(filename) {
             return filename
-                    .replace(/^app\/scripts\/(?:modules\/)?/, '')
+                    .replace(/^app\/modules\//, '')
                     .replace(/\.hbs$/, '');
           }
         }
@@ -41,7 +40,7 @@ module.exports = function( grunt ) {
 
     recess: {
       dist: {
-        src: 'app/styles/main.less',
+        src: 'app/modules/app/styles/main.less',
         dest: 'temp/styles/main.css',
         options: {
           compile: true
@@ -62,22 +61,21 @@ module.exports = function( grunt ) {
     // default watch configuration
     watch: {
       recess: {
-        files: ['app/styles/**/*.less', 'app/scripts/modules/**/*.less'],
+        files: ['app/modules/**/*.less'],
         tasks: 'recess reload'
       },
       handlebars: {
         files: [
-          'app/scripts/templates/*/**.hbs',
-          'app/scripts/modules/*/templates/**/*.hbs'
+          'app/modules/*/templates/**/*.hbs'
         ],
         tasks: 'handlebars reload'
       },
       reload: {
         files: [
           'app/*.html',
-          'app/styles/**/*.css',
-          'app/scripts/**/*.js',
-          'app/images/**/*'
+          'app/modules/**/*.css',
+          'app/modules/**/*.js',
+          'app/modules/**/*'
         ],
         tasks: 'reload'
       }
@@ -88,8 +86,7 @@ module.exports = function( grunt ) {
     lint: {
       files: [
         'Gruntfile.js',
-        'app/scripts/**/*.js',
-        'test/**/*.js'
+        'app/modules/**/*.js'
       ]
     },
 
@@ -128,13 +125,13 @@ module.exports = function( grunt ) {
 
     server: {
       tasks: {
-        app: 'clean recess handlebars open-browser watch'
+        app: 'clean lint recess handlebars open-browser watch'
       }
     },
 
     build: {
       tasks: {
-        _beforeAll: 'clean recess handlebars mkdirs'
+        _beforeAll: 'clean lint recess handlebars mkdirs'
       }
     },
 
@@ -151,9 +148,9 @@ module.exports = function( grunt ) {
     // renames JS/CSS to prepend a hash of their contents for easier
     // versioning
     rev: {
-      js: 'scripts/**/*.js',
+      js: 'modules/**/*.js',
       css: 'styles/**/*.css',
-      img: 'images/**'
+      img: 'modules/*/img/**'
     },
 
     // usemin handler should point to the file containing
@@ -190,7 +187,7 @@ module.exports = function( grunt ) {
       optimize: 'none',
       baseUrl: './scripts',
       wrap: true
-    },
+    }
   });
 
   // Alias the `test` task to run the `mocha` task instead

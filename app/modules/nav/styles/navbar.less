@@ -1,11 +1,3 @@
-@peopleColor: #ff835e;
-@filterColor: #444444;
-.container, .navbar .container {
-    width: 80%;
-    min-width: 900px;
-    max-width: 1400px;
-}
-
 .navbar {
     .tgm-strip {
         background-color: #1b1b1b;
@@ -13,7 +5,7 @@
         .tgm {
             text-indent: -9000px;
             display: inline-block;
-            background: transparent url(../img/tgm-strip-logo.png) 0 0 no-repeat;
+            background: transparent url(/modules/app/img/tgm-strip-logo.png) 0 0 no-repeat;
             width: 390px;
             margin-top: 12px;
         }
@@ -23,13 +15,13 @@
             float: right;
             border: 1px solid rgba(255, 255, 255, 0.1);
             .border-radius(5px);
-            // width: 186px;
         }
 
         .icons .about {
             border-right: 1px solid rgba(255, 255, 255, 0.1);
             margin-right: 8px;
         }
+
         .icons .about, .icons .comments, .icons .share, .icons .readlater {
             font-family: "Open Sans",Helvetica,Arial,sans-serif;
             text-transform: uppercase;
@@ -42,8 +34,10 @@
             line-height: 1.0;
         }
     }
+
     .navbar-inner {
         position: relative;
+
         .brand {
             position: absolute;
             top: 35px;
@@ -52,6 +46,7 @@
             font-size: 400%;
             letter-spacing: -5px;
         }
+
         .beta {
             position: absolute;
             bottom:35px;
@@ -69,11 +64,12 @@
             .box-shadow(0 1px 1px rgba(0,0,0,.2));
             .opacity(90);
         }
+
         .nav {
             margin-bottom: 0;
             margin-left: 230px;
 
-            > li > a {
+            & > li > a {
                 display: table-cell;
                 vertical-align: bottom;
                 height: 67px;
@@ -86,101 +82,14 @@
             }
 
             .active a {
-                    color: @grayDark;
-                    background-color: transparent;
-                    border-bottom: 4px solid @peopleColor;
-                }
+                color: @grayDark;
+                background-color: transparent;
+                border-bottom: 4px solid @peopleColor;
+            }
         }
     }
 }
 
 .navbar-inner {
-min-height: 105px;
+    min-height: 105px;
 }
-
-
-.table th, .table td {
-    padding: 14px 8px 10px;
-    vertical-align: middle;
-}
-
-.table td{
-    font-size: 100%;
-    &.speaker {
-        font-size: 140%;
-        font-weight: bold;
-        span {
-            display: block;
-            font-size: 60%;
-            color: @grayLight;
-            font-weight: normal;
-        }
-    }
-    &.duration {
-        font-size: 200%;
-        font-weight: bold;
-        font-style: italic;
-        color: @grayLight;
-    }
-}
-
-aside {
-    padding-top: 15px;
-
-    h3 {
-        font-size: 80%;
-        line-height: 90%;
-        text-transform: uppercase;
-        color: @filterColor;
-    }
-}
-
-.members-filters .filter-group {
-    border: 1px solid @tableBorder;
-    margin-bottom: 20px;
-    padding: 0;
-    .border-radius(5px);
-    color: @filterColor;
-
-    h4 {
-        font-size: 80%;
-        text-transform: uppercase;
-        padding: 0 15px;
-        line-height: 1.0;
-        font-weight: normal;
-    }
-
-    label {
-        display: block;
-        text-transform: uppercase;
-        font-weight: bold;
-        padding: 10px 15px 5px;
-        border-top: 1px solid @tableBorder;
-        &:first-of-type {
-            border-top: none;
-        }
-    }
-
-    input {
-        position: relative;
-        top: -2px;
-        float: right;
-    }
-}
-
-.hero-unit {
-    .border-radius(0);
-    .box-shadow(inset 0 0 10px rgba(0,0,0,.2));
-    padding: 50px 0;
-    h1 {
-        font-size: 500%;
-        letter-spacing: -5px;
-    }
-    &.people {
-        // background-color: @peopleColor;
-        background: @peopleColor url(../img/hero-people-bg.png) 0 0 repeat;
-        color: white;
-        text-shadow: 0 -1px 0 #c55d32;
-    }
-}
-

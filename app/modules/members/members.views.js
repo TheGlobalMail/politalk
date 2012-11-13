@@ -1,4 +1,4 @@
-PolitalkApp.module('Members.Views', function(Views, App, Backbone, Marionette, $, _) {
+PolitalkApp.module('Members.Views', function(Views, App) {
 
     var Members = App.module('Members');
 
@@ -77,12 +77,12 @@ PolitalkApp.module('Members.Views', function(Views, App, Backbone, Marionette, $
             };
         },
 
-        filter: function(e)
+        filter: function()
         {
             var checkedBoxes = this.$('.filter-group input:checkbox:checked');
             var filters = { "party": [], "house": [], noSpeakers: false };
 
-            if (checkedBoxes.length == 0) {
+            if (checkedBoxes.length === 0) {
                 return App.vent.trigger('members:clearFilters');
             }
 
