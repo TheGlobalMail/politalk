@@ -17,17 +17,13 @@
             .border-radius(5px);
         }
 
-        .icons .about {
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
-            margin-right: 8px;
-        }
 
         .icons .about, .icons .comments, .icons .share, .icons .readlater {
             font-family: "Open Sans", Helvetica, Arial, sans-serif;
             text-transform: uppercase;
             font-weight: normal;
             font-size: 11px;
-            padding: 6px 8px;
+            padding: 6px 10px;
             float: left;
             color: white;
             margin: 0;
@@ -38,6 +34,17 @@
                 text-decoration: none;
             }
         }
+
+            .icons .about {
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            margin-right: 8px;
+        }
+
+        .icons .share {
+            padding-left: 22px;
+            background: transparent url(/modules/app/img/ico-share.png) 0 49% no-repeat;
+        }
+
     }
 
     .navbar-inner {
@@ -188,6 +195,9 @@
     .navbar {
         .tgm-strip {
             padding: 0 20px;
+            .tgm {
+            width: 195px;
+            }
         }
         .navbar-inner {
             height: 70px;
@@ -237,9 +247,7 @@
     .navbar {
         .tgm-strip {
         text-align: center;
-        .tgm {
-            width: 195px;
-            }
+
         .icons {
             display: none;
         }
