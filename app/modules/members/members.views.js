@@ -58,7 +58,6 @@ PolitalkApp.module('Members.Views', function(Views, App) {
     });
 
     Views.SidebarView = Marionette.ItemView.extend({
-
         template: 'members/templates/members-sidebar',
         className: 'members-filters',
 
@@ -69,7 +68,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
         serializeData: function()
         {
             return {
-                parties: _.keys(Members.Member.prototype.parties),
+                parties: _.keys(Members.Models.Member.prototype.parties),
                 houses: [
                     { id: 1, name: 'House of Rep.' },
                     { id: 2, name: 'Senate' }
@@ -79,14 +78,14 @@ PolitalkApp.module('Members.Views', function(Views, App) {
 
         filter: function()
         {
-            var checkedBoxes = this.$('.filter-group input:checkbox:checked');
+            var unchecked = this.$('.filter-group input:checkbox:not(:checked)');
             var filters = { "party": [], "house": [], noSpeakers: false };
 
-            if (checkedBoxes.length === 0) {
+            if (unchecked.length === 0) {
                 return App.vent.trigger('members:clearFilters');
             }
 
-            _.each(checkedBoxes, function(checkbox) {
+            _.each(unchecked, function(checkbox) {
                 if (checkbox.name in filters) {
                     var val = checkbox.value;
 
@@ -102,6 +101,8 @@ PolitalkApp.module('Members.Views', function(Views, App) {
                     filters[checkbox.name].push(val);
                 }
             });
+
+            console.log(filters);
 
             App.vent.trigger('members:filter', filters);
         }
