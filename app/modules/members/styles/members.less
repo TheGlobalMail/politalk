@@ -11,7 +11,9 @@
 .members-table {
     counter-reset: row-number;
     @numberWidth: 30px;
-    @numberPadding: 10px;
+    @numberPadding: 8px;
+    @photoWidth:40px;
+    @photoPadding: 8px;
 
     th, .cell {
         padding: 10px .75%;
@@ -20,7 +22,7 @@
     }
 
     th:first-child {
-        padding-left: @numberWidth + @numberPadding;
+        padding-left: @numberWidth + @numberPadding + @photoWidth + @photoPadding;
     }
     th.sorted {
             color: #333;
@@ -37,7 +39,7 @@
         position: relative;
 
         &:first-child {
-            padding-left: @numberWidth + @numberPadding;
+            padding-left: @numberWidth + @numberPadding + @photoWidth + @photoPadding;
 
             &:before {
                 content: counter(row-number);
@@ -46,7 +48,7 @@
                 position: absolute;
                 z-index: -2;
                 left: 0;
-                top: 19px;
+                top: 39%;
                 width: @numberWidth;
                 text-align: right;
                 font-size: 80%;
@@ -59,6 +61,19 @@
             line-height: 1.1;
             max-width: 170px;
             padding-right: 20px;
+            &:after {
+                content: '';
+                display: table-cell;
+                width: @photoWidth;
+                height: @photoWidth;
+                position: absolute;
+                left: @numberWidth + @numberPadding;
+                top: 21%;
+                background: transparent url(/modules/members/img/placeholder.jpg) 0 0 repeat;
+                background-size: @photoWidth;
+                .border-radius (50%);
+                .box-shadow (inset 0 1px 2px rgba(0,0,0,0.5));
+        }
 
             span {
                 display: block;
