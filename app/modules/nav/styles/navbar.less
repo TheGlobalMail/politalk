@@ -18,7 +18,7 @@
         }
 
 
-        .icons .about, .icons .comments, .icons .share, .icons .readlater {
+        .icons .about, .icons .share {
             font-family: "Open Sans", Helvetica, Arial, sans-serif;
             text-transform: uppercase;
             font-weight: normal;
@@ -37,7 +37,7 @@
 
             .icons .about {
             border-right: 1px solid rgba(255, 255, 255, 0.1);
-            margin-right: 8px;
+            margin-right: 4px;
         }
 
         .icons .share {
@@ -90,7 +90,6 @@
             .active a {
                 color: @grayDark;
                 background-color: transparent;
-                // border-bottom: 4px solid @peopleColor;
                 .box-shadow(inset 0 -4px 0 #FF835E);
             }
         }
@@ -160,7 +159,6 @@
 // Large tablet
 @media only screen and (max-width: 1050px) {
 
-
     .navbar .navbar-inner {
         .brand {
             font-size: 380%;
@@ -182,12 +180,6 @@
 // Smaller tablet
 @media only screen and (max-width: 950px) {
 
-
-    .navbar .navbar-inner {
-        .beta {
-            // left: 158px;
-        }
-    }
 }
 
 // Small tablet
@@ -203,7 +195,7 @@
             height: 70px;
             .brand {
             margin: 27px 0 0 20px;
-            font-size: 300%;
+            font-size: 280%;
             letter-spacing: -2px;
             }
             .beta {
@@ -211,11 +203,11 @@
                 top: 47px;
             }
 
-        .nav > li > a {
-            width: 160px;
-            padding-top: 33px;
+            .nav > li > a {
+                width: 160px;
+                padding-top: 33px;
+            }
         }
-    }
     }
     .footer {
         padding: 20px 0 35px;
@@ -246,18 +238,15 @@
 
     .navbar {
         .tgm-strip {
-        text-align: center;
-
-        .icons {
-            display: none;
-        }
+            text-align: center;
+            .icons {
+                display: none;
+            }
         }
         .navbar-inner {
-
-
-        .nav {
-            display: none;
+            .nav {
+                display: none;
+            }
         }
     }
-    }
-    }
+}
