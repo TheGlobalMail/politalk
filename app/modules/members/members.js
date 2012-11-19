@@ -1,6 +1,7 @@
 PolitalkApp.module('Members', function(Members, App) {
 
-    var Views = App.module('Members.Views');
+    var Views  = Members.Views;
+    var Models = Members.Models;
 
     Members.Router = Marionette.AppRouter.extend({
         appRoutes: {
@@ -13,22 +14,29 @@ PolitalkApp.module('Members', function(Members, App) {
 
         initialize: function()
         {
+            this.options.collection.fetch();
+
             this.layout = new Views.Layout();
             this.sortReverse = true;
+            this.filters = {};
 
             this.bindTo(App.vent, 'members:filter', this.filter, this);
             this.bindTo(App.vent, 'members:clearFilters', this.clearFilters, this);
             this.bindTo(App.vent, 'members:sort', this.sort, this);
+            this.bindTo(App.vent, 'members:period', this.period, this);
         },
 
         showMembers: function()
         {
-            var sidebarView = new Views.SidebarView();
+            var sidebarLayout = new Views.SidebarLayout();
 
             App.main.show(this.layout);
 
             this.clearFilters();
-            this.layout.sidebar.show(sidebarView);
+            this.layout.sidebar.show(sidebarLayout);
+
+            sidebarLayout.filters.show(new Views.FiltersView());
+            sidebarLayout.period.show(new Views.PeriodView());
 
             App.vent.trigger('nav:activateItem', 'People');
 
@@ -39,6 +47,7 @@ PolitalkApp.module('Members', function(Members, App) {
 
         filter: function(filters)
         {
+            this.filters = filters;
             this.showMemberList(this.options.collection.filter(filters));
         },
 
@@ -68,6 +77,20 @@ PolitalkApp.module('Members', function(Members, App) {
 
             this.sortColumn = column;
             this.showMemberList(this.collection.sortBy(this.sortColumn, this.sortReverse));
+        },
+
+        period: function(from, to)
+        {
+            this._fullCollection = this.options.collection;
+            this.collection = this.options.collection = new this.options.collection.constructor();
+
+            this.options.collection.fetch({
+                data: { from: from, to: to },
+                success: _.bind(function() {
+                    this.collection = this.options.collection.filter(this.filters);
+                    this.showMemberList(this.collection.sortBy(this.sortColumn, this.sortReverse));
+                }, this)
+            });
         }
 
     });
@@ -77,9 +100,8 @@ PolitalkApp.module('Members', function(Members, App) {
     });
 
     Members.addInitializer(function() {
-        var controller = new Members.Controller({ collection: Members.memberList });
+        var controller = new Members.Controller({ collection: new Models.MemberList() });
         Members.router = new Members.Router({ controller: controller });
-        Members.memberList.fetch();
     });
 
 });

@@ -11,12 +11,22 @@ PolitalkApp.module('Members.Views', function(Views, App) {
         }
     });
 
+    Views.SidebarLayout = Marionette.Layout.extend({
+        template: 'members/templates/members-sidebar',
+
+        regions: {
+            period: '.period-container',
+            filters: '.filters-container'
+        }
+    });
+
     Views.MemberListItem = Marionette.ItemView.extend({
         tagName: 'tr',
         template: 'members/templates/member-item'
     });
 
     Views.MemberList = Marionette.CompositeView.extend({
+
         itemView: Views.MemberListItem,
         itemViewContainer: 'tbody',
         template: 'members/templates/members-table',
@@ -57,8 +67,9 @@ PolitalkApp.module('Members.Views', function(Views, App) {
 
     });
 
-    Views.SidebarView = Marionette.ItemView.extend({
-        template: 'members/templates/members-sidebar',
+    Views.FiltersView = Marionette.ItemView.extend({
+
+        template: 'members/templates/members-filters',
         className: 'members-filters',
 
         events: {
@@ -102,9 +113,65 @@ PolitalkApp.module('Members.Views', function(Views, App) {
                 }
             });
 
-            console.log(filters);
-
             App.vent.trigger('members:filter', filters);
+        }
+
+    });
+
+    Views.PeriodView = Marionette.ItemView.extend({
+
+        template: 'members/templates/members-period',
+        className: 'members-period',
+
+        events: {
+            'changeDate input[name=fromDate]': 'fromDateChange',
+            'changeDate input[name=toDate]': 'toDateChange'
+        },
+
+        initialize: function()
+        {
+            _.bindAll(this);
+            this.datePickerDefaults = {
+                format: 'dd/mm/yyyy',
+                startDate: this.formatMoment(moment('2007-01-01')),
+                endDate: this.formatMoment(moment()),
+                autoclose: true
+            }
+        },
+
+        onRender: function()
+        {
+            var $fromDate = this.$fromDate = this.$('input[name=fromDate]');
+            var $toDate   = this.$toDate   = this.$('input[name=toDate]');
+
+            $fromDate.val(this.formatMoment(moment().subtract('months', 2)));
+            $toDate.val(this.formatMoment(moment()));
+
+            $([$fromDate, $toDate]).datepicker(this.datePickerDefaults);
+        },
+
+        fromDateChange: function()
+        {
+            this.onDateChange();
+        },
+
+        toDateChange: function(e)
+        {
+            this.onDateChange();
+        },
+
+        onDateChange: function()
+        {
+            var format = this.datePickerDefaults.format.toUpperCase();
+            var from   = moment(this.$fromDate.val(), format);
+            var to     = moment(this.$toDate.val(), format);
+
+            App.vent.trigger('members:period', from.format('YYYY-MM-DD'), to.format('YYYY-MM-DD'));
+        },
+
+        formatMoment: function(m)
+        {
+            return m.format('D/M/YYYY');
         }
 
     });

@@ -39,7 +39,15 @@ PolitalkApp.module('Members.Models', function(Models, App) {
                 var hours = Math.floor(this.duration / 60 / 60);
                 var minutes = (this.duration / 60) % 60;
 
-                return hours + "h " + minutes + "m";
+                if (hours && minutes) {
+                    return hours + 'h ' + minutes + 'm';
+                }
+
+                if (minutes) {
+                    return minutes + 'm';
+                }
+
+                return hours + 'h';
             }
         }
 
@@ -53,11 +61,11 @@ PolitalkApp.module('Members.Models', function(Models, App) {
         filter: function(filters)
         {
             var members = _.filter(this.models, function(member) {
-                return !_.include(filters.party, member.get('party')) || !_.include(filters.house, member.get('house'));
+                return !_.include(filters.party, member.get('party')) && !_.include(filters.house, member.get('house'));
             });
 
             if (filters.noSpeakers) {
-                members = _.filter(this.models, function(member) {
+                members = _.filter(members, function(member) {
                     return !_.include(Models.Member.prototype.speakerParties, member.get('party'));
                 });
             }
@@ -91,9 +99,14 @@ PolitalkApp.module('Members.Models', function(Models, App) {
             }
 
             return new this.constructor(models);
+        },
+
+        fetch: function()
+        {
+            this.trigger('fetching');
+            Backbone.Collection.prototype.fetch.apply(this, arguments);
         }
 
     });
 
-    Members.memberList = new Models.MemberList();
 });
