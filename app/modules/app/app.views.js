@@ -1,4 +1,5 @@
 PolitalkApp.module('App.Views', function(Views, App) {
+    'use strict';
 
     Views.Footer = Backbone.Marionette.Layout.extend({
 

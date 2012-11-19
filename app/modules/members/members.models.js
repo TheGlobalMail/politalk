@@ -1,5 +1,5 @@
 PolitalkApp.module('Members.Models', function(Models, App) {
-    var Members = App.module('Members');
+    'use strict';
 
     Models.Member = Backbone.Model.extend({
 

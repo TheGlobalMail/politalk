@@ -1,4 +1,5 @@
 PolitalkApp.module('Nav', function(Nav, App) {
+    'use strict';
 
     var render = Marionette.Renderer.render;
 

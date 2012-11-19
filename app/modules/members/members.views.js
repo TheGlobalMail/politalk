@@ -1,4 +1,5 @@
 PolitalkApp.module('Members.Views', function(Views, App) {
+    'use strict';
 
     var Members = App.module('Members');
 
@@ -100,11 +101,11 @@ PolitalkApp.module('Members.Views', function(Views, App) {
                 if (checkbox.name in filters) {
                     var val = checkbox.value;
 
-                    if (checkbox.name == "house") {
+                    if (checkbox.name === "house") {
                         val = parseInt(val, 10);
                     }
 
-                    if (checkbox.name == "noSpeakers") {
+                    if (checkbox.name === "noSpeakers") {
                         filters.noSpeakers = true;
                         return;
                     }
@@ -136,7 +137,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
                 startDate: this.formatMoment(moment('2007-01-01')),
                 endDate: this.formatMoment(moment()),
                 autoclose: true
-            }
+            };
         },
 
         onRender: function()
@@ -155,7 +156,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
             this.onDateChange();
         },
 
-        toDateChange: function(e)
+        toDateChange: function()
         {
             this.onDateChange();
         },

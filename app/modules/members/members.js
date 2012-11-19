@@ -1,4 +1,5 @@
 PolitalkApp.module('Members', function(Members, App) {
+    'use strict';
 
     var Views  = Members.Views;
     var Models = Members.Models;
@@ -69,7 +70,7 @@ PolitalkApp.module('Members', function(Members, App) {
                 return this.collection.on('reset', _.bind(this.sort, this, column));
             }
 
-            if (this.sortColumn == column) {
+            if (this.sortColumn === column) {
                 this.sortReverse = !this.sortReverse;
             } else {
                 this.sortReverse = false;
