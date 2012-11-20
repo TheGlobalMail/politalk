@@ -22,7 +22,8 @@ PolitalkApp.module('Members.Models', function(Models, App) {
         speakerParties: [
             'PRES',
             'DPRES',
-            'CWM'
+            'CWM',
+            'SPK'
         ],
 
         mutators: {
@@ -53,10 +54,9 @@ PolitalkApp.module('Members.Models', function(Models, App) {
 
     });
 
-    Models.MemberList = Backbone.Collection.extend({
+    Models.MemberList = Politalk.TableCollection.extend({
         model: Models.Member,
         url: App.config.apiHost + '/api/members',
-        cache: true,
 
         filter: function(filters)
         {
@@ -71,40 +71,6 @@ PolitalkApp.module('Members.Models', function(Models, App) {
             }
 
             return new this.constructor(members);
-        },
-
-        sortBy: function(attr, reverse)
-        {
-            var models = this.models.sort(function(member1, member2) {
-                var val1 = member1.get(attr),
-                    val2 = member2.get(attr);
-
-                if (_.isString(val1)) {
-                    return val1.localeCompare(val2);
-                }
-
-                if (val1 > val2) {
-                    return 1;
-                }
-
-                if (val1 < val2) {
-                    return -1;
-                }
-
-                return 0;
-            });
-
-            if (reverse) {
-                models.reverse();
-            }
-
-            return new this.constructor(models);
-        },
-
-        fetch: function()
-        {
-            this.trigger('fetching');
-            Backbone.Collection.prototype.fetch.apply(this, arguments);
         }
 
     });

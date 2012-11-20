@@ -26,45 +26,12 @@ PolitalkApp.module('Members.Views', function(Views, App) {
         template: 'members/templates/member-item'
     });
 
-    Views.MemberList = Marionette.CompositeView.extend({
+    Views.MemberList = Politalk.TableView.extend({
 
         itemView: Views.MemberListItem,
-        itemViewContainer: 'tbody',
         template: 'members/templates/members-table',
-
-        events: {
-            'click th[data-sortable]': 'sort'
-        },
-
-        initialize: function()
-        {
-            this.bindTo(App.vent, 'members:sorted', this.onSorted, this);
-        },
-
-        onRender: function()
-        {
-            if (this.collection.length) {
-                this.$('.loading').remove();
-            }
-        },
-
-        sort: function(e)
-        {
-            var column = $(e.currentTarget).data('sortable');
-            App.vent.trigger('members:sort', column);
-        },
-
-        onSorted: function(column, reversed)
-        {
-            this.$('th.sorted').removeClass('sorted reversed');
-
-            var $th = this.$('th[data-sortable=' + column +']');
-            $th.addClass('sorted');
-
-            if (reversed) {
-                $th.addClass('reversed');
-            }
-        }
+        moduleName: 'members',
+        app: App
 
     });
 

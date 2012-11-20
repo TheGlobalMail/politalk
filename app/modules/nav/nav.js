@@ -26,6 +26,10 @@ PolitalkApp.module('Nav', function(Nav, App) {
 
         activateItem: function(name)
         {
+            if (!(name in this.items)) {
+                throw new Error('Nav item titled ' + name + ' not registered');
+            }
+
             this.$('li.active').removeClass('active');
             this.items[name].addClass('active');
         },

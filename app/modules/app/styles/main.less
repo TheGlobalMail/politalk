@@ -36,6 +36,79 @@ html, body {
     }
 }
 
+.main-table table {
+    counter-reset: row-number;
+    @numberWidth: 30px;
+    @numberPadding: 8px;
+
+    th, .cell {
+        padding: 10px .75%;
+        vertical-align: middle;
+        text-shadow: 0 1px 0 white;
+    }
+
+    th:first-child {
+        padding-left: @numberWidth + @numberPadding;
+    }
+
+    th.sorted {
+        color: #333;
+
+        &:after {
+            margin-right: 4px;
+        }
+    }
+
+    td {
+        .cell;
+        font-size: 100%;
+        padding: 15px .75%;
+        position: relative;
+
+        &:first-child {
+            padding-left: @numberWidth + @numberPadding;
+
+            &:before {
+                content: counter(row-number);
+                counter-increment: row-number;
+                display: block;
+                position: absolute;
+                z-index: -2;
+                left: 0;
+                top: 31%;
+                width: @numberWidth;
+                text-align: right;
+            }
+        }
+    }
+}
+
+aside {
+    padding-top: 5px;
+
+    h3 {
+        font-size: 11px;
+        line-height: 90%;
+        text-transform: uppercase;
+        color: @filterColor;
+        padding-bottom: 6px;
+    }
+
+    .period-container {
+        label {
+            display: inline-block;
+
+            .add-on {
+                width: 40px;
+            }
+
+            input {
+                width: 80px;
+            }
+        }
+    }
+}
+
 @import "../../nav/styles/navbar.less";
 @import "../../members/styles/members.less";
 

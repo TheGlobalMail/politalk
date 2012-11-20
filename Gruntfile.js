@@ -77,7 +77,7 @@ module.exports = function( grunt ) {
           'app/modules/**/*.js',
           'app/modules/**/*'
         ],
-        tasks: 'reload'
+        tasks: 'lint reload'
       }
     },
 
@@ -112,7 +112,8 @@ module.exports = function( grunt ) {
           $: true,
           Handlebars: true,
           Marionette: true,
-          PolitalkApp: true
+          PolitalkApp: true,
+          Politalk: true
         }
       }
     },
