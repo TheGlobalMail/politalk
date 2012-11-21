@@ -126,6 +126,7 @@
             this.sortColumn = this.options.defaultSortColumn;
             this.sortReverse = false;
             this.sort(this.sortColumn);
+            $(window).scrollTop(0);
         },
 
         showTable: function(collection)
