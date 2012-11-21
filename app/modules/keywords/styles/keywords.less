@@ -1,0 +1,70 @@
+.hero-unit.keywords {
+    background: @wordsColor url(/modules/keywords/img/hero-words-bg.png) 0 0 repeat;
+    color: white;
+    text-shadow: 0 -1px 0 #0b4a76;
+
+    h2 {
+        color: @wordsColor;
+    }
+}
+
+.main-table .keywords-table {
+    counter-reset: row-number;
+    @numberWidth: 30px;
+    @numberPadding: 8px;
+
+    th:first-child {
+        padding-left: @numberWidth + @numberPadding;
+    }
+
+    td {
+        &:first-child {
+            padding-left: @numberWidth + @numberPadding;
+        }
+
+        &.text {
+            font-size: 140%;
+            font-weight: bold;
+            line-height: 1.1;
+            max-width: 170px;
+            padding-right: 20px;
+            text-transform: capitalize;
+            &:first-letter {
+            	text-transform: uppercase;
+            }
+        }
+
+        &.frequency {
+            font-size: 200%;
+            font-style: italic;
+            color: @grayLight;
+            font-weight: bold;
+        }
+
+    }
+}
+
+// Large tablet
+@media only screen and (max-width: 1050px) {
+
+}
+
+// Mid tablet
+@media only screen and (max-width: 950px) {
+
+}
+
+// Small tablet
+@media only screen and (max-width: 750px) {
+    .hero-unit.keywords {
+        padding-left: 20px;
+        margin-bottom: 0;
+    }
+
+}
+
+// Phones
+@media only screen and (max-width: 470px) {
+
+}
+

@@ -87,10 +87,19 @@
                 border-right: 1px solid @tableBorder;
             }
 
+            & > li:nth-child(2) > a {
+                border-left: none;
+            }
+
             .active a {
                 color: @grayDark;
                 background-color: transparent;
-                .box-shadow(inset 0 -4px 0 #FF835E);
+                .box-shadow(inset 0 -4px 0 @peopleColor);
+            }
+
+            .active:nth-child(2) a {
+                .box-shadow(inset 0 -4px 0 @wordsColor);
+                border-left: none;
             }
         }
     }
