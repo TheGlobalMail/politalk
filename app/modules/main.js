@@ -9,10 +9,5 @@
         Backbone.history.start();
     });
 
-    $.stellar({
-        positionProperty: 'transform',
-        horizontalScrolling: false
-    });
-
     PolitalkApp.start();
 }());

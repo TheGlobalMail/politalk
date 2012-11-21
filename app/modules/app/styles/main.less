@@ -4,6 +4,7 @@
 @peopleColor: #ff835e;
 @wordsColor: #1072b6;
 @filterColor: #444444;
+@heroUnitHeight: 180px;
 
 * {
     position: relative;
@@ -29,8 +30,6 @@ html, body {
     .border-radius(0);
     padding: 40px 0 25px;
     z-index: 2;
-    position: relative;
-    .box-sizing(border-box);
 
     h1 {
         font-size: 480%;
@@ -42,11 +41,6 @@ html, body {
         line-height: 1;
         text-transform: uppercase;
     }
-}
-
-.da-background {
-    background-color: rgba(255, 255, 255, 0.95);
-    z-index: 4;
 }
 
 .main-table table {
@@ -111,20 +105,24 @@ aside {
 
     .period-container {
         margin-bottom: 10px;
+
         label {
             display: inline-block;
 
             .add-on {
                 width: auto;
+
                 &:first-child {
                     font-size: 11px;
                     text-transform: uppercase;
                     padding: 4px 6px;
+                    height: 28px;
                 }
             }
 
             input {
                 width: 80px;
+                padding: 13px 6px;
             }
         }
     }
@@ -165,6 +163,7 @@ aside {
 
     .hero-unit {
         padding: 20px 0 15px;
+        top: 120px;
     }
 }
 
