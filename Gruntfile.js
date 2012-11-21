@@ -131,9 +131,7 @@ module.exports = function( grunt ) {
     },
 
     server: {
-      tasks: {
-        app: 'clean lint recess handlebars watch'
-      }
+      app: 'clean lint recess handlebars watch'
     },
 
     build: {
@@ -195,9 +193,11 @@ module.exports = function( grunt ) {
       baseUrl: './scripts',
       wrap: true
     }
+
   });
 
   // Alias the `test` task to run the `mocha` task instead
-  grunt.registerTask('test', 'mocha');
-
+  grunt.registerTask('test', 'lint handlebars mocha');
+  grunt.registerTask('test-server', 'handlebars grunt-server');
+  grunt.registerTask('build', 'intro clean recess handlebars mkdirs usemin-handler rjs concat css min img rev usemin manifest copy time');
 };

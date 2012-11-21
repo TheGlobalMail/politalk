@@ -3,42 +3,43 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Mocha Spec Runner</title>
-  <link rel="stylesheet" href="lib/mocha-1.2.2/mocha.css">
+  <link rel="stylesheet" href="lib/mocha-1.7.0/mocha.css">
 </head>
 <body>
   <div id="mocha"></div>
-  <script src="lib/mocha-1.2.2/mocha.js"></script>
+  <script src="lib/mocha-1.7.0/mocha.js"></script>
   <script>mocha.setup('bdd')</script>
 
   <!-- assertion framework -->
-  
   <script src="lib/chai.js"></script>
-    
-      
+  <script src="lib/helpers.js"></script>
   <script>expect = chai.expect</script>
-      
-    
-  
 
-  <!-- -->
+  <!-- include source files -->
+    <script src="../app/components/jquery/jquery.js"></script>
+    <script src="../app/components/lodash/lodash.js"></script>
+    <script src="../app/components/backbone/backbone.js"></script>
+    <script src="../app/components/marionette/lib/backbone.marionette.js"></script>
+    <script src="../app/components/moment/moment.js"></script>
+    <script src="../app/components/backbone.mutators/backbone.mutators.js"></script>
+    <script src="../app/components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="../app/components/handlebars/handlebars.runtime-1.0.0-rc.1.js"></script>
+    <script src="../app/modules/app/helpers.js"></script>
+    <script src="../app/modules/app/bootstrap.js"></script>
+    <script src="../app/modules/app/app.views.js"></script>
+    <script src="../temp/modules/compiled-templates.js"></script>
+    <script src="../app/modules/nav/nav.js"></script>
+    <script src="../app/modules/members/members.models.js"></script>
+    <script src="../app/modules/members/members.views.js"></script>
+    <script src="../app/modules/members/members.js"></script>
+    <script src="../app/modules/keywords/keywords.models.js"></script>
+    <script src="../app/modules/keywords/keywords.views.js"></script>
+    <script src="../app/modules/keywords/keywords.js"></script>
+  <!-- end source files -->
 
-  <!-- include source files here... -->
-
-  <!-- include spec files here... -->
-  <script>
-  // replace this by your own specs
-  (function() {
-    describe('Give it some context', function() {
-      describe('maybe a bit more context here', function() {
-
-        it('should run here few assertions', function() {
-
-        });
-
-      });
-    });
-  })();
-  </script>
+  <!-- include spec files -->
+    <script src="specs/app/TableCollectionSpec.js"></script>
+  <!-- end spec files -->
 
   <!-- trigger the mocha runner -->
   <script src="runner/mocha.js"></script>

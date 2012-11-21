@@ -1,4 +1,9 @@
 (function() {
+
+  if (!window.PHANTOMJS) {
+    mocha.setup({ ignoreLeaks: true });
+  }
+
   var runner = mocha.run();
 
   if(!window.PHANTOMJS) return;
