@@ -29,11 +29,8 @@ PolitalkApp.module('Members', function(Members, App) {
 
         initialize: function()
         {
-            this.options.collection.on('reset', function() {
-                $.stellar({
-                    positionProperty: 'transform',
-                    horizontalScrolling: false
-                });
+            this.options.collection.on('all', function() {
+                $.stellar('refresh');
             });
         },
 

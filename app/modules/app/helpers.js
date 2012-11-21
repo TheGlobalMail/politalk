@@ -133,6 +133,8 @@
             this.collection = collection;
             this.layout.table.show(new this.tableView({ collection: collection }));
             this.app.vent.trigger(this.moduleName + ':sorted', this.sortColumn, this.sortReverse);
+            $.stellar('refresh');
+            $(window).scrollTop(0);
         },
 
         filter: function(filters)
