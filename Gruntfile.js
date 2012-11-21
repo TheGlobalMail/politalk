@@ -48,11 +48,6 @@ module.exports = function( grunt ) {
       }
     },
 
-    // generate application cache manifest
-    manifest: {
-      dest: ''
-    },
-
     // headless testing through PhantomJS
     mocha: {
       all: ['test/**/*.html']
@@ -134,12 +129,6 @@ module.exports = function( grunt ) {
       app: 'clean lint recess handlebars watch'
     },
 
-    build: {
-      tasks: {
-        _beforeAll: 'clean lint recess handlebars mkdirs'
-      }
-    },
-
     // Below, all paths are relative to the staging directory, which is a copy
     // of the app/ directory. Any .gitignore, .ignore and .buildignore file
     // that might appear in the app/ tree are used to ignore these values
@@ -147,15 +136,15 @@ module.exports = function( grunt ) {
 
     // concat css/**/*.css files, inline @import, output a single minified css
     css: {
-      'styles/politalk.css': ['styles/**/*.css']
+      'styles/main.css': ['styles/**/*.css']
     },
 
     // renames JS/CSS to prepend a hash of their contents for easier
     // versioning
     rev: {
-      js: 'modules/**/*.js',
-      css: 'styles/**/*.css',
-      img: 'modules/*/img/**'
+      js: 'scripts/scripts.js',
+      css: 'styles/main.css',
+      img: ['modules/*/img/**', 'img/**']
     },
 
     // usemin handler should point to the file containing
@@ -167,31 +156,17 @@ module.exports = function( grunt ) {
     // update references in HTML/CSS to revved files
     usemin: {
       html: ['index.html'],
-      css: ['**/*.css']
+      css: ['styles/**/*.css']
     },
 
     // HTML minification
     html: {
-      files: ['**/*.html']
+      files: ['index.html']
     },
 
     // Optimizes JPGs and PNGs (with jpegtran & optipng)
     img: {
       dist: '<config:rev.img>'
-    },
-
-    // rjs configuration. You don't necessarily need to specify the typical
-    // `path` configuration, the rjs task will parse these values from your
-    // main module, using http://requirejs.org/docs/optimization.html#mainConfigFile
-    //
-    // name / out / mainConfig file should be used. You can let it blank if
-    // you're using usemin-handler to parse rjs config from markup (default
-    // setup)
-    rjs: {
-      // no minification, is done by the min task
-      optimize: 'none',
-      baseUrl: './scripts',
-      wrap: true
     }
 
   });
@@ -199,5 +174,6 @@ module.exports = function( grunt ) {
   // Alias the `test` task to run the `mocha` task instead
   grunt.registerTask('test', 'lint handlebars mocha');
   grunt.registerTask('test-server', 'handlebars grunt-server');
-  grunt.registerTask('build', 'intro clean recess handlebars mkdirs usemin-handler rjs concat css min img rev usemin manifest copy time');
+  grunt.registerTask('build', 'intro clean recess handlebars mkdirs usemin-handler concat css min img rev usemin copy time');
+  grunt.registerTask('build:minify', 'intro clean recess handlebars mkdirs usemin-handler concat css min img rev usemin html:compress copy time');
 };
