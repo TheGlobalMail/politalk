@@ -5,6 +5,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
 
     Views.Layout = Marionette.Layout.extend({
         template: 'members/templates/members-layout',
+        className: 'members-layout',
 
         regions: {
             sidebar: 'aside',

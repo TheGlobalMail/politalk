@@ -4,6 +4,11 @@
 @peopleColor: #ff835e;
 @filterColor: #444444;
 
+* {
+    position: relative;
+    .box-sizing(border-box);
+}
+
 html, body {
     -webkit-font-smoothing: subpixel-antialiased;
     text-rendering: geometricPrecision;
@@ -17,12 +22,14 @@ html, body {
     width: 80%;
     min-width: 910px;
     max-width: 1350px;
-    position: relative;
 }
 
 .hero-unit {
     .border-radius(0);
     padding: 40px 0 25px;
+    z-index: 2;
+    position: relative;
+    .box-sizing(border-box);
 
     h1 {
         font-size: 480%;
@@ -34,6 +41,11 @@ html, body {
         line-height: 1;
         text-transform: uppercase;
     }
+}
+
+.da-background {
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 4;
 }
 
 .main-table table {
@@ -63,7 +75,6 @@ html, body {
         .cell;
         font-size: 100%;
         padding: 15px .75%;
-        position: relative;
 
         &:first-child {
             padding-left: @numberWidth + @numberPadding;

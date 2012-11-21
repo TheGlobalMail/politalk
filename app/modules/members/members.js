@@ -27,6 +27,16 @@ PolitalkApp.module('Members', function(Members, App) {
             'period': 'period'
         },
 
+        initialize: function()
+        {
+            this.options.collection.on('reset', function() {
+                $.stellar({
+                    positionProperty: 'transform',
+                    horizontalScrolling: false
+                });
+            });
+        },
+
         onShow: function()
         {
             this.sidebar.filters.show(new Views.FiltersView());

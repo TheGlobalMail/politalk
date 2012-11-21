@@ -20,6 +20,7 @@
                 var sc = collection.sortBy('house');
 
                 expect(sc).to.be.an.instanceof(Politalk.TableCollection);
+                expect(sc).to.have.length(4);
                 expect(sc.at(0)).to.have.attribute('party', 'a');
                 expect(sc.at(3)).to.have.attribute('party', 'b');
               });
