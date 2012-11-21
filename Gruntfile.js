@@ -198,6 +198,6 @@ module.exports = function( grunt ) {
   });
 
   // Alias the `test` task to run the `mocha` task instead
-  grunt.registerTask('test', 'mocha');
+  grunt.registerTask('test', 'lint handlebars mocha');
 
 };
