@@ -27,10 +27,15 @@ PolitalkApp.module('Members', function(Members, App) {
             'period': 'period'
         },
 
+        initialize: function()
+        {
+            this.periodView = new Views.PeriodView();
+        },
+
         onShow: function()
         {
             this.sidebar.filters.show(new Views.FiltersView());
-            this.sidebar.period.show(new Views.PeriodView());
+            this.sidebar.period.show(this.periodView);
         }
 
     });

@@ -130,7 +130,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
 
         refreshDates: function()
         {
-            if (!this.dates) {
+            if (!this.dates || !this.$fromDate || !this.$toDate) {
                 return false;
             }
 
