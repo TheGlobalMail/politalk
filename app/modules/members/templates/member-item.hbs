@@ -1,4 +1,11 @@
-<td class="speaker">{{first_name}} {{last_name}} <span>{{party}}, {{houseName}}</span></td>
+<td class="speaker">
+    <div class="avatar-wrapper">
+        <div class="avatar">
+            <img src="http://data.openaustralia.org/members/images/mpsL/{{person_id}}.jpg" alt="{{first_name}} {{last_name}}" onerror="this.parentNode.parentNode.removeChild(this.parentNode)">
+        </div>
+    </div>
+    {{first_name}} {{last_name}} <span>{{party}}, {{houseName}}</span>
+</td>
 <td class="duration">{{durationString}}</td>
 <td class="speeches">{{speeches}}</td>
 <td class="interjections">{{interjections}}</td>
