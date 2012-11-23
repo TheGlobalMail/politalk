@@ -10,7 +10,7 @@ PolitalkApp.module('Keywords.Models', function(Models, App) {
 
         filter: function()
         {
-            return this;
+
         }
 
     });

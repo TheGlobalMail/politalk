@@ -20,21 +20,32 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         navTitle: 'Keywords',
 
         appVents: {
-            'filter': 'filter',
-            'clearFilters': 'clearFilters',
-            'sort': 'sort',
-            'period': 'period'
+            'filter': 'filter'
         },
 
-        initialize: function()
-        {
-            this.periodView = new Views.PeriodView();
+        typeToParam: {
+            'speaker': 'speaker_id'
         },
 
         onShow: function()
         {
             this.sidebar.filters.show(new Views.FiltersView());
-            this.sidebar.period.show(this.periodView);
+        },
+
+        filter: function(type, id)
+        {
+            this._fullCollection = this.options.collection;
+            this.collection = this.options.collection = new this.collection.constructor();
+
+            var data = {};
+            data[this.typeToParam[type]] = id;
+
+            this.collection.fetch({
+                data: data,
+                success: _.bind(function() {
+                    this.showTable(this.collection.sortBy(this.sortColumn, this.sortReverse));
+                }, this)
+            });
         }
 
     });

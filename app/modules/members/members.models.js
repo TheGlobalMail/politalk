@@ -38,7 +38,7 @@ PolitalkApp.module('Members.Models', function(Models, App) {
 
             durationString: function() {
                 var hours = Math.floor(this.duration / 60 / 60);
-                var minutes = (this.duration / 60) % 60;
+                var minutes = Math.floor((this.duration / 60) % 60);
 
                 if (hours && minutes) {
                     return hours + 'h ' + minutes + 'm';
