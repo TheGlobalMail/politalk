@@ -176,20 +176,6 @@
             this.showTable(this.collection.sortBy(this.sortColumn, this.sortReverse));
         },
 
-        period: function(from, to)
-        {
-            this._fullCollection = this.options.collection;
-            this.collection = this.options.collection = new this.options.collection.constructor();
-
-            this.options.collection.fetch({
-                data: { from: from, to: to },
-                success: _.bind(function() {
-                    this.collection = this.options.collection.filter(this.filters);
-                    this.showTable(this.collection.sortBy(this.sortColumn, this.sortReverse));
-                }, this)
-            });
-        },
-
         delegateAppVents: function()
         {
             if (!this.appVents) {
@@ -322,7 +308,5 @@
     });
 
     window.Politalk = Politalk;
-
-
 
 }());
