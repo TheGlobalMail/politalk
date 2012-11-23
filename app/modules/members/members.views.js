@@ -3,9 +3,9 @@ PolitalkApp.module('Members.Views', function(Views, App) {
 
     var Members = App.module('Members');
 
-    Views.Layout = Marionette.Layout.extend({
+    Views.Layout = Politalk.ModuleLayout.extend({
         template: 'members/templates/members-layout',
-        className: 'members-layout',
+        className: 'module-layout members-layout',
 
         regions: {
             sidebar: 'aside',
@@ -102,21 +102,47 @@ PolitalkApp.module('Members.Views', function(Views, App) {
             _.bindAll(this);
             this.datePickerDefaults = {
                 format: 'dd/mm/yyyy',
-                startDate: this.formatMoment(moment('2007-01-01')),
-                endDate: this.formatMoment(moment()),
                 autoclose: true
             };
+
+            App.vent.on('dates:fetch', this.setDates, this);
         },
 
         onRender: function()
         {
-            var $fromDate = this.$fromDate = this.$('input[name=fromDate]');
-            var $toDate   = this.$toDate   = this.$('input[name=toDate]');
+            this.$fromDate = this.$('input[name=fromDate]');
+            this.$toDate   = this.$('input[name=toDate]');
 
-            $fromDate.val(this.formatMoment(moment().subtract('months', 2)));
-            $toDate.val(this.formatMoment(moment()));
+            this.$('input[name*=Date]').datepicker(this.datePickerDefaults);
+            this.refreshDates();
+        },
 
-            $([$fromDate, $toDate]).datepicker(this.datePickerDefaults);
+        setDates: function(dates)
+        {
+            // allow calling with setDates(fromDate, toDate)
+            if (arguments.length === 2) {
+                dates = arguments;
+            }
+
+            this.dates = dates;
+            this.refreshDates();
+        },
+
+        refreshDates: function()
+        {
+            if (!this.dates || !this.$fromDate || !this.$toDate) {
+                return false;
+            }
+
+            var fromDate = this.formatMoment(_.first(this.dates));
+            var toDate   = this.formatMoment(_.last(this.dates));
+
+            this.$fromDate.val(fromDate);
+            this.$toDate.val(toDate);
+
+            this.$('input[name*=Date]')
+                    .datepicker('setStartDate', fromDate)
+                    .datepicker('setEndDate', toDate);
         },
 
         fromDateChange: function()
@@ -140,7 +166,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
 
         formatMoment: function(m)
         {
-            return m.format('D/M/YYYY');
+            return moment(m).format('D/M/YYYY');
         }
 
     });

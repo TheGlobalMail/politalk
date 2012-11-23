@@ -5,6 +5,12 @@
         PolitalkApp.navbar.show(Nav.navbar);
     });
 
+    PolitalkApp.addInitializer(function() {
+        var Dates = PolitalkApp.module('Dates');
+        var dm = new Dates.DateManager();
+        dm.fetch();
+    });
+
     PolitalkApp.on("initialize:after", function() {
         Backbone.history.start();
     });

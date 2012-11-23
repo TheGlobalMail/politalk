@@ -101,6 +101,11 @@
 
             Marionette.addEventBinder(this);
 
+            this.layout = new this.layoutView();
+            this.sidebar = new this.sidebarView();
+
+            this.app.main.addView(this.moduleName, this.layout);
+
             if (_.isFunction(this.initialize)) {
                 this.initialize(options);
             }
@@ -110,18 +115,24 @@
 
         showLayout: function()
         {
-            this.layout = new this.layoutView();
-            this.sidebar = new this.sidebarView();
-
-            this.app.main.show(this.layout);
+            this.app.main.show(this.moduleName);
             this.clearFilters();
-            this.layout.sidebar.show(this.sidebar);
 
-            if (_.isFunction(this.onShow)) {
-                this.onShow();
+            if (!this.sidebar.isRendered) {
+                this.layout.sidebar.show(this.sidebar);
+                this.sidebar.isRendered = true;
+
+                if (_.isFunction(this.onShow)) {
+                    this.onShow();
+                }
             }
 
             this.app.vent.trigger('nav:activateItem', this.navTitle);
+
+            if (!_.isEmpty(this.filters)) {
+                // restore existing filters
+                this.collection = this.options.collection.filter(this.filters);
+            }
 
             this.sortColumn = this.options.defaultSortColumn;
             this.sortReverse = false;
@@ -240,6 +251,78 @@
 
     });
 
+    Politalk.SwappableRegion = Marionette.Region.extend({
+
+        constructor: function(options) {
+            Marionette.Region.prototype.constructor.apply(this, arguments);
+            this.views = options.views || {};
+        },
+
+        addView: function(name, view)
+        {
+            this.views[name] = view;
+        },
+
+        show: function(name)
+        {
+            if (!_.has(this.views, name)) {
+                throw new Error('No view called ' + name + ' is registered');
+            }
+
+            var view = this.views[name];
+            this.ensureEl();
+
+            if (!view.isRendered) {
+                view.render();
+                this.$el.append(view.el);
+                view.$el.addClass('fade in');
+                view.isRendered = true;
+            }
+
+            this.hide(function() {
+                this.open(view);
+            });
+
+            Marionette.triggerMethod.call(view, "show");
+            Marionette.triggerMethod.call(this, "show", view);
+
+            this.currentView = view;
+        },
+
+        hide: function(next, thisArg)
+        {
+            var view = this.currentView;
+            if (!view || view.isHidden()) {
+                return;
+            }
+
+            view.$el.one($.support.transition.end, _.bind(next, thisArg || this));
+
+            view.$el.removeClass('in');
+            view.undelegateEvents();
+        },
+
+        open: function(view)
+        {
+            Marionette.triggerMethod.call(view, "beforeOpen");
+            this.$el.prepend(view.$el);
+            view.$el.addClass('fade in');
+            view.delegateEvents();
+        }
+
+    });
+
+    Politalk.ModuleLayout = Marionette.Layout.extend({
+
+        isHidden: function()
+        {
+            return this.$el.is(':hidden');
+        }
+
+    });
+
     window.Politalk = Politalk;
+
+
 
 }());
