@@ -5,7 +5,10 @@ PolitalkApp = new Backbone.Marionette.Application({
 });
 
 PolitalkApp.addRegions({
-    main: '#main',
+    main: {
+        selector: '#main',
+        regionType: Politalk.SwappableRegion
+    },
     navbar: '.navbar',
     footer: '.footer'
 });
