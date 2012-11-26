@@ -143,7 +143,7 @@ module.exports = function( grunt ) {
     rev: {
       js: 'scripts/scripts.js',
       css: 'styles/main.css',
-      img: ['modules/*/img/**', 'img/**']
+      img: ['modules/*/img/**', 'img/**', 'components/chosen/chosen/*.png']
     },
 
     // usemin handler should point to the file containing
@@ -154,7 +154,7 @@ module.exports = function( grunt ) {
 
     // update references in HTML/CSS to revved files
     usemin: {
-      html: ['index.html'],
+      html: ['index.html', 'scripts/*.js'],
       css: ['styles/**/*.css']
     },
 
@@ -168,6 +168,16 @@ module.exports = function( grunt ) {
       dist: '<config:rev.img>'
     }
 
+  });
+
+  grunt.renameHelper('usemin:post:html', 'yeoman-usemin:post:html');
+  grunt.registerHelper('usemin:post:html', function(content) {
+    content = grunt.helper('yeoman-usemin:post:html', content);
+
+    grunt.log.verbose.writeln('Update JavaScript with src attributes');
+    content = grunt.helper('replace', content, /\.src=\\?['"]([^\\'"]+)\\?['"]/gm);
+
+    return content;
   });
 
   // Alias the `test` task to run the `mocha` task instead
