@@ -80,7 +80,8 @@ module.exports = function( grunt ) {
     lint: {
       files: [
         'Gruntfile.js',
-        'app/modules/**/*.js'
+        'app/modules/**/*.js',
+        '!app/modules/scripts/modernizr.js'
       ],
 
       options: {
@@ -107,7 +108,8 @@ module.exports = function( grunt ) {
           Handlebars: true,
           Marionette: true,
           PolitalkApp: true,
-          Politalk: true
+          Politalk: true,
+          Modernizr: true
         }
       }
     },
