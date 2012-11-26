@@ -208,9 +208,10 @@
         initialize: function()
         {
             this.bindTo(this.app.vent, this.moduleName + ':sorted', this.onSorted, this);
+            this.on('render', this.finishedLoading, this);
         },
 
-        onRender: function()
+        finishedLoading: function()
         {
             if (this.collection.length) {
                 this.$('.loading').remove();
@@ -308,5 +309,31 @@
     });
 
     window.Politalk = Politalk;
+
+    // prepare image fallback
+    $.fn.imgFallback = function(noCache) {
+        var cache = Modernizr.localstorage && !noCache;
+
+        var error = function() {
+            console.log('err');
+            console.log(localStorage.getItem('imgFallback:' + this.src));
+            if (cache) {
+                localStorage.setItem('imgFallback:' + this.src, true);
+            }
+            this.src = this.getAttribute('data-fallback-src');
+        };
+
+        return this.each(function() {
+            if (cache && localStorage.getItem('imgFallback:' + this.src)) {
+                console.log('from cache');
+                this.src = this.getAttribute('data-fallback-src');
+                return;
+            }
+
+            $(this).one('error', error);
+        });
+    };
+
+    $(function() { $('img[data-fallback-src]').imgFallback(); });
 
 }());
