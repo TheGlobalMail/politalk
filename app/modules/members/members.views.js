@@ -32,7 +32,12 @@ PolitalkApp.module('Members.Views', function(Views, App) {
         itemView: Views.MemberListItem,
         template: 'members/templates/members-table',
         moduleName: 'members',
-        app: App
+        app: App,
+
+        onRender: function()
+        {
+            this.$('img[data-fallback-src]').imgFallback();
+        }
 
     });
 
