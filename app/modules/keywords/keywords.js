@@ -34,7 +34,6 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
         filter: function(type, id)
         {
-            this._fullCollection = this.options.collection;
             this.collection = this.options.collection = new this.collection.constructor();
 
             var data = {};

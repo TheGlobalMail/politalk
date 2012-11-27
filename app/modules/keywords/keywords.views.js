@@ -66,6 +66,9 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         {
             this.speakers = speakers.sortBy('first_name');
             this.render();
+            if (this.shown && !this.chosen) {
+                this.onShow();
+            }
         },
 
         filterBySpeaker: function()
@@ -76,10 +79,12 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             }
         },
 
-        onRender: function()
+        onShow: function()
         {
+            this.shown = true;
             if (this.speakers.length) {
-                this.ui.speaker.chosen();
+                this.chosen = true;
+                this.ui.speaker.chosen({ allow_single_deselect: true });
             }
         }
 
