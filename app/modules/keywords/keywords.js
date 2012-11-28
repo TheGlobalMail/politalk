@@ -6,7 +6,8 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
     Keywords.Router = Marionette.AppRouter.extend({
         appRoutes: {
-            'keywords': 'showLayout'
+            'keywords':   'showLayout',
+            'person/:id': 'showMember'
         }
     });
 
@@ -32,19 +33,55 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
             this.sidebar.filters.show(new Views.FiltersView());
         },
 
+        clearFilters: function()
+        {
+            this.filters = {};
+            this._ensureRoute("keywords");
+            this.showTable(this.options.collection);
+        },
+
         filter: function(type, id)
         {
-            this.collection = this.options.collection = new this.collection.constructor();
+            if (!id) {
+                return this.clearFilters();
+            }
 
-            var data = {};
-            data[this.typeToParam[type]] = id;
+            this.collection = new this.options.collection.constructor();
+
+            var data = this.filters = {};
+            data[this.typeToParam[type] || type] = id;
 
             this.collection.fetch({
                 data: data,
                 success: _.bind(function() {
+                    this.showLayout();
                     this.showTable(this.collection.sortBy(this.sortColumn, this.sortReverse));
+                    App.vent.trigger('keywords:filtered', type, id);
+
+                    if (type === 'speaker') {
+                        this.ensureSpeakerRoute(id);
+                    } else {
+                        this._ensureRoute('keywords');
+                    }
                 }, this)
             });
+        },
+
+        ensureSpeakerRoute: function(id)
+        {
+            this._ensureRoute("person/" + id);
+        },
+
+        _ensureRoute: function(route)
+        {
+            if (Backbone.history.getFragment() !== route) {
+                Backbone.history.navigate(route);
+            }
+        },
+
+        showMember: function(id)
+        {
+            this.filter('speaker', id);
         }
 
     });
