@@ -82,9 +82,12 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         onShow: function()
         {
             this.shown = true;
+
             if (this.speakers.length) {
                 this.chosen = true;
-                this.ui.speaker.chosen({ allow_single_deselect: true });
+
+                this.ui.speaker.select2({ allowClear: true, width: 'element' });
+                this.ui.party.select2({ allowClear: true, width: 'element' });
             }
         }
 
