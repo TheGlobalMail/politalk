@@ -18,7 +18,7 @@ html, body {
 }
 
 #main {
-    margin-top: 140px;
+    padding-top: 140px;
 }
 
 .datepicker {
@@ -29,10 +29,6 @@ html, body {
     width: 80%;
     min-width: 910px;
     max-width: 1350px;
-}
-
-.module-layout {
-
 }
 
 .hero-unit {
@@ -98,7 +94,6 @@ html, body {
                 counter-increment: row-number;
                 display: block;
                 position: absolute;
-                z-index: -2;
                 left: 0;
                 top: 36%;
                 width: @numberWidth;
@@ -107,6 +102,14 @@ html, body {
                 font-weight: normal;
             }
         }
+    }
+}
+
+.table-hover tr {
+    cursor: pointer;
+
+    &:hover a {
+        text-decoration: underline;
     }
 }
 
@@ -212,4 +215,3 @@ aside {
 @import "../../members/styles/members.less";
 @import "../../keywords/styles/keywords.less";
 @import "responsive.less";
-@import "chosen.less";
