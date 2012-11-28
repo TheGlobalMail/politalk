@@ -1,8 +1,17 @@
 <h3>By Speaker</h3>
 
-<select name="speaker" data-placeholder="Pick a puppet..." class="chzn-select">
+<select name="speaker" data-placeholder="Pick a puppet...">
     <option value=""></option>
     {{#each speakers}}
     <option value="{{id}}">{{first_name}} {{last_name}}</option>
+    {{/each}}
+</select>
+
+<h3>By Party</h3>
+
+<select name="party" data-placeholder="Pick a puppet show...">
+    <option value=""></option>
+    {{#each parties}}
+    <option value="{{this}}">{{this}}</option>
     {{/each}}
 </select>

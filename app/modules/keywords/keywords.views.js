@@ -26,7 +26,24 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
 
     Views.KeywordListItem = Marionette.ItemView.extend({
         tagName: 'tr',
-        template: 'keywords/templates/keyword-item'
+        template: 'keywords/templates/keyword-item',
+
+        events: {
+            'click': 'search'
+        },
+
+        initialize: function()
+        {
+            _.bindAll(this);
+        },
+
+        search: function(e)
+        {
+            e.preventDefault();
+            window.open('http://www.openaustralia.org/search/?s=' + encodeURIComponent(this.model.get('text')), '_blank');
+            return false;
+        }
+
     });
 
     Views.KeywordsList = Politalk.TableView.extend({
@@ -42,23 +59,31 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         className: 'keywords-filters',
 
         ui: {
-            speaker: 'select[name=speaker]'
+            speaker: 'select[name=speaker]',
+            party: 'select[name=party]'
+        },
+
+        filterMap: {
+            'speaker_id': 'speaker'
         },
 
         events: {
-            'change select[name=speaker]': 'filterBySpeaker'
+            'change select[name=speaker]': 'filterBySpeaker',
+            'change select[name=party]': 'filterByParty'
         },
 
         initialize: function()
         {
             this.speakers = new Backbone.Collection();
-            App.vent.on('members:fetched', this.updateSpeakers, this);
+            this.bindTo(App.vent, 'members:fetched', this.updateSpeakers, this);
+            this.bindTo(App.vent, 'keywords:filtered', this.updateSelectedFilters, this);
         },
 
         serializeData: function()
         {
             return {
-                speakers: this.speakers.toJSON()
+                speakers: this.speakers.toJSON(),
+                parties: _.unique(this.speakers.pluck('party'))
             };
         },
 
@@ -66,6 +91,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         {
             this.speakers = speakers.sortBy('first_name');
             this.render();
+
             if (this.shown && !this.chosen) {
                 this.onShow();
             }
@@ -74,8 +100,21 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         filterBySpeaker: function()
         {
             var speakerId = parseInt(this.ui.speaker.val(), 10);
-            if (speakerId !== -1) {
-                App.vent.trigger('keywords:filter', 'speaker', speakerId);
+            App.vent.trigger('keywords:filter', 'speaker', speakerId);
+            this.ui.party.select2('val', '');
+        },
+
+        filterByParty: function()
+        {
+            var party = this.ui.party.val();
+            App.vent.trigger('keywords:filter', 'party', party);
+            this.ui.speaker.select2('val', '');
+        },
+
+        updateSelectedFilters: function(key, value)
+        {
+            if (this.ui && key in this.ui) {
+                this.ui[key].select2('val', value);
             }
         },
 
