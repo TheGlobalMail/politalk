@@ -37,7 +37,6 @@ PolitalkApp.module('Members', function(Members, App) {
 
         period: function(from, to)
         {
-            this._fullCollection = this.options.collection;
             this.collection = this.options.collection = new this.options.collection.constructor();
 
             this.options.collection.fetch({
@@ -51,8 +50,26 @@ PolitalkApp.module('Members', function(Members, App) {
 
         onShow: function()
         {
+            if (!_.isEmpty(this.filters)) {
+                // restore existing filters
+                this.collection = this.options.collection.filter(this.filters);
+            }
+
             this.sidebar.filters.show(new Views.FiltersView());
             this.sidebar.period.show(this.periodView);
+        },
+
+        filter: function(filters)
+        {
+            this.filters = filters;
+            // filter on original collection
+            this.showTable(this.options.collection.filter(filters));
+        },
+
+        clearFilters: function()
+        {
+            this.filters = {};
+            this.showTable(this.options.collection);
         }
 
     });
