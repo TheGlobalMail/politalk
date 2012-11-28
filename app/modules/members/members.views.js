@@ -24,7 +24,22 @@ PolitalkApp.module('Members.Views', function(Views, App) {
 
     Views.MemberListItem = Marionette.ItemView.extend({
         tagName: 'tr',
-        template: 'members/templates/member-item'
+        template: 'members/templates/member-item',
+
+        events: {
+            'click': 'showMember'
+        },
+
+        initialize: function()
+        {
+            _.bindAll(this);
+        },
+
+        showMember: function()
+        {
+            Backbone.history.navigate('person/' + this.model.get('speaker_id'), { trigger: true });
+        }
+
     });
 
     Views.MemberList = Politalk.TableView.extend({
