@@ -98,6 +98,7 @@
             this.filters = {};
 
             options.collection.fetch();
+            this.collection = this.options.collection;
 
             Marionette.addEventBinder(this);
 
@@ -116,7 +117,6 @@
         showLayout: function()
         {
             this.app.main.show(this.moduleName);
-            this.clearFilters();
 
             if (!this.sidebar.isRendered) {
                 this.layout.sidebar.show(this.sidebar);
@@ -129,12 +129,7 @@
 
             this.app.vent.trigger('nav:activateItem', this.navTitle);
 
-            if (!_.isEmpty(this.filters)) {
-                // restore existing filters
-                this.collection = this.options.collection.filter(this.filters);
-            }
-
-            this.sortColumn = this.options.defaultSortColumn;
+            this.sortColumn = this.sortColumn || this.options.defaultSortColumn;
             this.sortReverse = false;
             this.sort(this.sortColumn);
             $(window).scrollTop(0);
@@ -145,18 +140,6 @@
             this.collection = collection;
             this.layout.table.show(new this.tableView({ collection: collection }));
             this.app.vent.trigger(this.moduleName + ':sorted', this.sortColumn, this.sortReverse);
-        },
-
-        filter: function(filters)
-        {
-            this.filters = filters;
-            // filter on original collection
-            this.showTable(this.options.collection.filter(filters));
-        },
-
-        clearFilters: function()
-        {
-            this.showTable(this.options.collection);
         },
 
         sort: function(column)
@@ -257,18 +240,25 @@
             }
 
             var view = this.views[name];
+
+            if (this.currentView === view) {
+                return;
+            }
+
             this.ensureEl();
 
             if (!view.isRendered) {
                 view.render();
-                this.$el.append(view.el);
-                view.$el.addClass('fade in');
                 view.isRendered = true;
             }
 
-            this.hide(function() {
+            if (!this.currentView) {
                 this.open(view);
-            });
+            } else {
+                this.hide(function() {
+                    this.open(view);
+                });
+            }
 
             Marionette.triggerMethod.call(view, "show");
             Marionette.triggerMethod.call(this, "show", view);
@@ -279,11 +269,17 @@
         hide: function(next, thisArg)
         {
             var view = this.currentView;
+            thisArg = thisArg || this;
             if (!view || view.isHidden()) {
                 return;
             }
 
-            view.$el.one($.support.transition.end, _.bind(next, thisArg || this));
+            var end = function() {
+                view.$el.addClass('hide');
+                next.call(thisArg);
+            };
+
+            view.$el.one($.support.transition.end, end);
 
             view.$el.removeClass('in');
             view.undelegateEvents();
@@ -293,7 +289,7 @@
         {
             Marionette.triggerMethod.call(view, "beforeOpen");
             this.$el.prepend(view.$el);
-            view.$el.addClass('fade in');
+            view.$el.removeClass('hide').addClass('fade in');
             view.delegateEvents();
         }
 
@@ -306,6 +302,10 @@
             return this.$el.is(':hidden');
         }
 
+    });
+
+    Handlebars.registerHelper('urlencode', function(string) {
+        return encodeURIComponent(string);
     });
 
     window.Politalk = Politalk;
