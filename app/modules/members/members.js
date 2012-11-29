@@ -63,7 +63,7 @@ PolitalkApp.module('Members', function(Members, App) {
         {
             this.filters = filters;
             // filter on original collection
-            this.showTable(this.options.collection.filter(filters));
+            this.showTable(this.options.collection.filter(filters).sortBy(this.sortColumn, this.sortReverse));
         },
 
         clearFilters: function()
