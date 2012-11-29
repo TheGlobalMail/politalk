@@ -1,5 +1,4 @@
 @import "../../../components/tgm-bootstrap/less/tgm-bootstrap.less";
-@import "../../../components/select2/select2.css";
 @import "../../../components/bootstrap-datepicker/less/datepicker.less";
 
 @peopleColor: #ff835e;
@@ -108,6 +107,10 @@ html, body {
 .table-hover tr {
     cursor: pointer;
 
+    a {
+        color: @textColor;
+    }
+
     &:hover a {
         text-decoration: underline;
     }
@@ -209,6 +212,28 @@ aside {
             }
         }
     }
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  background-image: url(/components/tgm-bootstrap/img/glyphicons-halflings.png);
+}
+
+/* White icons with optional class, or on hover/active states of certain elements */
+.icon-white,
+.nav-pills > .active > a > [class^="icon-"],
+.nav-pills > .active > a > [class*=" icon-"],
+.nav-list > .active > a > [class^="icon-"],
+.nav-list > .active > a > [class*=" icon-"],
+.navbar-inverse .nav > .active > a > [class^="icon-"],
+.navbar-inverse .nav > .active > a > [class*=" icon-"],
+.dropdown-menu > li > a:hover > [class^="icon-"],
+.dropdown-menu > li > a:hover > [class*=" icon-"],
+.dropdown-menu > .active > a > [class^="icon-"],
+.dropdown-menu > .active > a > [class*=" icon-"],
+.dropdown-submenu:hover > a > [class^="icon-"],
+.dropdown-submenu:hover > a > [class*=" icon-"] {
+  background-image: url(/components/tgm-bootstrap/img/glyphicons-halflings-white.png);
 }
 
 @import "../../nav/styles/navbar.less";

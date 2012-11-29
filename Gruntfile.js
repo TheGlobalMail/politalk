@@ -1,8 +1,11 @@
 module.exports = function( grunt ) {
   'use strict';
 
+  grunt.renameTask('copy', 'yeoman-copy');
+
   grunt.loadNpmTasks('grunt-contrib-handlebars');
   grunt.loadNpmTasks('grunt-recess');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   //
   // Grunt configuration:
@@ -44,6 +47,18 @@ module.exports = function( grunt ) {
         dest: 'temp/styles/main.css',
         options: {
           compile: true
+        }
+      }
+    },
+
+    copy: {
+      select: {
+        options: {
+          basePath: __dirname,
+          flatten: true
+        },
+        files: {
+          'temp/styles/': ['components/select2/*.png', 'components/select2/*.gif']
         }
       }
     },
@@ -144,8 +159,8 @@ module.exports = function( grunt ) {
     // versioning
     rev: {
       js: 'scripts/*.js',
-      css: 'styles/main.css',
-      img: ['modules/*/img/**', 'img/**', 'components/chosen/chosen/*.png']
+      css: 'styles/*.css',
+      img: ['modules/*/img/**', 'img/**', 'components/tgm-bootstrap/img/*']
     },
 
     // usemin handler should point to the file containing
@@ -157,7 +172,7 @@ module.exports = function( grunt ) {
     // update references in HTML/CSS to revved files
     usemin: {
       html: ['index.html', 'scripts/*.js'],
-      css: ['styles/**/*.css']
+      css: ['styles/**/*.css', 'components/select2/*.css']
     },
 
     // HTML minification
@@ -185,6 +200,6 @@ module.exports = function( grunt ) {
   // Alias the `test` task to run the `mocha` task instead
   grunt.registerTask('test', 'lint handlebars mocha');
   grunt.registerTask('test-server', 'handlebars grunt-server');
-  grunt.registerTask('build', 'intro clean recess handlebars mkdirs usemin-handler concat css min img rev usemin copy time');
-  grunt.registerTask('build:minify', 'intro clean recess handlebars mkdirs usemin-handler concat css min img rev usemin html:compress copy time');
+  grunt.registerTask('build', 'intro clean recess handlebars copy:select mkdirs usemin-handler concat css min img rev usemin yeoman-copy time');
+  grunt.registerTask('build:minify', 'intro clean recess handlebars copy:select mkdirs usemin-handler concat css min img rev usemin html:compress yeoman-copy time');
 };
