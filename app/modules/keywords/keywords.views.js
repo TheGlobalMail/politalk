@@ -35,13 +35,40 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         initialize: function()
         {
             _.bindAll(this);
+            this.bindTo(App.vent, 'keywords:filtered', this.updateFilters, this);
+        },
+
+        updateFilters: function(key, value)
+        {
+            if ('speaker' === key) {
+                this.currentSpeaker = value;
+            }
+            this.render();
+        },
+
+        url: function()
+        {
+            var url = 'http://www.openaustralia.org/search/?s=' + encodeURIComponent('"' + this.model.get('text') + '"');
+
+            if (this.currentSpeaker) {
+                url += "&pid=" + this.currentSpeaker;
+            }
+
+            return url;
         },
 
         search: function(e)
         {
             e.preventDefault();
-            window.open('http://www.openaustralia.org/search/?s=' + encodeURIComponent(this.model.get('text')), '_blank');
+            window.open(this.url(), '_blank');
             return false;
+        },
+
+        serializeData: function()
+        {
+            var data = this.model.toJSON();
+            data.url = this.url();
+            return data;
         }
 
     });

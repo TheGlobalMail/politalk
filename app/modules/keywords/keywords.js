@@ -25,7 +25,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         },
 
         typeToParam: {
-            'speaker': 'speaker_id'
+            'speaker': 'person_id'
         },
 
         onShow: function()
