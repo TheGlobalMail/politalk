@@ -260,9 +260,6 @@
                 });
             }
 
-            Marionette.triggerMethod.call(view, "show");
-            Marionette.triggerMethod.call(this, "show", view);
-
             this.currentView = view;
         },
 
@@ -288,9 +285,13 @@
         open: function(view)
         {
             Marionette.triggerMethod.call(view, "beforeOpen");
+
             this.$el.prepend(view.$el);
             view.$el.removeClass('hide').addClass('fade in');
             view.delegateEvents();
+
+            Marionette.triggerMethod.call(view, "show");
+            Marionette.triggerMethod.call(this, "show", view);
         }
 
     });

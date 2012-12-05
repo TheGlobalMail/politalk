@@ -149,11 +149,10 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         {
             this.shown = true;
 
-            if (this.speakers.length) {
+            if (this.speakers.length && !this.chosen) {
                 this.chosen = true;
-
-                this.ui.speaker.select2({ allowClear: true, width: 'element' });
-                this.ui.party.select2({ allowClear: true, width: 'element' });
+                this.ui.speaker.select2({ allowClear: true, width: '180px' });
+                this.ui.party.select2({ allowClear: true, width: '180px' });
             }
         }
 
