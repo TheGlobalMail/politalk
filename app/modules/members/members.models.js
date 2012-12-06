@@ -16,14 +16,20 @@ PolitalkApp.module('Members.Models', function(Models, App) {
             'Independent': 'Ind.',
             'National Party': 'NP',
             'Country Liberal Party': 'CLP',
-            'Democratic Labor Party': 'DLP'
+            'Democratic Labor Party': 'DLP',
+            'Australian Democrats': 'AD',
+            'Family First Party': 'FFP'
         },
 
         speakerParties: [
             'PRES',
             'DPRES',
             'CWM',
-            'SPK'
+            'SPK',
+            'Speaker',
+            'Deputy-President',
+            'Deputy-Speaker',
+            'President'
         ],
 
         mutators: {
