@@ -42,7 +42,7 @@ PolitalkApp.module('Dates', function(Dates, App) {
         {
             this.trigger.apply(this, arguments);
             eventName = "dates:" + eventName;
-            App.vent.trigger.apply(App.vent, [eventName].concat(_.rest(arguments)));
+            App.vent.queueTrigger.apply(App.vent, [eventName].concat(_.rest(arguments)));
         }
 
     }, Backbone.Events);
