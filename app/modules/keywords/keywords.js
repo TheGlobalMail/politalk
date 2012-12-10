@@ -21,16 +21,25 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         navTitle: 'Keywords',
 
         appVents: {
-            'filter': 'filter'
+            'filter': 'filter',
+            'period': 'period'
         },
 
         typeToParam: {
             'speaker': 'person_id'
         },
 
+        initialize: function()
+        {
+            _.bindAll(this, '_showFiltered');
+            this.bindTo(App.vent, 'members:period', this.externalPeriod, this);
+            this.periodView = new Views.PeriodView();
+        },
+
         onShow: function()
         {
             this.sidebar.filters.show(new Views.FiltersView());
+            this.sidebar.period.show(this.periodView);
         },
 
         clearFilters: function()
@@ -42,29 +51,14 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
         filter: function(type, id)
         {
+            this.filters[this.typeToParam[type] || type] = id;
+
             if (!id) {
-                return this.clearFilters();
+                delete this.filters[this.typeToParam[type] || type];
             }
 
             this.collection = new this.options.collection.constructor();
-
-            var data = this.filters = {};
-            data[this.typeToParam[type] || type] = id;
-
-            this.collection.fetch({
-                data: data,
-                success: _.bind(function() {
-                    this.showLayout();
-                    this.showTable(this.collection.sortBy(this.sortColumn, this.sortReverse));
-                    App.vent.trigger('keywords:filtered', type, id);
-
-                    if (type === 'speaker') {
-                        this.ensureSpeakerRoute(id);
-                    } else {
-                        this._ensureRoute('keywords');
-                    }
-                }, this)
-            });
+            this.collection.fetch({ data: this.filters }).done(this._showFiltered);
         },
 
         ensureSpeakerRoute: function(id)
@@ -82,6 +76,49 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         showMember: function(id)
         {
             this.filter('speaker', id);
+        },
+
+        externalPeriod: function(from, to)
+        {
+            this.filters = {};
+            App.vent.trigger('keywords:filtered', 'speaker', '');
+            App.vent.trigger('keywords:filtered', 'party', '');
+            this.setPeriod(from, to);
+        },
+
+        setPeriod: function(from, to)
+        {
+            _.extend(this.filters, { from: from, to: to });
+
+            this.collection = new this.options.collection.constructor();
+            var dfd = this.collection.fetch({ data: this.filters });
+            dfd.done(function() {
+                App.vent.trigger('keywords:periodFiltered', from, to);
+            });
+        },
+
+        period: function(from, to)
+        {
+            this.setPeriod(from, to).done(this._showFiltered);
+        },
+
+        _showFiltered: function()
+        {
+            this.showLayout();
+            this.showTable(this.collection.sortBy(this.sortColumn, this.sortReverse));
+
+            var mapInvert = _.invert(this.typeToParam);
+
+            _.each(this.filters, function(value, filterName) {
+                filterName = mapInvert[filterName] || filterName;
+                App.vent.trigger('keywords:filtered', filterName, value);
+            });
+
+            if (this.typeToParam['speaker'] in this.filters) {
+                this.ensureSpeakerRoute(this.filters[this.typeToParam['speaker']]);
+            } else {
+                this._ensureRoute('keywords');
+            }
         }
 
     });

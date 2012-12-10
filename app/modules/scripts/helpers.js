@@ -84,7 +84,7 @@
         fetch: function()
         {
             this.trigger('fetching');
-            Backbone.Collection.prototype.fetch.apply(this, arguments);
+            return Backbone.Collection.prototype.fetch.apply(this, arguments);
         }
 
     });
@@ -196,9 +196,7 @@
 
         finishedLoading: function()
         {
-            if (this.collection.length) {
-                this.$('.loading').remove();
-            }
+            this.$('.loading').remove();
         },
 
         sort: function(e)
@@ -261,6 +259,7 @@
             }
 
             this.currentView = view;
+            this.currentViewName = name;
         },
 
         hide: function(next, thisArg)
