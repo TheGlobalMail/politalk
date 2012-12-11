@@ -35,6 +35,14 @@ PolitalkApp.module('Members.Views', function(Views, App) {
             _.bindAll(this);
         },
 
+        serializeData: function(){
+          var data = this.model ? this.model.toJSON() : {};
+          data.imageUrl = data.image ?
+              'http://data.openaustralia.org/members/images/mpsL/' + data.person_id + '.jpg' :
+              '/modules/members/img/avatar.png';
+          return data;
+        },
+
         showMember: function()
         {
             Backbone.history.navigate('person/' + this.model.get('person_id'), { trigger: true });
@@ -47,12 +55,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
         itemView: Views.MemberListItem,
         template: 'members/templates/members-table',
         moduleName: 'members',
-        app: App,
-
-        onRender: function()
-        {
-            this.$('img[data-fallback-src]').imgFallback();
-        }
+        app: App
 
     });
 
