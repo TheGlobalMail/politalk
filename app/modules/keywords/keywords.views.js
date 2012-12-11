@@ -48,7 +48,10 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
 
         url: function()
         {
-            var url = 'http://www.openaustralia.org/search/?s=' + encodeURIComponent('"' + this.model.get('text') + '"');
+            var searchTerm = _.map(this.model.get('terms').split(','), function(word){
+              return '"' + word + '"';
+            }).join(" ");
+            var url = 'http://www.openaustralia.org/search/?s=' + encodeURIComponent(searchTerm);
 
             if (this.currentSpeaker) {
                 url += "&pid=" + this.currentSpeaker;
