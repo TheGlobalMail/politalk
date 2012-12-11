@@ -95,6 +95,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
             dfd.done(function() {
                 App.vent.trigger('keywords:periodFiltered', from, to);
             });
+            return dfd;
         },
 
         period: function(from, to)

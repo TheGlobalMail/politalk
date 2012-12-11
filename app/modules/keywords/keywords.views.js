@@ -243,10 +243,8 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
 
         updateDates: function(from, to)
         {
-            console.log(arguments);
-            console.log(this.formatMoment(from));
-            this.$fromDate.val(this.formatMoment(from));
-            this.$toDate.val(this.formatMoment(to));
+          this.dates = [from, to];
+          this.refreshDates();
         }
 
     });
