@@ -129,6 +129,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
             };
 
             App.vent.on('dates:fetch', this.setDates, this);
+            this.bindTo(App.vent, 'keywords:periodFiltered', this.updateDates, this);
         },
 
         onRender: function()
@@ -190,6 +191,12 @@ PolitalkApp.module('Members.Views', function(Views, App) {
         formatMoment: function(m)
         {
             return moment(m).format('D/M/YYYY');
+        },
+
+        updateDates: function(from, to)
+        {
+          this.dates = [from, to];
+          this.refreshDates();
         }
 
     });

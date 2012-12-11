@@ -34,6 +34,7 @@ PolitalkApp.module('Members', function(Members, App) {
                 App.vent.queueTrigger('members:fetched', coll);
             });
             this.bindTo(App.vent, 'keywords:period', this.setPeriod, this);
+            this.bindTo(App.vent, 'members:period', this.setPeriod, this);
         },
 
         period: function(from, to)
@@ -54,7 +55,11 @@ PolitalkApp.module('Members', function(Members, App) {
             _.extend(this.filters, { from: from, to: to });
 
             this.collection = new this.options.collection.constructor();
-            return this.collection.fetch({ data: this.filters });
+            var dfd = this.collection.fetch({ data: this.filters });
+            dfd.done(function() {
+                App.vent.trigger('members:periodFiltered', from, to);
+            });
+            return dfd;
         },
 
         onShow: function()
