@@ -58,7 +58,7 @@ module.exports = function( grunt ) {
           flatten: true
         },
         files: {
-          'temp/styles/': ['components/select2/*.png', 'components/select2/*.gif']
+          'temp/styles/': ['app/components/select2/*.png', 'app/components/select2/*.gif']
         }
       }
     },
