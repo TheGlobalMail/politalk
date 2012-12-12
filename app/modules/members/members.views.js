@@ -125,7 +125,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
         {
             _.bindAll(this);
             this.datePickerDefaults = {
-                format: 'dd/mm/yyyy',
+                format: 'd/m/yyyy',
                 autoclose: true
             };
 
@@ -159,15 +159,22 @@ PolitalkApp.module('Members.Views', function(Views, App) {
                 return false;
             }
 
-            var fromDate = this.formatMoment(_.first(this.dates));
-            var toDate   = this.formatMoment(_.last(this.dates));
+            if (!this.fromDate && !this.toDate){
+                this.fromDate = _.first(this.dates);
+                this.toDate = _.last(this.dates);
+            }
+
+            var fromDate = this.formatMoment(this.fromDate);
+            var toDate   = this.formatMoment(this.toDate);
+            var fromRangeDate = this.formatMoment(_.first(this.dates));
+            var toRangeDate   = this.formatMoment(_.last(this.dates));
 
             this.$fromDate.val(fromDate);
             this.$toDate.val(toDate);
 
             this.$('input[name*=Date]')
-                    .datepicker('setStartDate', fromDate)
-                    .datepicker('setEndDate', toDate);
+                    .datepicker('setStartDate', fromRangeDate)
+                    .datepicker('setEndDate', toRangeDate);
         },
 
         fromDateChange: function()
@@ -196,8 +203,9 @@ PolitalkApp.module('Members.Views', function(Views, App) {
 
         updateDates: function(from, to)
         {
-          this.dates = [from, to];
-          this.refreshDates();
+            this.fromDate = from;
+            this.toDate = to;
+            this.refreshDates();
         }
 
     });
