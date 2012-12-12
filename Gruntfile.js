@@ -193,6 +193,7 @@ module.exports = function( grunt ) {
 
     grunt.log.verbose.writeln('Update JavaScript with src attributes');
     content = grunt.helper('replace', content, /\.src=\\?['"]([^\\'"]+)\\?['"]/gm);
+    content = grunt.helper('replace', content, /avatarUrl:\\?['"]([^\\'"]+)\\?['"]/gm);
 
     return content;
   });

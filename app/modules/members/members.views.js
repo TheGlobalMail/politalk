@@ -25,6 +25,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
     Views.MemberListItem = Marionette.ItemView.extend({
         tagName: 'tr',
         template: 'members/templates/member-item',
+        avatarUrl: "/modules/members/img/avatar.png",
 
         events: {
             'click': 'showMember'
@@ -39,7 +40,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
           var data = this.model ? this.model.toJSON() : {};
           data.imageUrl = data.image ?
               'http://data.openaustralia.org/members/images/mpsL/' + data.person_id + '.jpg' :
-              '/modules/members/img/avatar.png';
+               this.avatarUrl;
           return data;
         },
 
