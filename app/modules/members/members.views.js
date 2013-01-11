@@ -39,7 +39,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
         serializeData: function(){
           var data = this.model ? this.model.toJSON() : {};
           data.imageUrl = data.image ?
-              'http://data.openaustralia.org/members/images/mpsL/' + data.person_id + '.jpg' :
+              '/modules/members/members-img/mpsL/' + data.person_id + '.jpg' :
                this.avatarUrl;
           return data;
         },
