@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="hero-unit">
+      <h1>Politalk: Word Choices</h1>
+    </div>
+
+    <table id="asylum" class="table table-bordered">
+      <thead>
+      </thead>
+      <tbody>
+        <tr><td colspan="5">Loading..</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="more-modal" class="modal hide" role="dialog">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel"></h3>
+    </div>
+    <div class="modal-body" id="more">
+      Loading
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" id="close-modal" aria-hidden="true">Close</button>
+    </div>
+  </div>
+
+    <!-- build:js scripts/scripts.js -->
+    <script src="components/jquery/jquery.js"></script>
+    <script src="components/moment/moment.js"></script>
+    <script src="components/lodash/lodash.js"></script>
+    <script src="components/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="modules/wordchoices/wordchoices.js"></script>
+    <!-- endbuild -->
+</script>
+</body>
+</html>

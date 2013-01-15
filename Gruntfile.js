@@ -142,7 +142,7 @@ module.exports = function( grunt ) {
     },
 
     server: {
-      app: 'clean lint recess handlebars watch'
+      app: 'clean recess handlebars watch'
     },
 
     // Below, all paths are relative to the staging directory, which is a copy
