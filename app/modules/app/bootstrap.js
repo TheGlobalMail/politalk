@@ -1,6 +1,6 @@
 PolitalkApp = new Backbone.Marionette.Application({
     config: {
-        apiHost: 'http://politalk-api.herokuapp.com'
+      apiHost: 'http://staging-partylines-api.theglobalmail.org'
     }
 });
 
