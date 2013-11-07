@@ -1,206 +1,493 @@
-module.exports = function( grunt ) {
-  'use strict';
+// Generated on 2013-09-30 using generator-webapp 0.4.3
+'use strict';
 
-  grunt.renameTask('copy', 'yeoman-copy');
+// # Globbing
+// for performance reasons we're only matching one level down:
+// 'test/spec/{,*/}*.js'
+// use this if you want to recursively match all subfolders:
+// 'test/spec/**/*.js'
 
-  grunt.loadNpmTasks('grunt-contrib-handlebars');
-  grunt.loadNpmTasks('grunt-recess');
-  grunt.loadNpmTasks('grunt-contrib-copy');
+var path = require('path');
 
-  //
-  // Grunt configuration:
-  //
-  // https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
-  //
-  grunt.initConfig({
+module.exports = function (grunt) {
+    // show elapsed time at the end
+    require('time-grunt')(grunt);
+    // load all grunt tasks
+    require('load-grunt-tasks')(grunt);
 
-    // Project configuration
-    // ---------------------
-
-    // specify an alternate install location for Bower
-    bower: {
-      dir: 'app/components'
-    },
-
-    // Coffee to JS compilation
-    handlebars: {
-      compile: {
-        files: {
-          "temp/modules/compiled-templates.js": [
-            "app/modules/*/templates/**/*.hbs"
-          ]
+    grunt.initConfig({
+        // configurable paths
+        yeoman: {
+            app: 'app',
+            dist: 'dist'
         },
-        options: {
-          namespace: 'PolitalkApp.Templates',
-          processName: function(filename) {
-            return filename
-                    .replace(/^app\/modules\//, '')
-                    .replace(/\.hbs$/, '');
+
+        watch: {
+            recess: {
+              files: ['app/modules/**/*.less'],
+              tasks: 'recess reload'
+            },
+            handlebars: {
+              files: [
+                'app/modules/*/templates/**/*.hbs'
+              ],
+              tasks: 'handlebars reload'
+            },
+            styles: {
+                files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+                tasks: ['copy:styles', 'autoprefixer']
+            },
+            livereload: {
+                options: {
+                    livereload: '<%= connect.options.livereload %>'
+                },
+                files: [
+                    '<%= yeoman.app %>/*.html',
+                    '<%= yeoman.app %>/geoData/*.json',
+                    '.tmp/styles/{,*/}*.css',
+                    '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
+                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                ]
+            }
+        },
+        connect: {
+            options: {
+                port: 9000,
+                livereload: 35729,
+                // Allow access from other machiens
+                hostname: '0.0.0.0'
+            },
+            livereload: {
+                options: {
+                    open: true,
+                    base: [
+                        '.tmp',
+                        '<%= yeoman.app %>'
+                    ]
+                }
+            },
+            test: {
+                options: {
+                    base: [
+                        '.tmp',
+                        'test',
+                        '<%= yeoman.app %>'
+                    ]
+                }
+            },
+            dist: {
+                options: {
+                    open: true,
+                    base: '<%= yeoman.dist %>'
+                }
+            }
+        },
+        clean: {
+            dist: {
+                files: [{
+                    dot: true,
+                    src: [
+                        '.tmp',
+                        '<%= yeoman.dist %>/*',
+                        '!<%= yeoman.dist %>/.git*'
+                    ]
+                }]
+            },
+            server: '.tmp'
+        },
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc'
+            },
+            all: [
+                'Gruntfile.js',
+                '<%= yeoman.app %>/scripts/{,*/}*.js',
+                '!<%= yeoman.app %>/scripts/vendor/*',
+                'test/spec/{,*/}*.js'
+            ]
+        },
+        mocha: {
+            all: {
+                options: {
+                    run: true,
+                    urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
+                }
+            }
+        },
+        recess: {
+          dist: {
+            src: 'app/modules/app/styles/main.less',
+            dest: '.tmp/styles/main.css',
+            options: {
+              compile: true
+            }
           }
-        }
-      }
-    },
-
-    recess: {
-      dist: {
-        src: 'app/modules/app/styles/main.less',
-        dest: 'temp/styles/main.css',
-        options: {
-          compile: true
-        }
-      }
-    },
-
-    copy: {
-      select: {
-        options: {
-          basePath: __dirname,
-          flatten: true
         },
-        files: {
-          'temp/styles/': ['app/components/select2/*.png', 'app/components/select2/*.gif']
-        }
-      }
-    },
-
-    // headless testing through PhantomJS
-    mocha: {
-      all: ['test/**/*.html']
-    },
-
-    // default watch configuration
-    watch: {
-      recess: {
-        files: ['app/modules/**/*.less'],
-        tasks: 'recess reload'
-      },
-      handlebars: {
-        files: [
-          'app/modules/*/templates/**/*.hbs'
-        ],
-        tasks: 'handlebars reload'
-      },
-      reload: {
-        files: [
-          'app/*.html',
-          'app/modules/**/*.css',
-          'app/**/*.js'
-        ],
-        tasks: 'lint reload'
-      }
-    },
-
-    // default lint configuration, change this to match your setup:
-    // https://github.com/cowboy/grunt/blob/master/docs/task_lint.md#lint-built-in-task
-    lint: {
-      files: [
-        'Gruntfile.js',
-        'app/modules/**/*.js',
-        '!app/modules/scripts/modernizr.js'
-      ],
-
-      options: {
-        options: {
-          curly: true,
-          eqeqeq: true,
-          immed: true,
-          latedef: true,
-          newcap: true,
-          noarg: true,
-          sub: true,
-          undef: true,
-          boss: true,
-          eqnull: true,
-          browser: true,
-          node: true
+        autoprefixer: {
+            options: {
+                browsers: ['last 1 version']
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '.tmp/styles/',
+                    src: '{,*/}*.css',
+                    dest: '.tmp/styles/'
+                }]
+            }
         },
-        globals: {
-          jQuery: true,
-          moment: true,
-          Backbone: true,
-          _: true,
-          $: true,
-          Handlebars: true,
-          Marionette: true,
-          PolitalkApp: true,
-          Politalk: true,
-          Modernizr: true
+        // not used since Uglify task does concat,
+        // but still available if needed
+        /*concat: {
+            dist: {}
+        },*/
+        requirejs: {
+            dist: {
+                // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
+                options: {
+                    // `name` and `out` is set by grunt-usemin
+                    baseUrl: ".tmp/scripts",
+                    optimize: 'none',
+                    // TODO: Figure out how to make sourcemaps work with grunt-usemin
+                    // https://github.com/yeoman/grunt-usemin/issues/30
+                    //generateSourceMaps: true,
+                    // required to support SourceMaps
+                    // http://requirejs.org/docs/errors.html#sourcemapcomments
+                    preserveLicenseComments: false,
+                    useStrict: true,
+                    wrap: true,
+                    stubModules: ["text"]
+                    //uglify2: {} // https://github.com/mishoo/UglifyJS2
+                }
+            }
+        },
+        rev: {
+            dist: {
+                files: {
+                    src: [
+                        '<%= yeoman.dist %>/scripts/{,*/}*.js',
+                        '<%= yeoman.dist %>/styles/{,*/}*.css',
+                        '<%= yeoman.dist %>/images/*.{png,jpg,jpeg,gif,webp,svg}',
+                        '<%= yeoman.dist %>/styles/fonts/{,*/}*.*'
+                    ]
+                }
+            }
+        },
+        useminPrepare: {
+            options: {
+                dest: '<%= yeoman.dist %>'
+            },
+            html: '<%= yeoman.app %>/index.html'
+        },
+        usemin: {
+            options: {
+                dirs: ['<%= yeoman.dist %>']
+            },
+            html: ['<%= yeoman.dist %>/{,*/}*.html'],
+            css: ['<%= yeoman.dist %>/styles/{,*/}*.css']
+        },
+        imagemin: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>/images',
+                    src: '{,*/}*.{png,jpg,jpeg}',
+                    dest: '<%= yeoman.dist %>/images'
+                }]
+            }
+        },
+        svgmin: {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>/images',
+                    src: '{,*/}*.svg',
+                    dest: '<%= yeoman.dist %>/images'
+                }]
+            }
+        },
+        cssmin: {
+            // This task is pre-configured if you do not wish to use Usemin
+            // blocks for your CSS. By default, the Usemin block from your
+            // `index.html` will take care of minification, e.g.
+            //
+            //     <!-- build:css({.tmp,app}) styles/main.css -->
+            //
+            // dist: {
+            //     files: {
+            //         '<%= yeoman.dist %>/styles/main.css': [
+            //             '.tmp/styles/{,*/}*.css',
+            //             '<%= yeoman.app %>/styles/{,*/}*.css'
+            //         ]
+            //     }
+            // }
+        },
+        htmlmin: {
+            dist: {
+                options: {
+                    /*removeCommentsFromCDATA: true,
+                    // https://github.com/yeoman/grunt-usemin/issues/44
+                    //collapseWhitespace: true,
+                    collapseBooleanAttributes: true,
+                    removeAttributeQuotes: true,
+                    removeRedundantAttributes: true,
+                    useShortDoctype: true,
+                    removeEmptyAttributes: true,
+                    removeOptionalTags: true*/
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>',
+                    src: '*.html',
+                    dest: '<%= yeoman.dist %>'
+                }]
+            }
+        },
+        handlebars: {
+          compile: {
+            files: {
+              ".tmp/modules/compiled-templates.js": [
+                "app/modules/*/templates/**/*.hbs"
+              ]
+            },
+            options: {
+              namespace: 'PolitalkApp.Templates',
+              processName: function(filename) {
+                return filename
+                        .replace(/^app\/modules\//, '')
+                        .replace(/\.hbs$/, '');
+              }
+            }
+          }
+        },
+        // Put files not handled in other tasks here
+        copy: {
+            select: {
+              options: {
+                basePath: __dirname,
+                flatten: true
+              },
+              files: {
+                '.tmp/styles/': ['app/components/select2/*.png', 'app/components/select2/*.gif']
+              }
+            },
+            tmp: {
+              files: [{
+                expand: true,
+                dot: true,
+                cwd: '<%= yeoman.app %>',
+                dest: '.tmp',
+                src: ['scripts/*.js']
+              },{
+                expand: true,
+                dot: true,
+                cwd: '<%= yeoman.app %>',
+                dest: '.tmp',
+                src: ['components/**']
+              },{
+                expand: true,
+                dot: true,
+                cwd: '<%= yeoman.app %>',
+                dest: '.tmp',
+                src: ['geoData/*']
+              },{
+                expand: true,
+                dot: true,
+                cwd: '<%= yeoman.app %>',
+                dest: '.tmp',
+                src: ['templates/*']
+              }]
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '<%= yeoman.app %>',
+                    dest: '<%= yeoman.dist %>',
+                    src: [
+                        '*.{ico,png,txt}',
+                        'images/{,*/}*.{webp,gif,svg}',
+                        'styles/fonts/{,*/}*.*',
+                        'components/select2/*.{png,gif}',
+                        'components/bootstrap/fonts/*.*',
+                        'components/font-awesome/font/*.*'
+                    ]
+                }]
+            },
+            styles: {
+                expand: true,
+                dot: true,
+                cwd: '<%= yeoman.app %>/styles',
+                dest: '.tmp/styles/',
+                src: '{,*/}*.css'
+            }
+        },
+        cdn: {
+            dist: {
+                options: { flatten: true },
+                src: ['<%= yeoman.dist %>/*.html', '<%= yeoman.dist %>/styles/*.css'],
+                cdn: 'http://hussains-story-assets.theglobalmail.org'
+            },
+            staging: {
+                options: { flatten: true },
+                src: ['<%= cdn.dist.src %>'],
+                cdn: 'http://hussains-story-staging-assets.theglobalmail.org'
+            }
+        },
+        s3: {
+          options: {
+            region: 'ap-southeast-2',
+            cacheTTL: 0,
+            accessKeyId: "<%= aws.accessKeyId %>",
+            secretAccessKey: "<%= aws.secretAccessKey %>",
+            bucket: "<%= aws.targetBucket %>"
+          },
+          build: {
+            cwd: "dist/",
+            src: "**"
+          }
+        },
+        modernizr: {
+            devFile: '<%= yeoman.app %>/components/modernizr/modernizr.js',
+            outputFile: '<%= yeoman.dist %>/components/modernizr/modernizr.js',
+            files: [
+                '<%= yeoman.dist %>/scripts/{,*/}*.js',
+                '<%= yeoman.dist %>/styles/{,*/}*.css',
+                '!<%= yeoman.dist %>/scripts/vendor/*'
+            ],
+            uglify: true
+        },
+        concurrent: {
+            server: [
+                'recess',
+                'handlebars',
+                'copy:styles'
+            ],
+            test: [
+                'copy:styles'
+            ],
+            dist: [
+                'recess',
+                'copy:styles',
+                'imagemin',
+                'svgmin',
+                'htmlmin'
+            ]
+        },
+        bower: {
+            options: {
+                exclude: ['modernizr']
+            },
+            all: {
+                rjsConfig: '<%= yeoman.app %>/.tmp/main.js'
+            },
+            dir: 'app/components'
         }
+    });
+
+    // Update javscript src attributes
+    grunt.registerTask('usemin:js', function(content) {
+      grunt.log.verbose.writeln('Update JavaScript with src attributes');
+      //content = grunt.task.run('replace', content, /\.src=\\?['"]([^\\'"]+)\\?['"]/gm);
+      //content = grunt.task.run('replace', content, /avatarUrl:\\?['"]([^\\'"]+)\\?['"]/gm);
+      return content;
+    });
+
+    grunt.registerTask('server', function (target) {
+        if (target === 'dist') {
+            return grunt.task.run(['build', 'connect:dist:keepalive']);
+        }
+
+        grunt.task.run([
+            'clean:server',
+            'concurrent:server',
+            'autoprefixer',
+            'connect:livereload',
+            'watch'
+        ]);
+    });
+
+    grunt.registerTask('test', [
+        'clean:server',
+        'concurrent:test',
+        'autoprefixer',
+        'connect:test',
+        'mocha'
+    ]);
+
+    grunt.registerTask('build', function(target){
+      var tasks = [
+        'clean:dist',
+        'useminPrepare',
+        'copy:tmp',
+        'concurrent:dist',
+        'autoprefixer',
+        'requirejs',
+        'concat',
+        'cssmin',
+        'uglify',
+        'modernizr',
+        'copy:dist',
+        'rev',
+        'usemin'
+      ];
+
+      // allow building with different CDN URLs
+      if (target === 'staging') {
+        tasks.push('cdn:staging');
+      } else if (target !== 'dev') {
+        tasks.push('cdn:dist');
       }
-    },
 
-    // Build configuration
-    // -------------------
+      grunt.task.run(tasks);
+    });
 
-    // the staging directory used during the process
-    staging: 'temp',
-    // final build output
-    output: 'dist',
+    grunt.registerTask('default', [
+        // 'jshint', disabled for coffeescript
+        'test',
+        'build'
+    ]);
 
-    mkdirs: {
-      staging: 'app/'
-    },
+    grunt.registerTask('deploy', function(target) {
+      // Build and deploy (TODO add CORS configuration for font-awesome)
+      var _ = grunt.util._;
 
-    server: {
-      app: 'clean recess handlebars watch'
-    },
+      try{
+        grunt.config.data.aws = grunt.file.readJSON(path.join(process.env.HOME, '.tgm-aws-deploy-credentials.json'));
+      }catch(e){
+        throw new Error('You will need to create ~/.tgm-aws-deploy-credentials.json before deploying');
+      }
 
-    // Below, all paths are relative to the staging directory, which is a copy
-    // of the app/ directory. Any .gitignore, .ignore and .buildignore file
-    // that might appear in the app/ tree are used to ignore these values
-    // during the copy process.
+      // Deploy bucket
+      var buckets = {
+        production: 'hussains-story.theglobalmail.org',
+        staging: 'hussains-story-staging.theglobalmail.org'
+      };
 
-    // concat css/**/*.css files, inline @import, output a single minified css
-    css: {
-      'styles/main.css': ['styles/**/*.css']
-    },
+      // Deploy targets
+      var targetToTask = {
+        production: [
+          'build:production',
+          's3'
+        ],
+        staging: [
+          'build:staging',
+          's3'
+        ]
+      };
 
-    // renames JS/CSS to prepend a hash of their contents for easier
-    // versioning
-    rev: {
-      js: 'scripts/*.js',
-      css: 'styles/*.css',
-      img: ['modules/*/img/**', 'img/**', 'components/tgm-bootstrap/img/*']
-    },
+      var tasks = targetToTask[target];
+      var targetBucket = buckets[target];
 
-    // usemin handler should point to the file containing
-    // the usemin blocks to be parsed
-    'usemin-handler': {
-      html: 'index.html'
-    },
+      if (tasks === undefined || targetBucket === undefined) {
+        throw new Error(
+          'Select a target destination from: ' +
+          _.keys(targetToTask).join(', ')
+        );
+      }
 
-    // update references in HTML/CSS to revved files
-    usemin: {
-      html: ['index.html', 'scripts/*.js'],
-      css: ['styles/**/*.css', 'components/select2/*.css']
-    },
+      grunt.config.data.aws.targetBucket = targetBucket;
 
-    // HTML minification
-    html: {
-      files: ['index.html']
-    },
-
-    // Optimizes JPGs and PNGs (with jpegtran & optipng)
-    img: {
-      dist: '<config:rev.img>'
-    }
-
-  });
-
-  grunt.renameHelper('usemin:post:html', 'yeoman-usemin:post:html');
-  grunt.registerHelper('usemin:post:html', function(content) {
-    content = grunt.helper('yeoman-usemin:post:html', content);
-
-    grunt.log.verbose.writeln('Update JavaScript with src attributes');
-    content = grunt.helper('replace', content, /\.src=\\?['"]([^\\'"]+)\\?['"]/gm);
-    content = grunt.helper('replace', content, /avatarUrl:\\?['"]([^\\'"]+)\\?['"]/gm);
-
-    return content;
-  });
-
-  // Alias the `test` task to run the `mocha` task instead
-  grunt.registerTask('test', 'lint handlebars mocha');
-  grunt.registerTask('test-server', 'handlebars grunt-server');
-  grunt.registerTask('build', 'intro clean recess handlebars copy:select mkdirs usemin-handler concat css min img rev usemin yeoman-copy time');
-  grunt.registerTask('build:minify', 'intro clean recess handlebars copy:select mkdirs usemin-handler concat css min img rev usemin html:compress yeoman-copy time');
+      grunt.task.run(tasks);
+    });
 };
