@@ -6,7 +6,6 @@ PolitalkApp.module('Members', function(Members, App) {
 
     Members.Router = Marionette.AppRouter.extend({
         appRoutes: {
-            '':         'showLayout',
             'people':   'showLayout'
         }
     });

@@ -6,6 +6,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
     Keywords.Router = Marionette.AppRouter.extend({
         appRoutes: {
+            '':   'showLayout',
             'keywords':   'showLayout',
             'person/:id': 'showMember'
         }
