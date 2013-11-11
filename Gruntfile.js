@@ -139,26 +139,6 @@ module.exports = function (grunt) {
         /*concat: {
             dist: {}
         },*/
-        requirejs: {
-            dist: {
-                // Options: https://github.com/jrburke/r.js/blob/master/build/example.build.js
-                options: {
-                    // `name` and `out` is set by grunt-usemin
-                    baseUrl: ".tmp/scripts",
-                    optimize: 'none',
-                    // TODO: Figure out how to make sourcemaps work with grunt-usemin
-                    // https://github.com/yeoman/grunt-usemin/issues/30
-                    //generateSourceMaps: true,
-                    // required to support SourceMaps
-                    // http://requirejs.org/docs/errors.html#sourcemapcomments
-                    preserveLicenseComments: false,
-                    useStrict: true,
-                    wrap: true,
-                    stubModules: ["text"]
-                    //uglify2: {} // https://github.com/mishoo/UglifyJS2
-                }
-            }
-        },
         rev: {
             dist: {
                 files: {
@@ -244,7 +224,7 @@ module.exports = function (grunt) {
         handlebars: {
           compile: {
             files: {
-              ".tmp/modules/compiled-templates.js": [
+              "app/modules/compiled-templates.js": [
                 "app/modules/*/templates/**/*.hbs"
               ]
             },
@@ -305,6 +285,8 @@ module.exports = function (grunt) {
                     src: [
                         '*.{ico,png,txt}',
                         'images/{,*/}*.{webp,gif,svg}',
+                        'modules/members/img/*.{webp,gif,svg,jpg,png}',
+                        'modules/members/members-img/mpsL/*.{webp,gif,svg,jpg,png}',
                         'styles/fonts/{,*/}*.*',
                         'components/select2/*.{png,gif}',
                         'components/bootstrap/fonts/*.*',
@@ -324,12 +306,13 @@ module.exports = function (grunt) {
             dist: {
                 options: { flatten: true },
                 src: ['<%= yeoman.dist %>/*.html', '<%= yeoman.dist %>/styles/*.css'],
-                cdn: 'http://hussains-story-assets.theglobalmail.org'
+                cdn: 'http://politalk-assets.theglobalmail.org'
+                //cdn: 'http://localhost:9000'
             },
             staging: {
                 options: { flatten: true },
                 src: ['<%= cdn.dist.src %>'],
-                cdn: 'http://hussains-story-staging-assets.theglobalmail.org'
+                cdn: 'http://politalk-staging-assets.theglobalmail.org'
             }
         },
         s3: {
@@ -416,11 +399,11 @@ module.exports = function (grunt) {
     grunt.registerTask('build', function(target){
       var tasks = [
         'clean:dist',
+        'handlebars',
         'useminPrepare',
         'copy:tmp',
         'concurrent:dist',
         'autoprefixer',
-        'requirejs',
         'concat',
         'cssmin',
         'uglify',
@@ -458,8 +441,8 @@ module.exports = function (grunt) {
 
       // Deploy bucket
       var buckets = {
-        production: 'hussains-story.theglobalmail.org',
-        staging: 'hussains-story-staging.theglobalmail.org'
+        production: 'politalk.theglobalmail.org',
+        staging: 'politalk-staging.theglobalmail.org'
       };
 
       // Deploy targets

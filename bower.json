@@ -12,6 +12,7 @@
     "tgm-bootstrap": "git@github.com:TheGlobalMail/tgm-bootstrap.git#0.0.2",
     "bootstrap-datepicker": "git://github.com/eternicode/bootstrap-datepicker.git",
     "moment": "git://github.com/timrwood/moment.git",
-    "select2": "latest"
+    "select2": "latest",
+    "modernizr": "~2.6.2"
   }
 }

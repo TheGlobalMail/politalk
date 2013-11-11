@@ -3,3 +3,5 @@ temp
 components
 app/components
 .DS_Store
+.tmp
+dist
