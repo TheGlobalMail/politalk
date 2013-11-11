@@ -28,25 +28,24 @@
 
     _.extend(Marionette.TemplateCache.prototype, {
 
-        loadTemplate: function(templateId)
-        {
-            var template = PolitalkApp.Templates[templateId];
+      loadTemplate: function(templateId)
+      {
+          var template = PolitalkApp.Templates[templateId];
 
-            if (!template || template.length === 0){
-                var msg = "Could not find template: '" + templateId + "'";
-                var err = new Error(msg);
-                err.name = "NoTemplateError";
-                throw err;
-            }
+          if (!template || template.length === 0){
+              var msg = "Could not find template: '" + templateId + "'";
+              var err = new Error(msg);
+              err.name = "NoTemplateError";
+              throw err;
+          }
 
-            return template;
-        },
+          return template;
+      },
 
-        compileTemplate: function(rawTemplate)
-        {
-            return Handlebars.template(rawTemplate);
-        }
-
+      compileTemplate: function(rawTemplate)
+      {
+          return rawTemplate;
+      }
     });
 
     var Politalk = {};
