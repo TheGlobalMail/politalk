@@ -14,6 +14,5 @@
 ## TODO
 
 * Fix cdn url in javascript
-* remove ordering
-* setup server
 * link to partylines rather than OA?
+* fix member images

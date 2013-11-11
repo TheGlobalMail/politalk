@@ -54,10 +54,6 @@ html, body {
         text-shadow: 0 1px 0 white;
     }
 
-    th:first-child {
-        padding-left: @numberWidth + @numberPadding;
-    }
-
     th.sorted {
         color: #333;
 
@@ -80,23 +76,6 @@ html, body {
         .cell;
         font-size: 100%;
         padding: 15px .75%;
-
-        &:first-child {
-            padding-left: @numberWidth + @numberPadding;
-
-            &:before {
-                content: counter(row-number);
-                counter-increment: row-number;
-                display: block;
-                position: absolute;
-                left: 0;
-                top: 36%;
-                width: @numberWidth;
-                text-align: right;
-                font-size: 80%;
-                font-weight: normal;
-            }
-        }
     }
 }
 

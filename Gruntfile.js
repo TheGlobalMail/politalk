@@ -25,13 +25,13 @@ module.exports = function (grunt) {
         watch: {
             recess: {
               files: ['app/modules/**/*.less'],
-              tasks: 'recess reload'
+              tasks: 'recess'
             },
             handlebars: {
               files: [
                 'app/modules/*/templates/**/*.hbs'
               ],
-              tasks: 'handlebars reload'
+              tasks: 'handlebars'
             },
             styles: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
