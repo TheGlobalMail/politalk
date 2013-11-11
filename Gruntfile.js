@@ -287,6 +287,7 @@ module.exports = function (grunt) {
                         'images/{,*/}*.{webp,gif,svg}',
                         'modules/members/img/*.{webp,gif,svg,jpg,png}',
                         'modules/members/members-img/mpsL/*.{webp,gif,svg,jpg,png}',
+                        'modules/app/img/*.{webp,gif,svg,jpg,png}',
                         'styles/fonts/{,*/}*.*',
                         'components/select2/*.{png,gif}',
                         'components/bootstrap/fonts/*.*',
