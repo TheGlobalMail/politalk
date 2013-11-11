@@ -48,16 +48,8 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
 
         url: function()
         {
-            var searchTerm = _.map(this.model.get('terms').split(','), function(word){
-              return '"' + word + '"';
-            }).join(" ");
-            var url = 'http://www.openaustralia.org/search/?s=' + encodeURIComponent(searchTerm);
-
-            if (this.currentSpeaker) {
-                url += "&pid=" + this.currentSpeaker;
-            }
-
-            return url;
+            var searchTerm = this.model.get('terms').split(',')[0];
+            return 'http://partylines.theglobalmail.org/search/' + encodeURIComponent(searchTerm);
         },
 
         search: function(e)
