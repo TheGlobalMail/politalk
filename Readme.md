@@ -13,5 +13,7 @@
 
 ## TODO
 
-* setup follower db
 * checkout on mobile
+* bug with routesing if you reload
+* setup follower db?
+* remove other rackspace container?
