@@ -1,6 +1,7 @@
 PolitalkApp = new Backbone.Marionette.Application({
     config: {
-      apiHost: 'http://staging-partylines-api.theglobalmail.org'
+      apiHost: 'http://staging-partylines-api.theglobalmail.org',
+      memberImageDomain: 'http://politalk-assets.theglobalmail.org'
     }
 });
 

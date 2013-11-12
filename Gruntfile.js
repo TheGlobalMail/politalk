@@ -367,14 +367,6 @@ module.exports = function (grunt) {
         }
     });
 
-    // Update javscript src attributes
-    grunt.registerTask('usemin:js', function(content) {
-      grunt.log.verbose.writeln('Update JavaScript with src attributes');
-      //content = grunt.task.run('replace', content, /\.src=\\?['"]([^\\'"]+)\\?['"]/gm);
-      //content = grunt.task.run('replace', content, /avatarUrl:\\?['"]([^\\'"]+)\\?['"]/gm);
-      return content;
-    });
-
     grunt.registerTask('server', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
