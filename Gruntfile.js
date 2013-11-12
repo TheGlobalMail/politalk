@@ -290,10 +290,16 @@ module.exports = function (grunt) {
                         'modules/app/img/*.{webp,gif,svg,jpg,png}',
                         'modules/keywords/img/*.{webp,gif,svg,jpg,png}',
                         'styles/fonts/{,*/}*.*',
-                        'components/select2/*.{png,gif}',
                         'components/bootstrap/fonts/*.*',
                         'components/font-awesome/font/*.*'
                     ]
+                },
+                {
+                    expand: true,
+                    flatten: true,
+                    cwd: '<%= yeoman.app %>',
+                    dest: '<%= yeoman.dist %>',
+                    src: ['components/select2/*.png']
                 }]
             },
             styles: {
