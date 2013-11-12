@@ -83,7 +83,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"hero-unit keywords\">\n    <h1 class=\"container\">Keywords</h1>\n    <h2 class=\"container\">What 'choo talkin' 'bout?</h2>\n</div>\n\n<div class=\"da-background\">\n    <div class=\"container keywords\">\n        <div class=\"row-fluid\">\n            <aside class=\"span3\"></aside>\n            <div class=\"span9 main-table keywords-list\"></div>\n        </div>\n    </div>\n</div>";
+  return "<div class=\"hero-unit keywords\">\n    <h1 class=\"container\">Phrases</h1>\n    <h2 class=\"container\">Frequently used phrases in Australian Federal parliament</h2>\n</div>\n\n<div class=\"da-background\">\n    <div class=\"container keywords\">\n        <div class=\"row-fluid\">\n            <aside class=\"span3\"></aside>\n            <div class=\"span9 main-table keywords-list\"></div>\n        </div>\n    </div>\n</div>\n";
   });
 
 this["PolitalkApp"]["Templates"]["keywords/templates/keywords-period"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -241,7 +241,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<table class=\"table table-sortable members-table table-hover\">\n    <thead>\n        <tr>\n            <th data-sortable=\"last_name\">Name</th>\n            <th data-sortable=\"duration\">Duration</th>\n            <th class=\"speeches\" data-sortable=\"speeches\">Speeches</th>\n            <th class=\"interjections\" data-sortable=\"interjections\">Interjects</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr class=\"loading\">\n            <td colspan=\"4\">Loading...</td>\n        </tr>\n    </tbody>\n</table>";
+  return "<table class=\"table table-sortable members-table table-hover\">\n    <thead>\n        <tr>\n            <th data-sortable=\"last_name\">Name</th>\n            <th data-sortable=\"duration\">Estimated Duration</th>\n            <th class=\"speeches\" data-sortable=\"speeches\">Speeches</th>\n            <th class=\"interjections\" data-sortable=\"interjections\">Interjects</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr class=\"loading\">\n            <td colspan=\"4\">Loading...</td>\n        </tr>\n    </tbody>\n</table>\n";
   });
 
 this["PolitalkApp"]["Templates"]["nav/templates/nav-item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -268,5 +268,5 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"tgm-strip\">\n	<div class=\"container\">\n		<a href=\"http:///www.theglobalmail.org\" class=\"tgm\" title=\"Go to The Global Mail\">The Global Mail</a>\n		<div class=\"icons\">\n      <a class=\"about\" href=\"#\" data-target=\"#about-tool-modal\" data-toggle=\"modal\">About</a>\n    </div>\n	</div>\n</div>\n<div class=\"navbar-inner\">\n    <div class=\"container row-fluid\">\n        <span class=\"beta\">Beta 1.0</span>\n        <a href=\"/\" class=\"brand span3\">Poli/talk</a>\n        <div class=\"nav-collapse collapse\">\n            <ul class=\"nav\"></ul>\n        </div>\n    </div>\n</div>\n";
+  return "<div class=\"tgm-strip\">\n	<div class=\"container\">\n		<a href=\"http:///www.theglobalmail.org\" class=\"tgm\" title=\"Go to The Global Mail\">The Global Mail</a>\n		<div class=\"icons\">\n      <a class=\"about\" href=\"#\" data-target=\"#about-tool-modal\" data-toggle=\"modal\">About</a>\n    </div>\n	</div>\n</div>\n<div class=\"navbar-inner\">\n    <div class=\"container row-fluid\">\n        <a href=\"/\" class=\"brand span3\">Poli/talk</a>\n        <div class=\"nav-collapse collapse\">\n            <ul class=\"nav\"></ul>\n        </div>\n    </div>\n</div>\n";
   });

@@ -30,6 +30,23 @@
 
     <footer class="footer"></footer>
 
+  <div class="modal hide fade" id="about-tool-modal" role="dialog" aria-label="About this tool" tabindex="-1">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3>About this Tool</h3>
+    </div>
+
+    <div class="modal-body">
+      <p><em>Politalk</em> identifies frequently-used phrases in Australian Federal Parliament. It's an attempt to explore what politians talk about the most.</p>
+      
+      <p>The data was sourced and aggregated by <em>OpenAustralia</em> from the digital copies of <em>Hansard</em> provided by the government. <em>Politalk</em> uses an automated text-mining algorithm to extract the phrases. This code is open-source and <a href="https://github.com/bxjx/gramophone" target="_GITHUB">available on Github</a>. See <a href="http://powerhouse.theglobalmail.org/party-lines-and-talking-heads-how-the-interactive-features-work/" target="_BLANK">our post on Partylines to learn more about our methodolgy</a>.</p>
+
+      <p>Please note: this tool is for exploring only &mdash; please be careful drawing conclusions based only on the phrases listed. The text-mining algorithm is completely automated, and occassionaly, it will generate some misleading and sometimes humorous results. Always refer to Partylines or OpenAustralia to fully understand the context that the phrase was used in.</a>
+
+      <p class="small">Questions, problems, suggestions? <a href="http://www.theglobalmail.org/contact/" data-bypass>Email us</a></p>
+    </div>
+  </div>
+
     <!--[if lt IE 7]>
         <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
@@ -47,6 +64,7 @@
     <script src="components/select2/select2.js"></script>
     <script src="modules/scripts/handlebars.runtime.js"></script>
     <script src="components/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="components/bootstrap/js/bootstrap-modal.js"></script>
     <script src="modules/scripts/helpers.js"></script>
     <script src="modules/app/bootstrap.js"></script>
     <script src="modules/app/app.views.js"></script>

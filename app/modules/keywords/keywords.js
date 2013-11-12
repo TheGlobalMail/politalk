@@ -7,7 +7,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
     Keywords.Router = Marionette.AppRouter.extend({
         appRoutes: {
             '':   'showLayout',
-            'keywords':   'showLayout',
+            'phrases':   'showLayout',
             'person/:id': 'showMember'
         }
     });
@@ -18,8 +18,8 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         layoutView: Views.Layout,
         sidebarView: Views.SidebarLayout,
         tableView: Views.KeywordsList,
-        moduleName: 'keywords',
-        navTitle: 'Keywords',
+        moduleName: 'phrases',
+        navTitle: 'Phrases',
 
         appVents: {
             'filter': 'filter',
@@ -126,7 +126,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
     });
 
     Keywords.addInitializer(function() {
-        App.vent.trigger('nav:addItem', 'Keywords', '#keywords');
+        App.vent.trigger('nav:addItem', 'Phrases', '#phrases');
     });
 
     Keywords.addInitializer(function() {
