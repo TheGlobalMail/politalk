@@ -13,7 +13,5 @@
 
 ## TODO
 
-* Fix cdn url in javascript
-* link to partylines rather than OA?
-* replace header
-* fix member images
+* setup follower db
+* checkout on mobile

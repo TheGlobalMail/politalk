@@ -17,6 +17,11 @@
     <!-- build:js scripts/head.js -->
     <script src="components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
+
+    <meta property="og:title" content="Politalk - The Global Mail">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://politalk.theglobalmail.org/">
+    <meta property="fb:admins" content="259806917383998">
 </head>
 <body>
     <nav class="navbar navbar-fixed-top"></nav>
@@ -64,5 +69,18 @@
         g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
         s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
+
+    <!-- FB stuff -->
+    <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
 </body>
 </html>
