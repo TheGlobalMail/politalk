@@ -35,7 +35,8 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         initialize: function()
         {
             _.bindAll(this);
-            this.bindTo(App.vent, 'keywords:filtered', this.updateFilters, this);
+            this.bindTo(App.vent, 'phrases:filtered', this.updateFilters, this);
+            this.datesLoaded = false;
         },
 
         updateFilters: function(key, value)
@@ -71,7 +72,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
     Views.KeywordsList = Politalk.TableView.extend({
         itemView: Views.KeywordListItem,
         template: 'keywords/templates/keywords-table',
-        moduleName: 'keywords',
+        moduleName: 'phrases',
         app: App
     });
 
@@ -98,7 +99,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         {
             this.speakers = new Backbone.Collection();
             this.bindTo(App.vent, 'members:fetched', this.updateSpeakers, this);
-            this.bindTo(App.vent, 'keywords:filtered', this.updateSelectedFilters, this);
+            this.bindTo(App.vent, 'phrases:filtered', this.updateSelectedFilters, this);
         },
 
         serializeData: function()
@@ -122,21 +123,21 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         filterBySpeaker: function()
         {
             var speakerId = parseInt(this.ui.speaker.val(), 10);
-            App.vent.trigger('keywords:filter', 'speaker', speakerId);
-            this.ui.party.select2('val', '');
+            App.vent.trigger('phrases:filter', 'speaker', speakerId);
+            this.setSelect('party', '');
         },
 
         filterByParty: function()
         {
             var party = this.ui.party.val();
-            App.vent.trigger('keywords:filter', 'party', party);
-            this.ui.speaker.select2('val', '');
+            App.vent.trigger('phrases:filter', 'party', party);
+            this.setSelect('speaker', '');
         },
 
         updateSelectedFilters: function(key, value)
         {
             if (this.ui && key in this.ui) {
-                this.ui[key].select2('val', value);
+                this.setSelect(key, value);
             }
         },
 
@@ -146,9 +147,21 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
 
             if (this.speakers.length && !this.chosen) {
                 this.chosen = true;
-                this.ui.speaker.select2({ allowClear: true, width: '180px' });
-                this.ui.party.select2({ allowClear: true, width: '180px' });
+                if (!Modernizr.touch){
+                  this.ui.speaker.select2({ allowClear: true, width: '180px' });
+                  this.ui.party.select2({ allowClear: true, width: '180px' });
+                }
             }
+        },
+
+        setSelect: function(key, value)
+        {
+          if (Modernizr.touch){
+            this.ui[key].val(value);
+          }else{
+            this.ui[key].select2('val', value);
+          }
+
         }
 
     });
@@ -172,7 +185,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             };
 
             App.vent.on('dates:fetch', this.setDates, this);
-            this.bindTo(App.vent, 'keywords:periodFiltered', this.updateDates, this);
+            this.bindTo(App.vent, 'phrases:periodFiltered', this.updateDates, this);
         },
 
         onRender: function()
@@ -193,6 +206,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
 
             this.dates = dates;
             this.refreshDates();
+            this.datesLoaded = true;
         },
 
         refreshDates: function()
@@ -235,7 +249,9 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             var from   = moment(this.$fromDate.val(), format);
             var to     = moment(this.$toDate.val(), format);
 
-            App.vent.trigger('keywords:period', from.format('YYYY-MM-DD'), to.format('YYYY-MM-DD'));
+            if (this.datesLoaded){
+              App.vent.trigger('phrases:period', from.format('YYYY-MM-DD'), to.format('YYYY-MM-DD'));
+            }
         },
 
         formatMoment: function(m)

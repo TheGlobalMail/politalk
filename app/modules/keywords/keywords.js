@@ -46,7 +46,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         clearFilters: function()
         {
             this.filters = {};
-            this._ensureRoute("keywords");
+            this._ensureRoute("phrases");
             this.showTable(this.options.collection);
         },
 
@@ -82,8 +82,8 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         externalPeriod: function(from, to)
         {
             this.filters = {};
-            App.vent.trigger('keywords:filtered', 'speaker', '');
-            App.vent.trigger('keywords:filtered', 'party', '');
+            App.vent.trigger('phrases:filtered', 'speaker', '');
+            App.vent.trigger('phrases:filtered', 'party', '');
             this.setPeriod(from, to);
         },
 
@@ -94,7 +94,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
             this.collection = new this.options.collection.constructor();
             var dfd = this.collection.fetch({ data: this.filters });
             dfd.done(function() {
-                App.vent.trigger('keywords:periodFiltered', from, to);
+                App.vent.trigger('phrases:periodFiltered', from, to);
             });
             return dfd;
         },
@@ -113,13 +113,13 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
             _.each(this.filters, function(value, filterName) {
                 filterName = mapInvert[filterName] || filterName;
-                App.vent.trigger('keywords:filtered', filterName, value);
+                App.vent.trigger('phrases:filtered', filterName, value);
             });
 
             if (this.typeToParam['speaker'] in this.filters) {
                 this.ensureSpeakerRoute(this.filters[this.typeToParam['speaker']]);
             } else {
-                this._ensureRoute('keywords');
+                this._ensureRoute('phrases');
             }
         }
 
