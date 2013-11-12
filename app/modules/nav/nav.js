@@ -19,6 +19,7 @@ PolitalkApp.module('Nav', function(Nav, App) {
 
         addItem: function(name, href)
         {
+           console.error('adding ' + name)
             var $item = $(render('nav/templates/nav-item', { name: name, href: href }));
             this.items[name] = $item;
             this._items.push($item);
