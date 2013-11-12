@@ -17,3 +17,4 @@
 * bug with routesing if you reload
 * setup follower db?
 * remove other rackspace container?
+* Dates not appear on IE

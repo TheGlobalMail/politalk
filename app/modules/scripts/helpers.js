@@ -93,7 +93,7 @@
         constructor: function(options)
         {
             this.options = options || {};
-            this.sortReverse = true;
+            this.sortReverse = false;
             this.filters = {};
 
             options.collection.fetch();
