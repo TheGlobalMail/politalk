@@ -11,14 +11,14 @@
         }
 
         .icons {
-            margin: 6px 0;
-            float: right;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            .border-radius(5px);
+          width: 250px;
+          top: 8px;
+          position: absolute;
+          right: 24px;
         }
 
 
-        .icons .about, .icons .share {
+        .icons .about {
             font-family: "Open Sans", Helvetica, Arial, sans-serif;
             text-transform: uppercase;
             font-weight: normal;
@@ -36,13 +36,27 @@
         }
 
         .icons .about {
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             margin-right: 4px;
+            line-height: 1.0;
         }
 
-        .icons .share {
-            padding-left: 22px;
-            background: transparent url(/modules/app/img/ico-share.png) 0 49% no-repeat;
+        .share-button {
+          display: inline-block;
+          vertical-align: top;
+          // force all buttons to the same height so they're vertically aligned
+          height: 23px;
+          width: 80px;
+          overflow: visible;
+          &.facebook {
+            // Fixing a bug where the FB like
+            // button is ~30px offset to the right
+            text-align: left;
+            .ie8 &,
+            .lt-ie9 &, {
+              text-align: center;
+            }
+          }
         }
 
     }

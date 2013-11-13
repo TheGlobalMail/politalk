@@ -13,8 +13,10 @@
 
 ## TODO
 
-* checkout on mobile
+* checkout on mobile/ipad
+* social buttons
 * bug with routesing if you reload
 * setup follower db?
 * remove other rackspace container?
 * Dates not appear on IE
+* ensure all links work
