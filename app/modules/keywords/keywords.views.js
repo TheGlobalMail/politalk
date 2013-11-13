@@ -50,7 +50,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         url: function()
         {
             var searchTerm = this.model.get('terms').split(',')[0];
-            return 'http://partylines.theglobalmail.org/search/' + encodeURIComponent(searchTerm);
+            return 'http://partylines.theglobalmail.org/search/' + searchTerm.replace(/\s/g, '+');
         },
 
         search: function(e)
