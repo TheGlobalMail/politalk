@@ -1,15 +1,15 @@
 <h3>By Speaker</h3>
 
-<select name="speaker" data-placeholder="Pick a politician..." width="180">
+<select name="speaker" data-placeholder="Pick a politician..." width="220">
     <option value=""></option>
     {{#each speakers}}
-    <option value="{{person_id}}">{{first_name}} {{last_name}}</option>
+    <option value="{{person_id}}">{{first_name}} {{last_name}}{{yearsInHouse}}</option>
     {{/each}}
 </select>
 
 <h3>By Party</h3>
 
-<select name="party" data-placeholder="Pick a party..." width="180">
+<select name="party" data-placeholder="Pick a party..." width="220">
     <option value=""></option>
     {{#each parties}}
     <option value="{{this}}">{{this}}</option>

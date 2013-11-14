@@ -104,15 +104,35 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
 
         serializeData: function()
         {
+            var speakers = this.speakers.map(function(speaker){
+              var data = speaker.toJSON();
+              // mixin the yearsInHouse attribute
+              return _.extend(data, {
+                yearsInHouse : this.yearsInHouse(data)
+              });
+            }, this);
             return {
-                speakers: this.speakers.toJSON(),
+                speakers: speakers,
                 parties: _.unique(this.speakers.pluck('party'))
             };
         },
 
+        yearsInHouse: function(speaker){
+            var leftYear = moment(speaker.left_house).years();
+            if (leftYear !== 9999){
+               return ' (' + moment(speaker.entered_house).years() + '-' + leftYear + ')';
+            }
+        },
+
         updateSpeakers: function(speakers)
         {
-            this.speakers = speakers.sortBy('first_name');
+            this.speakers = new speakers.constructor(speakers.models.sort(function(speaker1, speaker2){
+              // sort by last_name, first_name and then year left
+              var compare = function(speaker){
+                return _.map(['last_name', 'first_name', 'left_house'], speaker.get, speaker).join(' ');
+              };
+              return compare(speaker1).localeCompare(compare(speaker2));
+            }));
             this.render();
 
             if (this.shown && !this.chosen) {
@@ -148,8 +168,8 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             if (this.speakers.length && !this.chosen) {
                 this.chosen = true;
                 if (!Modernizr.touch){
-                  this.ui.speaker.select2({ allowClear: true, width: '180px' });
-                  this.ui.party.select2({ allowClear: true, width: '180px' });
+                  this.ui.speaker.select2({ allowClear: true, width: '220px' });
+                  this.ui.party.select2({ allowClear: true, width: '220px' });
                 }
             }
         },

@@ -14,12 +14,8 @@
 ## TODO
 
 * checkout on mobile/ipad
-* social buttons
-* investigate missing images
 * bug with routesing if you reload
 * remove other rackspace container?
 * Dates not appear on IE
 * ensure all links work
 * add new parties
-* look into duplicate members
-  * either rename or merge
