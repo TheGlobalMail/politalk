@@ -129,7 +129,7 @@
             this.app.vent.trigger('nav:activateItem', this.navTitle);
 
             this.sortColumn = this.sortColumn || this.options.defaultSortColumn;
-            this.sortReverse = false;
+            this.sortReverse = this.sortColumn === 'last_name';
             this.sort(this.sortColumn);
             $(window).scrollTop(0);
         },

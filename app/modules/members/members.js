@@ -94,7 +94,7 @@ PolitalkApp.module('Members', function(Members, App) {
     Members.addInitializer(function() {
         var controller = new Members.Controller({
             collection: new Models.MemberList(),
-            defaultSortColumn: 'duration'
+            defaultSortColumn: 'last_name'
         });
         Members.router = new Members.Router({ controller: controller });
     });
