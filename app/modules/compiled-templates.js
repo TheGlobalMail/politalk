@@ -151,11 +151,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.houseName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.houseName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span>\n</td>\n<td class=\"duration\">";
-  if (stack1 = helpers.durationString) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.durationString; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "</td>\n<td class=\"speeches\">";
+    + "</span>\n</td>\n<td class=\"speeches\">";
   if (stack1 = helpers.speeches) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.speeches; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -241,7 +237,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<table class=\"table table-sortable members-table table-hover\">\n    <thead>\n        <tr>\n            <th data-sortable=\"last_name\">Name</th>\n            <th data-sortable=\"duration\">Estimated Duration</th>\n            <th class=\"speeches\" data-sortable=\"speeches\">Speeches</th>\n            <th class=\"interjections\" data-sortable=\"interjections\">Interjects</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr class=\"loading\">\n            <td colspan=\"4\">Loading...</td>\n        </tr>\n    </tbody>\n</table>\n";
+  return "<table class=\"table table-sortable members-table table-hover\">\n    <thead>\n        <tr>\n            <th data-sortable=\"last_name\">Name</th>\n            <th class=\"speeches\" data-sortable=\"speeches\">Speeches</th>\n            <th class=\"interjections\" data-sortable=\"interjections\">Interjects</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr class=\"loading\">\n            <td colspan=\"4\">Loading...</td>\n        </tr>\n    </tbody>\n</table>\n";
   });
 
 this["PolitalkApp"]["Templates"]["nav/templates/nav-item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
