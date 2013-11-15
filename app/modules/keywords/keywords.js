@@ -8,7 +8,8 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         appRoutes: {
             '':   'showLayout',
             'phrases':   'showLayout',
-            'person/:id': 'showMember'
+            'person/:id': 'showMember',
+            'party/:id': 'showParty'
         }
     });
 
@@ -27,7 +28,8 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         },
 
         typeToParam: {
-            'speaker': 'person_id'
+            'speaker': 'person_id',
+            'party': 'party'
         },
 
         initialize: function()
@@ -53,10 +55,17 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         filter: function(type, id)
         {
             this.filters[this.typeToParam[type] || type] = id;
-
             if (!id) {
                 delete this.filters[this.typeToParam[type] || type];
             }
+
+            // clear the other filters
+            _.chain(['party', 'speaker'])
+              .select(function(filter){
+                return filter !== type;
+              }).each(function(filter){
+                delete this.filters[this.typeToParam[filter] || filter];
+              }, this);
 
             this.collection = new this.options.collection.constructor();
             this.collection.fetch({ data: this.filters }).done(this._showFiltered);
@@ -65,6 +74,11 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         ensureSpeakerRoute: function(id)
         {
             this._ensureRoute("person/" + id);
+        },
+
+        ensurePartyRoute: function(id)
+        {
+            this._ensureRoute("party/" + id.replace(/\s/g, '+'));
         },
 
         _ensureRoute: function(route)
@@ -76,7 +90,14 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
         showMember: function(id)
         {
+            //App.vent.trigger('phrases:loaded', 'speaker', id);
             this.filter('speaker', id);
+        },
+
+        showParty: function(id)
+        {
+            //App.vent.trigger('phrases:loaded', 'party', id);
+            this.filter('party', id.replace(/\+/g, ' '));
         },
 
         externalPeriod: function(from, to)
@@ -116,7 +137,9 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
                 App.vent.trigger('phrases:filtered', filterName, value);
             });
 
-            if (this.typeToParam['speaker'] in this.filters) {
+            if (this.typeToParam['party'] in this.filters) {
+                this.ensurePartyRoute(this.filters[this.typeToParam['party']]);
+            }else if (this.typeToParam['speaker'] in this.filters) {
                 this.ensureSpeakerRoute(this.filters[this.typeToParam['speaker']]);
             } else {
                 this._ensureRoute('phrases');

@@ -142,24 +142,33 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
 
         filterBySpeaker: function()
         {
+          window.filtersView = this;
             var speakerId = parseInt(this.ui.speaker.val(), 10);
+            this.setSelectWithoutChangeEvent('party', '');
             App.vent.trigger('phrases:filter', 'speaker', speakerId);
-            this.setSelect('party', '');
         },
 
         filterByParty: function()
         {
             var party = this.ui.party.val();
+            this.setSelectWithoutChangeEvent('speaker', '');
             App.vent.trigger('phrases:filter', 'party', party);
-            this.setSelect('speaker', '');
         },
 
         updateSelectedFilters: function(key, value)
         {
             if (this.ui && key in this.ui) {
-                this.setSelect(key, value);
+                this.setSelectWithoutChangeEvent(key, value);
             }
         },
+
+        updateLoadedFilters: function(key, value)
+        {
+            if (this.ui && key in this.ui) {
+                this.setSelectWithoutChangeEvent(key, value);
+            }
+        },
+
 
         onShow: function()
         {
@@ -174,6 +183,12 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             }
         },
 
+        setSelectWithoutChangeEvent: function(key, value, options){
+          this.undelegateEvents();
+          this.setSelect(key, value);
+          this.delegateEvents();
+        },
+
         setSelect: function(key, value)
         {
           if (Modernizr.touch){
@@ -181,7 +196,6 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
           }else{
             this.ui[key].select2('val', value);
           }
-
         }
 
     });
@@ -245,12 +259,14 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             var fromRangeDate = this.formatMoment(_.first(this.dates));
             var toRangeDate   = this.formatMoment(_.last(this.dates));
 
+            this.undelegateEvents();
             this.$fromDate.val(fromDate);
             this.$toDate.val(toDate);
 
             this.$('input[name*=Date]')
                     .datepicker('setStartDate', fromRangeDate)
                     .datepicker('setEndDate', toRangeDate);
+            this.delegateEvents();
         },
 
         fromDateChange: function()

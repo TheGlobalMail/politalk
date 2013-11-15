@@ -150,7 +150,7 @@
             if (this.sortColumn === column) {
                 this.sortReverse = !this.sortReverse;
             } else {
-                this.sortReverse = false;
+                this.sortReverse = !!this.defaultSortOrder;
             }
 
             this.sortColumn = column;

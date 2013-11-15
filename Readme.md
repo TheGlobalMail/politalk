@@ -13,9 +13,10 @@
 
 ## TODO
 
+* keep dates in sync
+  * update dates if the update was triggered by other screen?
+
 * checkout on mobile/ipad
-* bug with routesing if you reload
-* remove other rackspace container?
 * Dates not appear on IE
 * ensure all links work
 * add new parties
