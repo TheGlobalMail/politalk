@@ -18,5 +18,3 @@
 
 * checkout on mobile/ipad
 * Dates not appear on IE
-* ensure all links work
-* add new parties

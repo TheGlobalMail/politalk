@@ -7,7 +7,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"container\">\n    <div class=\"about\">\n        <a href=\"/\" class=\"brand\">Poli/talk</a>\n        <p>An ongoing analysis of <a href=\"http://www.openaustralia.org\" target=\"_blank\">Hansard transcripts</a> with the aim of making what is said more transparent and (possibly) more entertaining.</p>\n        <a href=\"/\" class=\"link\">Methodology</a> | <a href=\"/\" class=\"link\">Send feedback</a>\n    </div>\n\n    <div class=\"credit\">\n        <p>Designed and developed by <a href=\"http://www.theglobalmail.org\" class=\"tgm\" target=\"_blank\">The Global Mail</a></p>\n\n        <p>Partially based on data from <a href=\"http://www.openaustralia.org\" target=\"_blank\">www.openaustralia.org</a></p>\n    </div>\n</div>";
+  return "<div class=\"container\">\n    <div class=\"about\">\n        <a href=\"/\" class=\"brand\">Poli/talk</a>\n        <p>An ongoing analysis of <a href=\"http://www.openaustralia.org\" target=\"_blank\">Hansard transcripts</a> with the aim of making what is said more transparent and (possibly) more entertaining.</p>\n        <a class=\"link\" href=\"#\" data-target=\"#about-tool-modal\" data-toggle=\"modal\">About</a>\n    </div>\n\n    <div class=\"credit\">\n        <p>Designed and developed by <a href=\"http://www.theglobalmail.org\" class=\"tgm\" target=\"_blank\">The Global Mail</a></p>\n\n        <p>Partially based on data from <a href=\"http://www.openaustralia.org\" target=\"_blank\">www.openaustralia.org</a></p>\n    </div>\n</div>\n";
   });
 
 this["PolitalkApp"]["Templates"]["keywords/templates/keyword-item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
