@@ -15,7 +15,7 @@ PolitalkApp.module('Members.Models', function(Models, App) {
             'Liberal Party': 'LP',
             'Independent': 'Ind.',
             'National Party': 'NP',
-            'Palmer United Party', 'PUP',
+            'Palmer United Party': 'PUP',
             'Country Liberal Party': 'CLP',
             'Democratic Labor Party': 'DLP',
             'Australian Democrats': 'AD',
