@@ -55,6 +55,10 @@ PolitalkApp.module('Members.Models', function(Models, App) {
                 }
 
                 return hours + 'h';
+            },
+
+            isSpeaker: function(){
+               return _.include(Models.Member.prototype.speakerParties, this.party);
             }
         }
 
@@ -72,7 +76,7 @@ PolitalkApp.module('Members.Models', function(Models, App) {
 
             if (filters.noSpeakers) {
                 members = _.filter(members, function(member) {
-                    return !_.include(Models.Member.prototype.speakerParties, member.get('party'));
+                    return !member.isSpeaker();
                 });
             }
 

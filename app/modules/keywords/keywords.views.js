@@ -108,12 +108,17 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
               var data = speaker.toJSON();
               // mixin the yearsInHouse attribute
               return _.extend(data, {
-                yearsInHouse : this.yearsInHouse(data)
+                yearsInHouse : this.yearsInHouse(data),
+                isSpeaker : !!speaker.get('isSpeaker')
               });
             }, this);
+            // non speakers here refer to people who aren't the president etc
+            var nonSpeakers = _.select(speakers, function(speaker){
+              return !speaker.isSpeaker;
+            });
             return {
                 speakers: speakers,
-                parties: _.unique(this.speakers.pluck('party'))
+                parties: _.unique(_.pluck(nonSpeakers, 'party'))
             };
         },
 
