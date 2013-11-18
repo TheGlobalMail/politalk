@@ -213,6 +213,7 @@ aside {
   background-image: url(/components/tgm-bootstrap/img/glyphicons-halflings-white.png);
 }
 
+/* Style modal header a little better */
 .modal-header{
   width: 100%;
   .box-shadow(0 1px 10px rgba(0, 0, 0, 0.3));
@@ -224,6 +225,18 @@ aside {
     letter-spacing: -1px;
   }
 }
+
+/* fixup datepickers on IE */
+.members-period label, .keywords-period label{
+  display: block;
+}
+.members-period input.date, .keywords-period input.date{
+  box-sizing: content-box;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+
 
 @import "../../nav/styles/navbar.less";
 @import "../../members/styles/members.less";

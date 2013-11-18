@@ -28,7 +28,7 @@ PolitalkApp.module('Dates', function(Dates, App) {
         _processDates: function(data)
         {
             _.each(data, function(date) {
-                this.dates.push(new Date(date));
+                this.dates.push(moment(date)._d);
             }, this);
 
             this.dates.sort(function(a, b) {
