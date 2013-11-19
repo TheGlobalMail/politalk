@@ -12,9 +12,7 @@
     });
 
     PolitalkApp.on("initialize:after", function() {
-        PolitalkApp.vent.once('members:fetched', function(){
-          Backbone.history.start();
-        });
+        Backbone.history.start();
     });
 
     PolitalkApp.start();

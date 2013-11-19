@@ -170,12 +170,14 @@ PolitalkApp.module('Members.Views', function(Views, App) {
             var fromRangeDate = this.formatMoment(_.first(this.dates));
             var toRangeDate   = this.formatMoment(_.last(this.dates));
 
+            this.undelegateEvents();
             this.$fromDate.val(fromDate);
             this.$toDate.val(toDate);
 
             this.$('input[name*=Date]')
                     .datepicker('setStartDate', fromRangeDate)
                     .datepicker('setEndDate', toRangeDate);
+            this.delegateEvents();
         },
 
         fromDateChange: function()

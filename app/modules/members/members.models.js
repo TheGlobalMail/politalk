@@ -77,7 +77,7 @@ PolitalkApp.module('Members.Models', function(Models, App) {
 
             if (filters.noSpeakers) {
                 members = _.filter(members, function(member) {
-                    return !member.isSpeaker();
+                    return !_.include(Models.Member.prototype.speakerParties, member.get('party'));
                 });
             }
 

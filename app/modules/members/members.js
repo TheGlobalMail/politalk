@@ -34,8 +34,6 @@ PolitalkApp.module('Members', function(Members, App) {
             });
             this.defaultSortOrder = true;
             this.sortReverse = true;
-            this.bindTo(App.vent, 'keywords:period', this.setPeriod, this);
-            this.bindTo(App.vent, 'members:period', this.setPeriod, this);
         },
 
         period: function(from, to)

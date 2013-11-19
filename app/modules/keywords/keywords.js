@@ -35,7 +35,6 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         initialize: function()
         {
             _.bindAll(this, '_showFiltered');
-            this.bindTo(App.vent, 'members:period', this.externalPeriod, this);
             this.periodView = new Views.PeriodView();
         },
 
