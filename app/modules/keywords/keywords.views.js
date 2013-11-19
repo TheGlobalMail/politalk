@@ -35,16 +35,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         initialize: function()
         {
             _.bindAll(this);
-            this.bindTo(App.vent, 'phrases:filtered', this.updateFilters, this);
             this.datesLoaded = false;
-        },
-
-        updateFilters: function(key, value)
-        {
-            if ('speaker' === key) {
-                this.currentSpeaker = value;
-            }
-            this.render();
         },
 
         url: function()
@@ -100,6 +91,8 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             this.speakers = new Backbone.Collection();
             this.bindTo(App.vent, 'members:fetched', this.updateSpeakers, this);
             this.bindTo(App.vent, 'phrases:filtered', this.updateSelectedFilters, this);
+            this.bindTo(App.vent, 'phrases:periodFiltered', this.updateDates, this);
+            this.bindTo(App.vent, 'phrases:loaded', this.updateFromLoad, this);
         },
 
         serializeData: function()
@@ -143,13 +136,16 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             if (this.shown && !this.chosen) {
                 this.onShow();
             }
+            // Call this after members have been fetched
+            this.updateStatus();
         },
 
         filterBySpeaker: function()
         {
-          window.filtersView = this;
             var speakerId = parseInt(this.ui.speaker.val(), 10);
             this.setSelectWithoutChangeEvent('party', '');
+            this.updateFilterState('speaker', speakerId);
+            this.updateStatus();
             App.vent.trigger('phrases:filter', 'speaker', speakerId);
         },
 
@@ -157,13 +153,67 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         {
             var party = this.ui.party.val();
             this.setSelectWithoutChangeEvent('speaker', '');
+            this.updateFilterState('party', party);
+            this.updateStatus();
             App.vent.trigger('phrases:filter', 'party', party);
+        },
+
+        updateDates: function(from, to){
+          this.fromDate = moment(from);
+          this.toDate = moment(to);
+          this.updateStatus();
+        },
+
+        updateStatus: function(){
+            if (this.currentSpeakerId){
+              var currentSpeakerId = this.currentSpeakerId;
+              this.currentSpeaker = this.speakers.find(function(speaker){
+                return speaker.get('person_id') === currentSpeakerId;
+              });
+            }else{
+              this.currentSpeaker = null;
+            }
+            if (this.currentSpeaker){
+              this.currentSpeaker = this.currentSpeaker.get('first_name') + ' ' + this.currentSpeaker.get('last_name');
+            }
+            var entity = this.currentSpeaker || this.currentParty;
+            var html = '';
+            if (entity){
+              html += 'Phrases frequently used by <strong>' + entity + '</strong> ';
+            }else{
+              html += 'Frequently used phrases in Australian Federal Parliament';
+            }
+            if (this.fromDate && this.toDate){
+              html += ' from ' +
+                _.map([this.fromDate, this.toDate], function(date){
+                  return '<strong>' +date.format('DD/MM/YYYY') + '</strong>';
+                }).join(' to ');
+            }
+            $('.keywords-status').html(html);
+        },
+
+        updateFromLoad: function(key, value){
+            if (this.ui && key in this.ui) {
+                this.setSelectWithoutChangeEvent(key, value);
+            }
         },
 
         updateSelectedFilters: function(key, value)
         {
             if (this.ui && key in this.ui) {
                 this.setSelectWithoutChangeEvent(key, value);
+            }
+            this.updateFilterState(key, value);
+            this.updateStatus();
+        },
+
+        updateFilterState: function(key, value){
+            if (key === 'speaker'){
+              this.currentSpeakerId = value && parseInt(value, 10);
+              this.currentParty = null;
+            }else if (key === 'party'){
+              this.currentParty = value;
+              this.currentSpeakerId = null;
             }
         },
 

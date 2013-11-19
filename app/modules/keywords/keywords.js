@@ -90,14 +90,15 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
         showMember: function(id)
         {
-            //App.vent.trigger('phrases:loaded', 'speaker', id);
+            App.vent.trigger('phrases:loaded', 'speaker', id);
             this.filter('speaker', id);
         },
 
         showParty: function(id)
         {
-            //App.vent.trigger('phrases:loaded', 'party', id);
-            this.filter('party', id.replace(/\+/g, ' '));
+            var party = id.replace(/\+/g, ' ');
+            App.vent.trigger('phrases:loaded', 'party', party);
+            this.filter('party', party);
         },
 
         externalPeriod: function(from, to)
