@@ -134,7 +134,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.last_name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.last_name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">\n        </div>\n    </div>\n    <a href=\"#person/";
+    + "\">\n        </div>\n    </div>\n    <div class=\"speaker-info\">\n      <a href=\"#person/";
   if (stack1 = helpers.person_id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.person_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -154,7 +154,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.houseName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.houseName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span>\n</td>\n<td class=\"speeches\">";
+    + "</span>\n    </div>\n</td>\n\n<td class=\"speeches\">";
   if (stack1 = helpers.speeches) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.speeches; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -213,7 +213,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"hero-unit people\">\n    <h1 class=\"container\">People</h1>\n    <h2 class=\"container\">Federal politians and how often they spoke in Parliament</h2>\n</div>\n\n\n<div class=\"container people\">\n    <div class=\"row-fluid\">\n        <aside class=\"span3\"></aside>\n        <div class=\"span9 members-list main-table\"></div>\n    </div>\n</div>\n";
+  return "<div class=\"hero-unit people\">\n    <h1 class=\"container\">People</h1>\n    <h2 class=\"container\">Federal politicians and how often they spoke in Parliament</h2>\n</div>\n\n\n<div class=\"container people\">\n    <div class=\"row-fluid\">\n        <aside class=\"span3\"></aside>\n        <div class=\"span9 members-list main-table\"></div>\n    </div>\n</div>\n";
   });
 
 this["PolitalkApp"]["Templates"]["members/templates/members-period"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
