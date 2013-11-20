@@ -31,7 +31,16 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         initialize: function()
         {
             _.bindAll(this);
+            this.bindTo(App.vent, 'phrases:filtered', this.updateFilters, this);
             this.datesLoaded = false;
+        },
+
+        updateFilters: function(key, value)
+        {
+            if ('speaker' === key) {
+                this.currentSpeaker = value;
+            }
+            this.render();
         },
 
         url: function()
