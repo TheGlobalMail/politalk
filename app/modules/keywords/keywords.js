@@ -35,6 +35,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         initialize: function()
         {
             _.bindAll(this, '_showFiltered');
+            this.bindTo(App.vent, 'dates:fetch', this.recordDateRange, this);
             this.periodView = new Views.PeriodView();
         },
 
@@ -49,6 +50,15 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
             this.filters = {};
             this._ensureRoute("phrases");
             this.showTable(this.options.collection);
+        },
+
+        recordDateRange: function(dates){
+            this.fromDateRange = moment(_.first(dates)).format('YYYY-MM-DD');
+            this.toDateRange = moment(_.last(dates)).format('YYYY-MM-DD');
+        },
+
+        isDefaultDateRange: function(from, to){
+            return from === this.fromDateRange && to === this.toDateRange;
         },
 
         filter: function(type, id)
@@ -110,7 +120,12 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
         setPeriod: function(from, to)
         {
-            _.extend(this.filters, { from: from, to: to });
+            if (this.isDefaultDateRange(from, to)){
+              delete this.filters.from;
+              delete this.filters.to;
+            }else{
+              _.extend(this.filters, { from: from, to: to });
+            }
 
             this.collection = new this.options.collection.constructor();
             var dfd = this.collection.fetch({ data: this.filters });
