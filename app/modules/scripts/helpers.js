@@ -131,7 +131,6 @@
             this.sortColumn = this.sortColumn || this.options.defaultSortColumn;
             this.sortReverse = this.sortColumn === 'last_name';
             this.sort(this.sortColumn);
-            $(window).scrollTop(0);
         },
 
         showTable: function(collection)
