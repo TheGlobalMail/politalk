@@ -34,6 +34,11 @@ PolitalkApp.module('Members.Models', function(Models, App) {
         ],
 
         mutators: {
+
+            tenure: function() {
+                return [moment(this.entered_house), moment(this.left_house)];
+            },
+
             houseName: function() {
                 return this.house === 1 ? 'House of Rep.' : 'Senate';
             },
