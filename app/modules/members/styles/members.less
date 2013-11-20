@@ -11,18 +11,29 @@
 
 .main-table .table {
     counter-reset: row-number;
-    @numberWidth: 30px;
-    @numberPadding: 8px;
+    @numberPadding: 15px;
     @photoWidth: 40px;
-    @photoPadding: 8px;
+    @photoPadding: 15px;
 
-    th:first-child {
-        padding-left: @numberWidth + @numberPadding + @photoWidth + @photoPadding;
+    &.members-table {
+        th:first-child, td:first-child { 
+            padding-left: @numberPadding + @photoWidth + @photoPadding; 
+        }
+    }
+
+
+
+    th {
+        &:first-child { padding-left: 20px; }
+        &.speeches, &.interjections, &.frequency {
+            text-align: right;
+            padding-right: 20px;
+        }
     }
 
     td {
         &:first-child {
-            padding-left: @numberWidth + @numberPadding + @photoWidth + @photoPadding;
+            padding-left: 20px;
         }
 
         &.speaker {
@@ -35,7 +46,7 @@
             .avatar-wrapper {
                 position: absolute;
                 top: 20%;
-                left: 40px;
+                left: 20px;
             }
 
             .avatar {
@@ -70,6 +81,7 @@
             font-size: 200%;
             font-style: italic;
             color: @grayLight;
+            text-align: right;
         }
 
         &.duration {
