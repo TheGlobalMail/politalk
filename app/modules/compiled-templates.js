@@ -28,7 +28,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.OAurl) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.OAurl; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">OpenAustralia</a></td>\n<td class=\"frequency\">";
+    + "\">Open Australia</a> <a data-bypass target=\"_BLANK\" class=\"partylines-link\" href=\"";
+  if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">Party Lines</a></td>\n<td class=\"frequency\">";
   if (stack1 = helpers.frequency) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.frequency; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
