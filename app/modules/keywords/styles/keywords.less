@@ -14,6 +14,33 @@
     }
 }
 
+.member-info-container {
+    margin: 0 0 30px 0;
+    .member-thumb {
+        @photoWidth: 80px;
+        width: @photoWidth;
+        height: @photoWidth;
+        background-size: 110%;
+        .border-radius(@photoWidth);
+        overflow: hidden;
+        position: static;
+        display: block;
+        img {
+            position: static;
+            width: @photoWidth;
+            margin-top: -3px;
+        }
+    }
+    .member-name {
+        margin-top: 10px;
+        display: block;
+        p {
+            font-size: 20px; 
+            font-weight: bold;
+        }
+    }
+}
+
 .keywords-table {
     counter-reset: row-number;
     @numberWidth: 30px;
