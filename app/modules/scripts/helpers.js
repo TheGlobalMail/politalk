@@ -273,7 +273,11 @@
                 next.call(thisArg);
             };
 
-            view.$el.one($.support.transition.end, end);
+            if ($.support.transition){
+              view.$el.one($.support.transition.end, end);
+            }else{
+              setTimeout(end, 0);
+            }
 
             view.$el.removeClass('in');
             view.undelegateEvents();
