@@ -16,7 +16,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<td class=\"text\"><a href=\"";
+  buffer += "<td class=\"text\"><a class=\"partylines\" target=\"_BLANK\" href=\"";
   if (stack1 = helpers.url) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.url; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -24,11 +24,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.text) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.text; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</a></td>\n<td class=\"frequency\">";
+    + "</a> <a data-bypass target=\"_BLANK\" class=\"openaustralia-link\" href=\"";
+  if (stack1 = helpers.OAurl) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.OAurl; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">OpenAustralia</a></td>\n<td class=\"frequency\">";
   if (stack1 = helpers.frequency) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.frequency; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</td>";
+    + "</td>\n";
   return buffer;
   });
 

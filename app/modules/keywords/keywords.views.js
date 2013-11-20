@@ -28,10 +28,6 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         tagName: 'tr',
         template: 'keywords/templates/keyword-item',
 
-        events: {
-            'click': 'search'
-        },
-
         initialize: function()
         {
             _.bindAll(this);
@@ -44,17 +40,23 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             return 'http://partylines.theglobalmail.org/search/' + searchTerm.replace(/\s/g, '+');
         },
 
-        search: function(e)
-        {
-            e.preventDefault();
-            window.open(this.url(), '_blank');
-            return false;
+        OAurl: function(){
+          var searchTerm = _.map(this.model.get('terms').split(','), function(word){
+              return '"' + word + '"';
+          }).join(" ");
+          var url = 'http://www.openaustralia.org/search/?s=' + encodeURIComponent(searchTerm);
+
+          if (this.currentSpeaker) {
+            url += "&pid=" + this.currentSpeaker;
+          }
+          return url;
         },
 
         serializeData: function()
         {
             var data = this.model.toJSON();
             data.url = this.url();
+            data.OAurl = this.OAurl();
             return data;
         }
 
