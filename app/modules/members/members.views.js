@@ -38,6 +38,10 @@ PolitalkApp.module('Members.Views', function(Views, App) {
 
         serializeData: function(){
           var data = this.model ? this.model.toJSON() : {};
+          var roleAndTenure = this.model.get('roleAndTenure');
+          var speakerRole = roleAndTenure.match(/\(([\w\s]+):/);
+          data.tenure = roleAndTenure.replace(/.+: /, '(');
+          data.party = speakerRole ? speakerRole[1] : data.party;
           data.imageUrl = App.config.memberImageDomain;
           data.imageUrl += data.image ?
               '/modules/members/members-img/mpsL/' + data.person_id + '.jpg' :

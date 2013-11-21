@@ -168,8 +168,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   else { stack1 = depth0.houseName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + " ";
-  if (stack1 = helpers.roleAndTenure) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.roleAndTenure; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (stack1 = helpers.tenure) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.tenure; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + "</span>\n    </div>\n</td>\n\n<td class=\"speeches\">";
   if (stack1 = helpers.speeches) { stack1 = stack1.call(depth0, {hash:{},data:data}); }

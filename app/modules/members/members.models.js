@@ -44,7 +44,7 @@ PolitalkApp.module('Members.Models', function(Models, App) {
                 }else if (this.party.match(/^(SPK|Speaker)$/)){
                   role = 'Speaker';
                 }else if (this.party.match(/^(DSPK|Deputy-Speaker)$/)){
-                  role = 'Deputy-Speaker';
+                  role = 'Deputy Speaker';
                 }else if (this.party.match(/^(CWM)$/)){
                   role = 'Chair';
                 }
