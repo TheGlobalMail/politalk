@@ -122,7 +122,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             });
             return {
                 speakers: speakers,
-                parties: _.unique(_.pluck(nonSpeakers, 'party'))
+                parties: _.unique(_.pluck(nonSpeakers, 'party')).sort()
             };
         },
 

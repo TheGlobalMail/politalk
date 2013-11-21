@@ -10,16 +10,16 @@ PolitalkApp.module('Members.Models', function(Models, App) {
         ],
 
         parties: {
+            'Australian Democrats': 'AD',
             'Australian Greens': 'Greens',
             'Australian Labor Party': 'ALP',
-            'Liberal Party': 'LP',
-            'Independent': 'Ind.',
-            'National Party': 'NP',
-            'Palmer United Party': 'PUP',
             'Country Liberal Party': 'CLP',
             'Democratic Labor Party': 'DLP',
-            'Australian Democrats': 'AD',
-            'Family First Party': 'FFP'
+            'Family First Party': 'FFP',
+            'Independent': 'Ind.',
+            'Liberal Party': 'LP',
+            'National Party': 'NP',
+            'Palmer United Party': 'PUP'
         },
 
         speakerParties: [
