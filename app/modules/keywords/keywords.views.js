@@ -129,7 +129,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         yearsInHouse: function(speaker){
             var leftYear = moment(speaker.left_house).years();
             if (leftYear !== 9999){
-               return ' (' + moment(speaker.entered_house).years() + '-' + leftYear + ')';
+               return ' (' + moment(speaker.entered_house).years() + '–' + leftYear + ')';
             }
         },
 
@@ -189,15 +189,21 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             }
             var entity = this.currentSpeaker || this.currentParty;
             var html = '';
-            if (entity){
-              html += 'Phrases frequently used by <strong>' + entity + '</strong> ';
+            if (entity === 'Independent'){
+              html += 'Phrases frequently used by <strong>Independents</strong> ';
+            }else if (entity) {
+                if (this.currentSpeaker) {
+                    html += 'Phrases frequently used by <strong>' + entity + '</strong> ';
+                } else {
+                    html += 'Phrases frequently used by the <strong>' + entity + '</strong> ';
+                }
             }else{
               html += 'Frequently used phrases in Australian Federal Parliament';
             }
             if (this.fromDate && this.toDate){
               html += ' from ' +
                 _.map([this.fromDate, this.toDate], function(date){
-                  return '<strong>' +date.format('DD/MM/YYYY') + '</strong>';
+                  return '<strong>' +date.format('D/M/YYYY') + '</strong>';
                 }).join(' to ');
             }
             $('.keywords-status').html(html);
