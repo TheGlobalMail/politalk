@@ -44,7 +44,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
                this.avatarUrl;
           data.tenure = '(' + _.map(data.tenure, function(date){
                return date.years() === 9999 ? 'present' : date.format('YYYY');
-          }).join(' - ') + ')';
+          }).join(' – ') + ')';
           return data;
         },
 
