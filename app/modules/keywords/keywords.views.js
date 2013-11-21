@@ -249,8 +249,8 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             if (this.speakers.length && !this.chosen) {
                 this.chosen = true;
                 if (!Modernizr.touch){
-                  this.ui.speaker.select2({ allowClear: true, width: '220px' });
-                  this.ui.party.select2({ allowClear: true, width: '220px' });
+                  this.ui.speaker.select2({ allowClear: true, width: '220px', dropdownAutoWidth: true });
+                  this.ui.party.select2({ allowClear: true, width: '220px', dropdownAutoWidth: true });
                 }
             }
         },
