@@ -53,8 +53,8 @@ PolitalkApp.module('Members.Models', function(Models, App) {
                     roleAndTenure += role + ': ';
                 }
                 roleAndTenure += _.map([moment(this.entered_house), moment(this.left_house)], function(date){
-                     return date.years() === 9999 ? 'present' : date.format('YYYY');
-                }).join(' – ') + ')';
+                     return date.years() === 9999 ? '' : date.format('YYYY');
+                }).join(' — ') + ')';
                 return roleAndTenure;
             },
 
