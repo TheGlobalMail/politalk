@@ -77,7 +77,12 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
               }, this);
 
             this.collection = new this.options.collection.constructor();
-            this.collection.fetch({ data: this.filters }).done(this._showFiltered);
+            App.vent.trigger('phrases:data:loading');
+            var _this = this;
+            this.collection.fetch({ data: this.filters }).done(function(){
+              App.vent.trigger('phrases:data:loaded');
+              _this._showFiltered();
+            });
         },
 
         ensureSpeakerRoute: function(id)
@@ -128,8 +133,10 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
             }
 
             this.collection = new this.options.collection.constructor();
+            App.vent.trigger('phrases:data:loading');
             var dfd = this.collection.fetch({ data: this.filters });
             dfd.done(function() {
+                App.vent.trigger('phrases:data:loaded');
                 App.vent.trigger('phrases:periodFiltered', from, to);
             });
             return dfd;

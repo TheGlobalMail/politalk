@@ -40,9 +40,11 @@ PolitalkApp.module('Members', function(Members, App) {
         {
             this.collection = this.options.collection = new this.options.collection.constructor();
 
+            App.vent.trigger('members:data:loading');
             this.options.collection.fetch({
                 data: { from: from, to: to },
                 success: _.bind(function() {
+                    App.vent.trigger('members:data:loaded');
                     this.collection = this.options.collection.filter(this.filters);
                     this.showTable(this.collection.sortBy(this.sortColumn, this.sortReverse));
                 }, this)
@@ -54,8 +56,10 @@ PolitalkApp.module('Members', function(Members, App) {
             _.extend(this.filters, { from: from, to: to });
 
             this.collection = new this.options.collection.constructor();
+            App.vent.trigger('members:data:loading');
             var dfd = this.collection.fetch({ data: this.filters });
             dfd.done(function() {
+                App.vent.trigger('members:data:loaded');
                 App.vent.trigger('members:periodFiltered', from, to);
             });
             return dfd;
