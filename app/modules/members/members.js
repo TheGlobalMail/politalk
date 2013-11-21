@@ -37,7 +37,7 @@ PolitalkApp.module('Members', function(Members, App) {
         },
 
         showDefault: function(){
-          window.scroll(0);
+          window.scroll(0,0);
           this.showLayout();
         },
 

@@ -103,7 +103,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         },
 
         showDefault: function(){
-            window.scroll(0);
+            window.scroll(0,0);
             this.showLayout();
         },
 
