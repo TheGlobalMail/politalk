@@ -35,8 +35,27 @@ PolitalkApp.module('Members.Models', function(Models, App) {
 
         mutators: {
 
-            tenure: function() {
-                return [moment(this.entered_house), moment(this.left_house)];
+            roleAndTenure: function(){
+                var role;
+                if (this.party.match(/^(PRES|President)$/)){
+                  role = 'President';
+                }else if (this.party.match(/^(DPRES|Deputy-President)$/)){
+                  role = 'Deputy President';
+                }else if (this.party.match(/^(SPK|Speaker)$/)){
+                  role = 'Speaker';
+                }else if (this.party.match(/^(DSPK|Deputy-Speaker)$/)){
+                  role = 'Deputy-Speaker';
+                }else if (this.party.match(/^(CWM)$/)){
+                  role = 'Chair';
+                }
+                var roleAndTenure = '(';
+                if (role){
+                    roleAndTenure += role + ': ';
+                }
+                roleAndTenure += _.map([moment(this.entered_house), moment(this.left_house)], function(date){
+                     return date.years() === 9999 ? 'present' : date.format('YYYY');
+                }).join(' – ') + ')';
+                return roleAndTenure;
             },
 
             houseName: function() {

@@ -8,7 +8,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         appRoutes: {
             '':   'showLayout',
             'phrases':   'showLayout',
-            'person/:id': 'showMember',
+            'speaker/:id': 'showSpeaker',
             'party/:id': 'showParty'
         }
     });
@@ -28,7 +28,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         },
 
         typeToParam: {
-            'speaker': 'person_id',
+            'speaker': 'speaker_id',
             'party': 'party'
         },
 
@@ -87,7 +87,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
         ensureSpeakerRoute: function(id)
         {
-            this._ensureRoute("person/" + id);
+            this._ensureRoute("speaker/" + id);
         },
 
         ensurePartyRoute: function(id)
@@ -102,7 +102,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
             }
         },
 
-        showMember: function(id)
+        showSpeaker: function(id)
         {
             App.vent.trigger('phrases:loaded', 'speaker', id);
             this.filter('speaker', id);

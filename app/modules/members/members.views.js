@@ -42,15 +42,12 @@ PolitalkApp.module('Members.Views', function(Views, App) {
           data.imageUrl += data.image ?
               '/modules/members/members-img/mpsL/' + data.person_id + '.jpg' :
                this.avatarUrl;
-          data.tenure = '(' + _.map(data.tenure, function(date){
-               return date.years() === 9999 ? 'present' : date.format('YYYY');
-          }).join(' – ') + ')';
           return data;
         },
 
         showMember: function()
         {
-            Backbone.history.navigate('person/' + this.model.get('person_id'), { trigger: true });
+            Backbone.history.navigate('speaker/' + this.model.get('speaker_id'), { trigger: true });
         }
 
     });

@@ -53,8 +53,8 @@ function program1(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n    <option value=\"";
-  if (stack1 = helpers.person_id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.person_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (stack1 = helpers.speaker_id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.speaker_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + "\">";
   if (stack1 = helpers.first_name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
@@ -63,9 +63,10 @@ function program1(depth0,data) {
     + " ";
   if (stack1 = helpers.last_name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.last_name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1);
-  if (stack1 = helpers.yearsInHouse) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.yearsInHouse; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " ";
+  if (stack1 = helpers.roleAndTenure) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.roleAndTenure; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + "</option>\n    ";
   return buffer;
@@ -146,9 +147,9 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.last_name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.last_name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">\n        </div>\n    </div>\n    <div class=\"speaker-info\">\n      <a href=\"#person/";
-  if (stack1 = helpers.person_id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.person_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+    + "\">\n        </div>\n    </div>\n    <div class=\"speaker-info\">\n      <a href=\"#speaker/";
+  if (stack1 = helpers.speaker_id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.speaker_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + "\">";
   if (stack1 = helpers.first_name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
@@ -167,8 +168,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   else { stack1 = depth0.houseName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + " ";
-  if (stack1 = helpers.tenure) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.tenure; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (stack1 = helpers.roleAndTenure) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.roleAndTenure; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + "</span>\n    </div>\n</td>\n\n<td class=\"speeches\">";
   if (stack1 = helpers.speeches) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
