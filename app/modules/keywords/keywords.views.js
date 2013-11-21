@@ -204,7 +204,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             if (this.fromDate && this.toDate){
               html += ' from ' +
                 _.map([this.fromDate, this.toDate], function(date){
-                  return '<strong>' +date.format('D/M/YYYY') + '</strong>';
+                  return '<strong>' +date.format('MMM D, YYYY') + '</strong>';
                 }).join(' to ');
             }
             $('.keywords-status').html(html);
