@@ -35,10 +35,10 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             this.datesLoaded = false;
         },
 
-        updateFilters: function(key, value)
+        updateFilters: function(key, value, speaker)
         {
             if ('speaker' === key) {
-                this.currentSpeaker = value;
+                this.currentSpeaker = speaker;
             }
             this.render();
         },
@@ -56,7 +56,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
           var url = 'http://www.openaustralia.org/search/?s=' + encodeURIComponent(searchTerm);
 
           if (this.currentSpeaker) {
-            url += "&pid=" + this.currentSpeaker;
+            url += "&pid=" + this.currentSpeaker.get('person_id');
           }
           return url;
         },

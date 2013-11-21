@@ -6,8 +6,8 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
     Keywords.Router = Marionette.AppRouter.extend({
         appRoutes: {
-            '':   'showLayout',
-            'phrases':   'showLayout',
+            '':   'showDefault',
+            'phrases':   'showDefault',
             'speaker/:id': 'showSpeaker',
             'party/:id': 'showParty'
         }
@@ -102,6 +102,11 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
             }
         },
 
+        showDefault: function(){
+            window.scroll(0);
+            this.showLayout();
+        },
+
         showSpeaker: function(id)
         {
             App.vent.trigger('phrases:loaded', 'speaker', id);
@@ -154,9 +159,15 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
             var mapInvert = _.invert(this.typeToParam);
 
+            var model;
             _.each(this.filters, function(value, filterName) {
                 filterName = mapInvert[filterName] || filterName;
-                App.vent.trigger('phrases:filtered', filterName, value);
+                if (filterName === 'speaker'){
+                  model = App.Members.collection.find(function(member){
+                      return member.get('speaker_id') === parseInt(value, 10);
+                  });
+                }
+                App.vent.trigger('phrases:filtered', filterName, value, model);
             });
 
             if (this.typeToParam['party'] in this.filters) {

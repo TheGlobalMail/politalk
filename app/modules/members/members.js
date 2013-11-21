@@ -6,7 +6,7 @@ PolitalkApp.module('Members', function(Members, App) {
 
     Members.Router = Marionette.AppRouter.extend({
         appRoutes: {
-            'people':   'showLayout'
+            'people':   'showDefault'
         }
     });
 
@@ -34,6 +34,11 @@ PolitalkApp.module('Members', function(Members, App) {
             });
             this.defaultSortOrder = true;
             this.sortReverse = true;
+        },
+
+        showDefault: function(){
+          window.scroll(0);
+          this.showLayout();
         },
 
         period: function(from, to)
@@ -96,10 +101,12 @@ PolitalkApp.module('Members', function(Members, App) {
     });
 
     Members.addInitializer(function() {
+        var collection = new Models.MemberList();
         var controller = new Members.Controller({
-            collection: new Models.MemberList(),
+            collection: collection,
             defaultSortColumn: 'last_name'
         });
+        Members.collection = collection;
         Members.router = new Members.Router({ controller: controller });
     });
 
