@@ -147,11 +147,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.last_name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.last_name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">\n        </div>\n    </div>\n    <div class=\"speaker-info\">\n      <a href=\"#speaker/";
-  if (stack1 = helpers.speaker_id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.speaker_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">";
+    + "\">\n        </div>\n    </div>\n    <div class=\"speaker-info\">\n      ";
   if (stack1 = helpers.first_name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.first_name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -159,7 +155,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.last_name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.last_name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</a> <span>";
+    + "\n      <span>\n  		";
   if (stack1 = helpers.party) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.party; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -171,7 +167,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.tenure) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.tenure; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span>\n    </div>\n</td>\n\n<td class=\"speeches\">";
+    + ".\n  		<br/>\n      	<strong>\n  		<a href=\"#speaker/";
+  if (stack1 = helpers.speaker_id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.speaker_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n  			Frequently used phrases »\n		</a>\n  		</strong>\n      </span>\n    </div>\n</td>\n\n<td class=\"speeches\">";
   if (stack1 = helpers.speeches) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.speeches; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
