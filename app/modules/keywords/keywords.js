@@ -78,6 +78,10 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
             this.collection = new this.options.collection.constructor();
             this.collection.fetch({ data: this.filters }).done(this._showFiltered);
+            // var that = this;
+            // setTimeout(function(){
+            //     that.collection.fetch({ data: that.filters }).done(that._showFiltered);    
+            // }, 5000);
         },
 
         ensureSpeakerRoute: function(id)

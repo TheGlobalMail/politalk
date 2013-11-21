@@ -25,6 +25,60 @@ html, body {
     padding-top: 140px;
 }
 
+@-webkit-keyframes fade-in-out {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes fade-in-out {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes fade-in-out {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes fade-in-out {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.loader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: transparent url(/modules/app/img/white-85pc.png) repeat;
+    z-index: 1000;
+    text-align: center;
+    padding-top: 60px;
+    .loader-text {
+        font-family: @sansFontFamily;
+        font-weight: bold;
+        font-size: 160%;
+        text-transform: uppercase;
+        font-style: italic;
+        span {
+            -webkit-animation: fade-in-out 0.5s infinite alternate; /* Safari 4+ */
+            -moz-animation:    fade-in-out 0.5s infinite alternate; /* Fx 5+ */
+            -o-animation:      fade-in-out 0.5s infinite alternate; /* Opera 12+ */
+            animation:         fade-in-out 0.5s infinite alternate; /* IE 10+ */
+            &:nth-of-type(2) { 
+                -webkit-animation-delay:    0.25s; 
+                -moz-animation-delay:       0.25s; 
+                -o-animation-delay:         0.25s; 
+                animation-delay:            0.25s; 
+            }
+            &:nth-of-type(3) { 
+                -webkit-animation-delay:    0.5s; 
+                -moz-animation-delay:       0.5s; 
+                -o-animation-delay:         0.5s; 
+                animation-delay:            0.5s; 
+            }
+        }
+    }
+}
+
 .container, .navbar .container {
     width: 80%;
     min-width: 910px;
