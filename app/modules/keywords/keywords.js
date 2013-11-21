@@ -111,6 +111,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         {
             App.vent.trigger('phrases:loaded', 'speaker', id);
             this.filter('speaker', id);
+            window.scroll(0, 0);
         },
 
         showParty: function(id)
