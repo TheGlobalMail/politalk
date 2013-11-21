@@ -179,13 +179,14 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             if (this.currentSpeakerId){
               var currentSpeakerId = this.currentSpeakerId;
               this.currentSpeaker = this.speakers.find(function(speaker){
-                return speaker.get('person_id') === currentSpeakerId;
+                return speaker.get('speaker_id') === currentSpeakerId;
               });
             }else{
               this.currentSpeaker = null;
             }
             if (this.currentSpeaker){
-              this.currentSpeaker = this.currentSpeaker.get('first_name') + ' ' + this.currentSpeaker.get('last_name');
+              this.currentSpeaker = this.currentSpeaker.get('first_name') + ' ' + this.currentSpeaker.get('last_name') +
+                ' ' + this.currentSpeaker.get('roleAndTenure');
             }
             var entity = this.currentSpeaker || this.currentParty;
             var html = '';

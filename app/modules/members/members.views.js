@@ -47,7 +47,7 @@ PolitalkApp.module('Members.Views', function(Views, App) {
 
         showMember: function()
         {
-            Backbone.history.navigate('person/' + this.model.get('person_id'), { trigger: true });
+            Backbone.history.navigate('speaker/' + this.model.get('speaker_id'), { trigger: true });
         }
 
     });
