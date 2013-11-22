@@ -202,11 +202,15 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             }
             $('.keywords-status').html(html);
 
-
-            
-            var currentSpeakerImg = '/modules/members/members-img/mpsL/' + this.currentSpeakerId + '.jpg';
-            var thumbnailHtml = '<div class="member-thumb"><img alt="' + this.currentSpeaker + '" src="' + currentSpeakerImg + '" /></div><div class="member-name"><p>' + this.currentSpeaker + '</p></div>';
-            $('.member-info-container').html(thumbnailHtml).slideDown();
+            if (!this.currentSpeaker) {
+                console.log('no speaker')
+                $('.member-info-container').html(thumbnailHtml).slideUp();
+            }else{
+                console.log('has speaker')
+                var currentSpeakerImg = '/modules/members/members-img/mpsL/' + this.currentSpeakerId + '.jpg';
+                var thumbnailHtml = '<div class="member-thumb"><img alt="' + this.currentSpeaker + '" src="' + currentSpeakerImg + '" /></div><div class="member-name"><p>' + this.currentSpeaker + '</p></div>';
+                $('.member-info-container').html(thumbnailHtml).slideDown();
+            };
         },
 
         updateFromLoad: function(key, value){
