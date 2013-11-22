@@ -63,16 +63,17 @@
                 .border-radius(@photoWidth);
                 overflow: hidden;
                 position: static;
+                .transition(all 0.5s);
+                box-shadow: 0 1px 0 @grayLight, 0 -1px 0 #fff;
 
                 img {
                     position: static;
                     width: @photoWidth;
                     margin-top: -3px;
-                }
+                    .transition(all 0.5s);
 
-                img[src$="avatar.png"] {
-                    margin-top: 0;
                 }
+                img[src$="avatar.png"] {margin-top: 0; }
             }
 
             span {
@@ -83,9 +84,7 @@
                 font-weight: normal;
             }
 
-            a {
-                color: @grayLight;                
-            }
+            a { color: @grayLight; }
         }
 
         &.duration, &.speeches, &.interjections {
