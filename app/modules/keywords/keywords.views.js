@@ -199,7 +199,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
                     html += 'Phrases frequently used by the <strong>' + entity + '</strong> ';
                 }
             }else{
-              html += 'Frequently used phrases in Australian Federal Parliament';
+              html += 'Phrases frequently used in Australian Federal Parliament';
             }
             if (this.fromDate && this.toDate){
               html += ' from ' +

@@ -11,14 +11,17 @@
 
 .main-table .table {
     counter-reset: row-number;
-    @numberPadding: 15px;
     @photoWidth: 52px;
     @photoPadding: 20px;
+    @firstColPadding: 20px;
 
     &.members-table {
         cursor: pointer;
-        th:first-child, td:first-child { 
-            padding-left: @numberPadding + @photoWidth + @photoPadding + 20px; 
+        th:first-child { 
+            padding-left: @photoWidth + @photoPadding + @firstColPadding; 
+        }
+        td:first-child { 
+            padding-left: @firstColPadding; 
         }
     }
 
@@ -39,14 +42,14 @@
             font-size: 140%;
             font-weight: bold;
             line-height: 1.1;
-            max-width: 220px;
+            max-width: 250px;
             padding-right: 10px;
             padding-top: 15px;
 
             .avatar-wrapper {
                 position: relative;
                 display: inline-block;
-                margin: 0 5px 0 -90px;
+                margin: 0 @firstColPadding / 2 0 0;
             }
 
             .speaker-info {

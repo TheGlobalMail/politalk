@@ -99,7 +99,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"hero-unit keywords\">\n    <h1 class=\"container\">Phrases</h1>\n    <h2 class=\"container keywords-status\">Frequently used phrases in Australian Federal parliament</h2>\n</div>\n\n<div class=\"da-background\">\n    <div class=\"container keywords\">\n	    <div class=\"loader\">\n            <h1 class=\"loader-text\">\n	            Loading<span>.</span><span>.</span><span>.</span>\n            </h1>\n	    </div>\n        <div class=\"row-fluid\">\n            <aside class=\"span3\"></aside>\n            <div class=\"span9 main-table keywords-list\"></div>\n        </div>\n    </div>\n</div>\n";
+  return "<div class=\"hero-unit keywords\">\n    <h1 class=\"container\">Phrases</h1>\n    <h2 class=\"container keywords-status\">Phrases frequently used in Australian Federal Parliament</h2>\n</div>\n\n<div class=\"da-background\">\n    <div class=\"container keywords\">\n	    <div class=\"loader\">\n            <h1 class=\"loader-text\">\n	            Loading<span>.</span><span>.</span><span>.</span>\n            </h1>\n	    </div>\n        <div class=\"row-fluid\">\n            <aside class=\"span3\"></aside>\n            <div class=\"span9 main-table keywords-list\"></div>\n        </div>\n    </div>\n</div>\n";
   });
 
 this["PolitalkApp"]["Templates"]["keywords/templates/keywords-period"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
