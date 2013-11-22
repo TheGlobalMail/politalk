@@ -15,13 +15,11 @@
 }
 
 .member-info-container {
-    .transition(height 1s);
-    height: 0;
+    .transition(max-height 1s);
+    max-height: 0;
     overflow: hidden;
     &.open {
-        min-height: 100px;
-        max-height: 450px;
-        height: auto;
+        max-height: 300px;
     }
     margin: 0 0 30px 0; 
     .member-thumb {
