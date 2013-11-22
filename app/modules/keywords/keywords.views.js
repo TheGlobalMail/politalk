@@ -212,11 +212,11 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             $('.keywords-status').html(html);
 
             if (!this.currentSpeaker) {
-                $('.member-info-container').html(thumbnailHtml).slideUp();
+                $('.member-info-container').html(thumbnailHtml).removeClass('open');
             }else{
-                console.log(this)
+                // console.log(this)
                 var thumbnailHtml = '<div class="member-thumb"><img alt="' + this.currentSpeaker + '" src="' + this.imageUrl + '" /></div><div class="member-name"><p>' + this.currentSpeaker + '</p></div>';
-                $('.member-info-container').html(thumbnailHtml).slideDown();
+                $('.member-info-container').html(thumbnailHtml).addClass('open');
             };
         },
 
