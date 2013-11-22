@@ -35,10 +35,10 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             this.datesLoaded = false;
         },
 
-        updateFilters: function(key, value)
+        updateFilters: function(key, value, speaker)
         {
             if ('speaker' === key) {
-                this.currentSpeaker = value;
+                this.currentSpeaker = speaker;
             }
             this.render();
         },
@@ -56,7 +56,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
           var url = 'http://www.openaustralia.org/search/?s=' + encodeURIComponent(searchTerm);
 
           if (this.currentSpeaker) {
-            url += "&pid=" + this.currentSpeaker;
+            url += "&pid=" + this.currentSpeaker.get('person_id');
           }
           return url;
         },
@@ -122,14 +122,14 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             });
             return {
                 speakers: speakers,
-                parties: _.unique(_.pluck(nonSpeakers, 'party'))
+                parties: _.unique(_.pluck(nonSpeakers, 'party')).sort()
             };
         },
 
         yearsInHouse: function(speaker){
             var leftYear = moment(speaker.left_house).years();
             if (leftYear !== 9999){
-               return ' (' + moment(speaker.entered_house).years() + '-' + leftYear + ')';
+               return ' (' + moment(speaker.entered_house).years() + '–' + leftYear + ')';
             }
         },
 
@@ -179,34 +179,39 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             if (this.currentSpeakerId){
               var currentSpeakerId = this.currentSpeakerId;
               this.currentSpeaker = this.speakers.find(function(speaker){
-                return speaker.get('person_id') === currentSpeakerId;
+                return speaker.get('speaker_id') === currentSpeakerId;
               });
             }else{
               this.currentSpeaker = null;
             }
             if (this.currentSpeaker){
-              this.currentSpeaker = this.currentSpeaker.get('first_name') + ' ' + this.currentSpeaker.get('last_name');
+              this.currentSpeaker = this.currentSpeaker.get('first_name') + ' ' + this.currentSpeaker.get('last_name') +
+                ' ' + this.currentSpeaker.get('roleAndTenure');
             }
             var entity = this.currentSpeaker || this.currentParty;
             var html = '';
-            if (entity){
-              html += 'Phrases frequently used by <strong>' + entity + '</strong> ';
+            if (entity === 'Independent'){
+              html += 'Phrases frequently used by <strong>Independents</strong> ';
+            }else if (entity) {
+                if (this.currentSpeaker) {
+                    html += 'Phrases frequently used by <strong>' + entity + '</strong> ';
+                } else {
+                    html += 'Phrases frequently used by the <strong>' + entity + '</strong> ';
+                }
             }else{
-              html += 'Frequently used phrases in Australian Federal Parliament';
+              html += 'Phrases frequently used in Australian Federal Parliament';
             }
             if (this.fromDate && this.toDate){
               html += ' from ' +
                 _.map([this.fromDate, this.toDate], function(date){
-                  return '<strong>' +date.format('DD/MM/YYYY') + '</strong>';
+                  return '<strong>' +date.format('MMM D, YYYY') + '</strong>';
                 }).join(' to ');
             }
             $('.keywords-status').html(html);
 
             if (!this.currentSpeaker) {
-                console.log('no speaker')
                 $('.member-info-container').html(thumbnailHtml).slideUp();
             }else{
-                console.log('has speaker')
                 var currentSpeakerImg = '/modules/members/members-img/mpsL/' + this.currentSpeakerId + '.jpg';
                 var thumbnailHtml = '<div class="member-thumb"><img alt="' + this.currentSpeaker + '" src="' + currentSpeakerImg + '" /></div><div class="member-name"><p>' + this.currentSpeaker + '</p></div>';
                 $('.member-info-container').html(thumbnailHtml).slideDown();
@@ -253,8 +258,8 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             if (this.speakers.length && !this.chosen) {
                 this.chosen = true;
                 if (!Modernizr.touch){
-                  this.ui.speaker.select2({ allowClear: true, width: '220px' });
-                  this.ui.party.select2({ allowClear: true, width: '220px' });
+                  this.ui.speaker.select2({ allowClear: true, width: '220px', dropdownAutoWidth: true });
+                  this.ui.party.select2({ allowClear: true, width: '220px', dropdownAutoWidth: true });
                 }
             }
         },

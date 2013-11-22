@@ -10,16 +10,16 @@ PolitalkApp.module('Members.Models', function(Models, App) {
         ],
 
         parties: {
+            'Australian Democrats': 'AD',
             'Australian Greens': 'Greens',
             'Australian Labor Party': 'ALP',
-            'Liberal Party': 'LP',
-            'Independent': 'Ind.',
-            'National Party': 'NP',
-            'Palmer United Party': 'PUP',
             'Country Liberal Party': 'CLP',
             'Democratic Labor Party': 'DLP',
-            'Australian Democrats': 'AD',
-            'Family First Party': 'FFP'
+            'Family First Party': 'FFP',
+            'Independent': 'Ind.',
+            'Liberal Party': 'LP',
+            'National Party': 'NP',
+            'Palmer United Party': 'PUP'
         },
 
         speakerParties: [
@@ -34,6 +34,30 @@ PolitalkApp.module('Members.Models', function(Models, App) {
         ],
 
         mutators: {
+
+            roleAndTenure: function(){
+                var role;
+                if (this.party.match(/^(PRES|President)$/)){
+                  role = 'President';
+                }else if (this.party.match(/^(DPRES|Deputy-President)$/)){
+                  role = 'Deputy President';
+                }else if (this.party.match(/^(SPK|Speaker)$/)){
+                  role = 'Speaker';
+                }else if (this.party.match(/^(DSPK|Deputy-Speaker)$/)){
+                  role = 'Deputy Speaker';
+                }else if (this.party.match(/^(CWM)$/)){
+                  role = 'Chair';
+                }
+                var roleAndTenure = '(';
+                if (role){
+                    roleAndTenure += role + ': ';
+                }
+                roleAndTenure += _.map([moment(this.entered_house), moment(this.left_house)], function(date){
+                     return date.years() === 9999 ? '' : date.format('YYYY');
+                }).join(' — ') + ')';
+                return roleAndTenure;
+            },
+
             houseName: function() {
                 return this.house === 1 ? 'House of Rep.' : 'Senate';
             },

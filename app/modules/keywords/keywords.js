@@ -6,9 +6,9 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
     Keywords.Router = Marionette.AppRouter.extend({
         appRoutes: {
-            '':   'showLayout',
-            'phrases':   'showLayout',
-            'person/:id': 'showMember',
+            '':   'showDefault',
+            'phrases':   'showDefault',
+            'speaker/:id': 'showSpeaker',
             'party/:id': 'showParty'
         }
     });
@@ -28,13 +28,14 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
         },
 
         typeToParam: {
-            'speaker': 'person_id',
+            'speaker': 'speaker_id',
             'party': 'party'
         },
 
         initialize: function()
         {
             _.bindAll(this, '_showFiltered');
+            this.bindTo(App.vent, 'dates:fetch', this.recordDateRange, this);
             this.periodView = new Views.PeriodView();
         },
 
@@ -49,6 +50,15 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
             this.filters = {};
             this._ensureRoute("phrases");
             this.showTable(this.options.collection);
+        },
+
+        recordDateRange: function(dates){
+            this.fromDateRange = moment(_.first(dates)).format('YYYY-MM-DD');
+            this.toDateRange = moment(_.last(dates)).format('YYYY-MM-DD');
+        },
+
+        isDefaultDateRange: function(from, to){
+            return from === this.fromDateRange && to === this.toDateRange;
         },
 
         filter: function(type, id)
@@ -67,12 +77,17 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
               }, this);
 
             this.collection = new this.options.collection.constructor();
-            this.collection.fetch({ data: this.filters }).done(this._showFiltered);
+            App.vent.trigger('phrases:data:loading');
+            var _this = this;
+            this.collection.fetch({ data: this.filters }).done(function(){
+              App.vent.trigger('phrases:data:loaded');
+              _this._showFiltered();
+            });
         },
 
         ensureSpeakerRoute: function(id)
         {
-            this._ensureRoute("person/" + id);
+            this._ensureRoute("speaker/" + id);
         },
 
         ensurePartyRoute: function(id)
@@ -87,10 +102,16 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
             }
         },
 
-        showMember: function(id)
+        showDefault: function(){
+            window.scroll(0,0);
+            this.showLayout();
+        },
+
+        showSpeaker: function(id)
         {
             App.vent.trigger('phrases:loaded', 'speaker', id);
             this.filter('speaker', id);
+            window.scroll(0, 0);
         },
 
         showParty: function(id)
@@ -110,11 +131,18 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
         setPeriod: function(from, to)
         {
-            _.extend(this.filters, { from: from, to: to });
+            if (this.isDefaultDateRange(from, to)){
+              delete this.filters.from;
+              delete this.filters.to;
+            }else{
+              _.extend(this.filters, { from: from, to: to });
+            }
 
             this.collection = new this.options.collection.constructor();
+            App.vent.trigger('phrases:data:loading');
             var dfd = this.collection.fetch({ data: this.filters });
             dfd.done(function() {
+                App.vent.trigger('phrases:data:loaded');
                 App.vent.trigger('phrases:periodFiltered', from, to);
             });
             return dfd;
@@ -132,9 +160,15 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
             var mapInvert = _.invert(this.typeToParam);
 
+            var model;
             _.each(this.filters, function(value, filterName) {
                 filterName = mapInvert[filterName] || filterName;
-                App.vent.trigger('phrases:filtered', filterName, value);
+                if (filterName === 'speaker'){
+                  model = App.Members.collection.find(function(member){
+                      return member.get('speaker_id') === parseInt(value, 10);
+                  });
+                }
+                App.vent.trigger('phrases:filtered', filterName, value, model);
             });
 
             if (this.typeToParam['party'] in this.filters) {

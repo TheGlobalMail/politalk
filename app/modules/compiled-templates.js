@@ -53,8 +53,8 @@ function program1(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n    <option value=\"";
-  if (stack1 = helpers.person_id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.person_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (stack1 = helpers.speaker_id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.speaker_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + "\">";
   if (stack1 = helpers.first_name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
@@ -63,9 +63,10 @@ function program1(depth0,data) {
     + " ";
   if (stack1 = helpers.last_name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.last_name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1);
-  if (stack1 = helpers.yearsInHouse) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.yearsInHouse; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + " ";
+  if (stack1 = helpers.roleAndTenure) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.roleAndTenure; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + "</option>\n    ";
   return buffer;
@@ -98,7 +99,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"hero-unit keywords\">\n    <h1 class=\"container\">Phrases</h1>\n    <h2 class=\"container keywords-status\">Frequently used phrases in Australian Federal parliament</h2>\n</div>\n\n<div class=\"da-background\">\n    <div class=\"container keywords\">\n        <div class=\"row-fluid\">\n            <aside class=\"span3\"></aside>\n            <div class=\"span9 main-table keywords-list\"></div>\n        </div>\n    </div>\n</div>\n";
+  return "<div class=\"hero-unit keywords\">\n    <h1 class=\"container\">Phrases</h1>\n    <h2 class=\"container keywords-status\">Phrases frequently used in Australian Federal Parliament</h2>\n</div>\n\n<div class=\"da-background\">\n    <div class=\"container keywords\">\n	    <div class=\"loader\">\n            <h1 class=\"loader-text\">\n	            Loading<span>.</span><span>.</span><span>.</span>\n            </h1>\n	    </div>\n        <div class=\"row-fluid\">\n            <aside class=\"span3\"></aside>\n            <div class=\"span9 main-table keywords-list\"></div>\n        </div>\n    </div>\n</div>\n";
   });
 
 this["PolitalkApp"]["Templates"]["keywords/templates/keywords-period"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -125,7 +126,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<table class=\"table table-sortable keywords-table table-hover\">\n    <thead>\n        <tr>\n            <th class=\"text\" data-sortable=\"text\">Text</th>\n            <th class=\"frequency\" data-sortable=\"frequency\">Frequency</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr class=\"loading\">\n            <td colspan=\"2\">Loading...</td>\n        </tr>\n    </tbody>\n</table>";
+  return "<table class=\"table table-sortable keywords-table table-hover\">\n    <thead>\n        <tr>\n            <th class=\"text\" data-sortable=\"text\">Phrase</th>\n            <th class=\"frequency\" data-sortable=\"frequency\">Frequency</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr class=\"loading\">\n            <td colspan=\"2\">Loading...</td>\n        </tr>\n    </tbody>\n</table>";
   });
 
 this["PolitalkApp"]["Templates"]["members/templates/member-item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -146,11 +147,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.last_name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.last_name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">\n        </div>\n    </div>\n    <div class=\"speaker-info\">\n      <a href=\"#person/";
-  if (stack1 = helpers.person_id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.person_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">";
+    + "\">\n        </div>\n    </div>\n    <div class=\"speaker-info\">\n      ";
   if (stack1 = helpers.first_name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.first_name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -158,7 +155,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.last_name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.last_name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</a> <span>";
+    + "\n      <span>\n  		";
   if (stack1 = helpers.party) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.party; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -166,7 +163,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.houseName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.houseName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span>\n    </div>\n</td>\n\n<td class=\"speeches\">";
+    + " ";
+  if (stack1 = helpers.tenure) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.tenure; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + ".\n  		<br/>\n      	<strong>\n  		<a href=\"#speaker/";
+  if (stack1 = helpers.speaker_id) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.speaker_id; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\">\n  			Frequently used phrases »\n		</a>\n  		</strong>\n      </span>\n    </div>\n</td>\n\n<td class=\"speeches\">";
   if (stack1 = helpers.speeches) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.speeches; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -225,7 +230,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"hero-unit people\">\n    <h1 class=\"container\">People</h1>\n    <h2 class=\"container\">Federal politicians and how often they spoke in Parliament</h2>\n</div>\n\n\n<div class=\"container people\">\n    <div class=\"row-fluid\">\n        <aside class=\"span3\"></aside>\n        <div class=\"span9 members-list main-table\"></div>\n    </div>\n</div>\n";
+  return "<div class=\"hero-unit people\">\n    <h1 class=\"container\">People</h1>\n    <h2 class=\"container\">Federal politicians and how often they spoke in Parliament</h2>\n</div>\n\n\n<div class=\"container people\">\n    <div class=\"loader\">\n        <h1 class=\"loader-text\">\n            Loading<span>.</span><span>.</span><span>.</span>\n        </h1>\n    </div>\n    <div class=\"row-fluid\">\n        <aside class=\"span3\"></aside>\n        <div class=\"span9 members-list main-table\"></div>\n    </div>\n</div>\n";
   });
 
 this["PolitalkApp"]["Templates"]["members/templates/members-period"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -279,5 +284,5 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"tgm-strip\">\n	<div class=\"container\">\n		<a href=\"http:///www.theglobalmail.org\" class=\"tgm\" title=\"Go to The Global Mail\">The Global Mail</a>\n		<div class=\"icons special-feature-misc\">\n      <div class=\"special-feature-links\">\n        <a class=\"about\" href=\"#\" data-target=\"#about-tool-modal\" data-toggle=\"modal\">About</a>\n      </div>\n      <div class=\"share-button twitter\">\n        <a href=\"https://twitter.com/share\" class=\"twitter-share-button\" data-via=\"TheGlobalMail\" data-hashtags=\"hussainsjourney\">Tweet</a>\n        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=\"//platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");</script>\n      </div>\n      <div class=\"share-button facebook\">\n        <div class=\"fb-like\" data-send=\"false\" data-layout=\"button_count\" data-width=\"45\" data-show-faces=\"false\" data-colorscheme=\"light\" data-action=\"like\"></div>\n      </div>\n    </div>\n	</div>\n</div>\n<div class=\"navbar-inner\">\n    <div class=\"container row-fluid\">\n        <a href=\"/\" class=\"brand span3\">Poli/talk</a>\n        <div class=\"nav-collapse collapse\">\n            <ul class=\"nav\"></ul>\n        </div>\n    </div>\n</div>\n";
+  return "<div class=\"tgm-strip\">\n	<div class=\"container\">\n		<a href=\"http:///www.theglobalmail.org\" class=\"tgm\" title=\"Go to The Global Mail\">The Global Mail</a>\n		<div class=\"icons special-feature-misc\">\n      <div class=\"special-feature-links\">\n        <a class=\"about\" href=\"#\" data-target=\"#about-tool-modal\" data-toggle=\"modal\">About</a>\n      </div>\n      <div class=\"share-button twitter\">\n        <a href=\"https://twitter.com/share\" class=\"twitter-share-button\" data-via=\"TheGlobalMail\" data-hashtags=\"auspol\">Tweet</a>\n        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=\"//platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");</script>\n      </div>\n      <div class=\"share-button facebook\">\n        <div class=\"fb-like\" data-send=\"false\" data-layout=\"button_count\" data-width=\"45\" data-show-faces=\"false\" data-colorscheme=\"light\" data-action=\"like\"></div>\n      </div>\n    </div>\n	</div>\n</div>\n<div class=\"navbar-inner\">\n    <div class=\"container row-fluid\">\n        <a href=\"/\" class=\"brand span3\">Poli/talk</a>\n        <div class=\"nav-collapse collapse\">\n            <ul class=\"nav\"></ul>\n        </div>\n    </div>\n</div>\n";
   });

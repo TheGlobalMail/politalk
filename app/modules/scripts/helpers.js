@@ -189,12 +189,22 @@
         initialize: function()
         {
             this.bindTo(this.app.vent, this.moduleName + ':sorted', this.onSorted, this);
+            this.bindTo(this.app.vent, this.moduleName + ':data:loading', this.loading, this);
+            this.bindTo(this.app.vent, this.moduleName + ':data:loaded', this.loaded, this);
             this.on('render', this.finishedLoading, this);
         },
 
         finishedLoading: function()
         {
             this.$('.loading').remove();
+        },
+
+        loading: function(){
+          $('.loader').addClass('loading');
+        },
+
+        loaded: function(){
+          $('.loader').removeClass('loading');
         },
 
         sort: function(e)
