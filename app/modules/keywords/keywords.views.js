@@ -185,6 +185,8 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
               this.currentSpeaker = null;
             }
             if (this.currentSpeaker){
+              var speakerImage = this.currentSpeaker.get('image') 
+              this.imageUrl = speakerImage ? '/modules/members/members-img/mpsL/' + this.currentSpeaker.get('person_id') + '.jpg' : '/modules/members/img/avatar.png'
               this.currentSpeaker = this.currentSpeaker.get('first_name') + ' ' + this.currentSpeaker.get('last_name') +
                 ' ' + this.currentSpeaker.get('roleAndTenure');
             }
@@ -212,8 +214,8 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             if (!this.currentSpeaker) {
                 $('.member-info-container').html(thumbnailHtml).slideUp();
             }else{
-                var currentSpeakerImg = '/modules/members/members-img/mpsL/' + this.currentSpeakerId + '.jpg';
-                var thumbnailHtml = '<div class="member-thumb"><img alt="' + this.currentSpeaker + '" src="' + currentSpeakerImg + '" /></div><div class="member-name"><p>' + this.currentSpeaker + '</p></div>';
+                console.log(this)
+                var thumbnailHtml = '<div class="member-thumb"><img alt="' + this.currentSpeaker + '" src="' + this.imageUrl + '" /></div><div class="member-name"><p>' + this.currentSpeaker + '</p></div>';
                 $('.member-info-container').html(thumbnailHtml).slideDown();
             };
         },
