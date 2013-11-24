@@ -20,7 +20,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.text) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.text; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</span> \n	<div class=\"search-links\">\n		Search on\n		<a title=\"Search for “";
+    + "</span> \n	<div class=\"search-links\">\n		View context on\n		<a title=\"Search for “";
   if (stack1 = helpers.text) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.text; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -28,7 +28,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.OAurl) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.OAurl; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">OpenAustralia</a>\n		or\n		<a title=\"Search for “";
+    + "\">OpenAustralia</a>\n		or see trends on\n		<a title=\"Search for “";
   if (stack1 = helpers.text) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.text; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
