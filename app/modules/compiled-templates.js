@@ -117,7 +117,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"period-container\"></div>\n<div class=\"filters-container\"></div>";
+  return "<div class=\"member-info-container\"></div>\n<div class=\"period-container\"></div>\n<div class=\"filters-container\"></div>";
   });
 
 this["PolitalkApp"]["Templates"]["keywords/templates/keywords-table"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
