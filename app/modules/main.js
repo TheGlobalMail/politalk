@@ -21,5 +21,18 @@
         });
     });
 
+    PolitalkApp.on("initialize:after", function() {
+      console.error('looking for cookie')
+      console.error(document.cookie)
+      if (document.cookie.indexOf('intro') === -1){
+        var expiration = new Date();
+        var cookie = '';
+        expiration.setFullYear(expiration.getFullYear() + 1);
+        cookie= 'intro=true; path=/; expires=' + expiration.toGMTString();
+        document.cookie = cookie;
+        $('#about-tool-modal').modal('show');
+      }
+    });
+
     PolitalkApp.start();
 }());
