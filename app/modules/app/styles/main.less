@@ -21,6 +21,12 @@ select {
     font-size: 1em; 
 }
 
+.brand span {
+    font-weight: 400;
+    padding: 0 2px;
+    color: @grayLight;
+}
+
 .navbar-fixed-top { 
     border-bottom: 1px solid @grayLighter;
     border-bottom: 1px solid rgba(100,100,100,0.1);
@@ -282,17 +288,41 @@ aside {
   background-image: url(/components/tgm-bootstrap/img/glyphicons-halflings-white.png);
 }
 
-/* Style modal header a little better */
+/* Style modal a little better */
+
+
+@modalBorderRadius: 6px;
+.modal {
+    .border-radius(@modalBorderRadius);
+}
+
 .modal-header{
   width: 100%;
   .box-shadow(0 1px 10px rgba(0, 0, 0, 0.3));
+  background: @grayLighter;
+  .border-top-radius(@modalBorderRadius);
+
 
   h3{
     margin-right: 20px;
     font-style: italic;
     font-weight: 900;
-    letter-spacing: -1px;
+    letter-spacing: -3px;
+    padding: 5px 0;
+    text-shadow: 0 -1px 0 #fff; 
+    .desc {
+        font-weight: 400;
+        color: @grayLight;
+        letter-spacing: -1px;
+    }
   }
+}
+
+.modal-body {
+    max-height: 600px;
+    line-height: 1.6;
+    padding: 20px 20px 5px 20px;
+    .border-bottom-radius(@modalBorderRadius);    
 }
 
 /* fixup datepickers on IE */
