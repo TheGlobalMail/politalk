@@ -215,7 +215,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             if (!this.currentSpeaker) {
                 $('.member-info-container').html(thumbnailHtml).removeClass('open');
             }else{
-                var thumbnailHtml = '<div class="member-thumb"><img alt="' + this.currentSpeaker + '" src="' + this.imageUrl + '" /></div><div class="member-name"><p>' + this.currentSpeakerName + '</br>' + this.currentSpeakerRole + '</p></div>';
+                var thumbnailHtml = '<div class="member-thumb"><img alt="' + this.currentSpeaker + '" src="' + this.imageUrl + '" /></div><div class="member-name">' + this.currentSpeakerName + ' ' + this.currentSpeakerRole + '</div>';
                 $('.member-info-container').html(thumbnailHtml).addClass('open');
             };
         },

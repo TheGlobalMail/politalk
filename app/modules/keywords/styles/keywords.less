@@ -21,9 +21,9 @@
     &.open {
         max-height: 300px;
     }
-    margin: 0 0 30px 0; 
+    margin: 0 0 10px 0; 
     .member-thumb {
-        @photoWidth: 90px;
+        @photoWidth: 52px;
         width: @photoWidth;
         height: @photoWidth;
         background-size: 110%;
@@ -31,6 +31,8 @@
         overflow: hidden;
         position: static;
         display: block;
+        float: left;
+        margin: 0 10px 10px 0;
         img {
             position: static;
             width: @photoWidth;
@@ -38,13 +40,10 @@
         }
     }
     .member-name {
-        margin-top: 10px;
-        display: block;
-        p {
-            font-size: 20px; 
-            font-weight: bold;
-            line-height: 1.2em;
-        }
+        display: inline;
+        font-size: 18px; 
+        font-weight: bold;
+        line-height: 1.2em;
     }
 }
 
