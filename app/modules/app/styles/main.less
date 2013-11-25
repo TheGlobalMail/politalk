@@ -298,6 +298,7 @@ aside {
 
 .modal-header{
   width: 100%;
+  padding: 15px 20px 20px 20px;
   .box-shadow(0 1px 10px rgba(0, 0, 0, 0.3));
   background: @grayLighter;
   .border-top-radius(@modalBorderRadius);
@@ -308,7 +309,7 @@ aside {
     font-style: italic;
     font-weight: 900;
     letter-spacing: -3px;
-    padding: 5px 0;
+    padding: 0 0;
     text-shadow: 0 -1px 0 #fff; 
     .desc {
         font-weight: 400;
@@ -322,7 +323,12 @@ aside {
     max-height: 600px;
     line-height: 1.6;
     padding: 20px 20px 5px 20px;
-    .border-bottom-radius(@modalBorderRadius);    
+    .border-bottom-radius(@modalBorderRadius);
+
+    .icon {
+        opacity: 0.5;
+        margin-top: 4px;
+    }
 }
 
 /* fixup datepickers on IE */
