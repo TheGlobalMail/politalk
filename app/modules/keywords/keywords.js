@@ -24,6 +24,7 @@ PolitalkApp.module('Keywords', function(Keywords, App) {
 
         appVents: {
             'filter': 'filter',
+            'sort': 'sort',
             'period': 'period'
         },
 
