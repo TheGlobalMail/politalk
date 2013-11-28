@@ -289,6 +289,7 @@ module.exports = function (grunt) {
                         'modules/members/members-img/mpsL/*.{webp,gif,svg,jpg,png}',
                         'modules/app/img/*.{webp,gif,svg,jpg,png}',
                         'modules/keywords/img/*.{webp,gif,svg,jpg,png}',
+                        'img/*.{webp,gif,svg,jpg,png}',
                         'styles/fonts/{,*/}*.*',
                         'components/bootstrap/fonts/*.*',
                         'components/font-awesome/font/*.*'
