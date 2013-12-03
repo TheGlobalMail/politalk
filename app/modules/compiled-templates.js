@@ -108,7 +108,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<label class=\"input-prepend\">\n    <span class=\"add-on\">From:</span>\n    <input type=\"text\" name=\"fromDate\" class=\"date input-small\" placeholder=\"dd/mm/yyyy\">\n</label>\n<label class=\"input-prepend\">\n    <span class=\"add-on\">To:</span>\n    <input type=\"text\" name=\"toDate\" class=\"date input-small\" placeholder=\"dd/mm/yyyy\">\n</label>";
+  return "<label class=\"input-prepend\">\n    <span class=\"add-on\">From:</span>\n    <input type=\"text\" name=\"fromDate\" class=\"date input-small\" placeholder=\"yyyy\">\n</label>\n<label class=\"input-prepend\">\n    <span class=\"add-on\">To:</span>\n    <input type=\"text\" name=\"toDate\" class=\"date input-small\" placeholder=\"yyyy\">\n</label>\n";
   });
 
 this["PolitalkApp"]["Templates"]["keywords/templates/keywords-sidebar"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -239,7 +239,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<label class=\"input-prepend\">\n    <span class=\"add-on\">From:</span>\n    <input type=\"text\" name=\"fromDate\" class=\"date input-small\" placeholder=\"dd/mm/yyyy\">\n</label>\n<label class=\"input-prepend\">\n    <span class=\"add-on\">To:</span>\n    <input type=\"text\" name=\"toDate\" class=\"date input-small\" placeholder=\"dd/mm/yyyy\">\n</label>";
+  return "<label class=\"input-prepend\">\n    <span class=\"add-on\">From:</span>\n    <input type=\"text\" name=\"fromDate\" class=\"date input-small\" placeholder=\"yyyy\">\n</label>\n<label class=\"input-prepend\">\n    <span class=\"add-on\">To:</span>\n    <input type=\"text\" name=\"toDate\" class=\"date input-small\" placeholder=\"yyyy\">\n</label>\n";
   });
 
 this["PolitalkApp"]["Templates"]["members/templates/members-sidebar"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
