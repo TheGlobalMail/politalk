@@ -66,6 +66,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             var data = this.model.toJSON();
             data.url = this.url();
             data.OAurl = this.OAurl();
+            data.shortText = _.first(_.sortBy(data.terms.split(','), 'length'));
             return data;
         }
 
