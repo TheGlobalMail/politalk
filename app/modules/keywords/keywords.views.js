@@ -193,23 +193,35 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             }
             var entity = this.currentSpeaker || this.currentParty;
             var html = '';
-            if (entity === 'Independent'){
-              html += 'Phrases frequently used by <strong>Independents</strong> ';
-            }else if (entity) {
+
+            // phrase base - use the default if no date or entity selected
+            if ((this.fromDate && this.toDate) || entity) {
+                html += 'Phrases frequently used';
+            } else {
+                html += 'Explore by Popular Phrase';
+            } 
+
+            // entity name 
+            if (entity === 'Independent') {
+              html += ' by <strong>Independents</strong>';
+            } else if (entity) {
                 if (this.currentSpeaker) {
-                    html += 'Phrases frequently used by <strong>' + entity + '</strong> ';
+                    html += ' by <strong>' + entity + '</strong>';
                 } else {
-                    html += 'Phrases frequently used by the <strong>' + entity + '</strong> ';
+                    html += ' by the <strong>' + entity + '</strong>';
                 }
-            }else{
-              html += 'Phrases frequently used in Australian Federal Parliament';
+            } else {
+                // no entity selected
             }
+
+            // date range
             if (this.fromDate && this.toDate){
               html += ' from ' +
                 _.map([this.fromDate, this.toDate], function(date){
                   return '<strong>' +date.format('MMM D, YYYY') + '</strong>';
                 }).join(' to ');
             }
+
             $('.keywords-status').html(html);
 
             if (!this.currentSpeaker) {

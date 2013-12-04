@@ -99,7 +99,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"hero-unit keywords\">\n    <h1 class=\"container\">Phrases</h1>\n    <h2 class=\"container keywords-status\">Phrases frequently used in Australian Federal Parliament</h2>\n</div>\n\n<div class=\"da-background\">\n    <div class=\"container keywords\">\n	    <div class=\"loader\">\n            <h1 class=\"loader-text\">\n	            Loading<span>.</span><span>.</span><span>.</span>\n            </h1>\n	    </div>\n        <div class=\"row-fluid\">\n            <aside class=\"span3\"></aside>\n            <div class=\"span9 main-table keywords-list\"></div>\n        </div>\n    </div>\n</div>\n";
+  return "<div class=\"hero-unit keywords\">\n    <h1 class=\"container\">Phrases</h1>\n    <h2 class=\"container keywords-status\">Explore by Popular Phrase</h2>\n</div>\n\n<div class=\"da-background\">\n    <div class=\"container keywords\">\n	    <div class=\"loader\">\n            <h1 class=\"loader-text\">\n	            Loading<span>.</span><span>.</span><span>.</span>\n            </h1>\n	    </div>\n        <div class=\"row-fluid\">\n            <aside class=\"span3\"></aside>\n            <div class=\"span9 main-table keywords-list\"></div>\n        </div>\n    </div>\n</div>\n";
   });
 
 this["PolitalkApp"]["Templates"]["keywords/templates/keywords-period"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -230,7 +230,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"hero-unit people\">\n    <h1 class=\"container\">People</h1>\n    <h2 class=\"container\">Federal politicians and how often they spoke in Parliament</h2>\n</div>\n\n\n<div class=\"container people\">\n    <div class=\"loader\">\n        <h1 class=\"loader-text\">\n            Loading<span>.</span><span>.</span><span>.</span>\n        </h1>\n    </div>\n    <div class=\"row-fluid\">\n        <aside class=\"span3\"></aside>\n        <div class=\"span9 members-list main-table\"></div>\n    </div>\n</div>\n";
+  return "<div class=\"hero-unit people\">\n    <h1 class=\"container\">People</h1>\n    <h2 class=\"container\">Explore Who Says What</h2>\n</div>\n\n\n<div class=\"container people\">\n    <div class=\"loader\">\n        <h1 class=\"loader-text\">\n            Loading<span>.</span><span>.</span><span>.</span>\n        </h1>\n    </div>\n    <div class=\"row-fluid\">\n        <aside class=\"span3\"></aside>\n        <div class=\"span9 members-list main-table\"></div>\n    </div>\n</div>\n";
   });
 
 this["PolitalkApp"]["Templates"]["members/templates/members-period"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -270,11 +270,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   if (stack1 = helpers.href) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.href; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\">";
+    + "\">\n    	<small>Search by</small> \n    	";
   if (stack1 = helpers.name) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "</a>\n</li>";
+    + "\n    </a>\n</li>";
   return buffer;
   });
 
@@ -284,5 +284,5 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"tgm-strip\">\n	<div class=\"container\">\n		<a href=\"http:///www.theglobalmail.org\" class=\"tgm\" title=\"Go to The Global Mail\">The Global Mail</a>\n		<div class=\"icons special-feature-misc\">\n      <div class=\"special-feature-links\">\n        <a class=\"about\" href=\"#\" data-target=\"#about-tool-modal\" data-toggle=\"modal\">About</a>\n      </div>\n      <div class=\"share-button twitter\">\n        <a href=\"https://twitter.com/share\" class=\"twitter-share-button\" data-via=\"TheGlobalMail\" data-hashtags=\"auspol\">Tweet</a>\n        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=\"//platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");</script>\n      </div>\n      <div class=\"share-button facebook\">\n        <div class=\"fb-like\" data-send=\"false\" data-layout=\"button_count\" data-width=\"45\" data-show-faces=\"false\" data-colorscheme=\"light\" data-action=\"like\"></div>\n      </div>\n    </div>\n	</div>\n</div>\n<div class=\"navbar-inner\">\n    <div class=\"container row-fluid\">\n        <a href=\"/\" class=\"brand span3\">Poli<span>/</span>talk</a>\n        <div class=\"nav-collapse collapse\">\n            <ul class=\"nav\"></ul>\n        </div>\n    </div>\n</div>\n";
+  return "<div class=\"tgm-strip\">\n	<div class=\"container\">\n		<a href=\"http:///www.theglobalmail.org\" class=\"tgm\" title=\"Go to The Global Mail\">The Global Mail</a>\n		<div class=\"icons special-feature-misc\">\n      <div class=\"special-feature-links\">\n        <a class=\"about\" href=\"#\" data-target=\"#about-tool-modal\" data-toggle=\"modal\">About</a>\n      </div>\n      <div class=\"share-button twitter\">\n        <a href=\"https://twitter.com/share\" class=\"twitter-share-button\" data-via=\"TheGlobalMail\" data-hashtags=\"auspol\">Tweet</a>\n        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=\"//platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");</script>\n      </div>\n      <div class=\"share-button facebook\">\n        <div class=\"fb-like\" data-send=\"false\" data-layout=\"button_count\" data-width=\"45\" data-show-faces=\"false\" data-colorscheme=\"light\" data-action=\"like\"></div>\n      </div>\n    </div>\n	</div>\n</div>\n<div class=\"navbar-inner\">\n    <div class=\"container row-fluid\">\n        <a href=\"/\" class=\"brand span3\">Poli<span>/</span>talk</a>\n        <span class=\"subtitle\">Link politicans to their lines</span>\n        <div class=\"nav-collapse collapse\">\n            <ul class=\"nav\"></ul>\n        </div>\n    </div>\n</div>\n";
   });
