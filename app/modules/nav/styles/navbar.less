@@ -69,12 +69,22 @@
         .brand {
             display: inline-block;
             padding: 0;
-            margin-top: 54px;
+            margin-top: 56px;
             margin-left: 0;
             font-size: 400%;
             font-style: italic;
             font-weight: 900;
-            letter-spacing: -5px;
+            letter-spacing: -0.1em;
+            .subtitle {
+                font-size: 14px;
+                line-height: 14px;
+                font-style: normal;
+                color: @grayLight;
+                letter-spacing: 0;
+                text-transform: uppercase;
+                display: inline-block;
+                font-weight: bold;
+            }
         }
 
         .beta {
@@ -87,7 +97,7 @@
 
         .nav {
             margin-bottom: 0;
-            margin-left: 2.3%;
+            margin-left: 0;
 
             & > li > a {
                 display: table-cell;
@@ -99,6 +109,11 @@
                 color: @grayDark;
                 border-left: 1px solid @tableBorder;
                 border-right: 1px solid @tableBorder;
+                small {
+                    display: block;
+                    font-size: 14px;
+                    color: @grayLight;
+                }
             }
 
             & > li:nth-child(2) > a {
@@ -120,16 +135,21 @@
 }
 
 // Large tablet
-@media only screen and (max-width: 1050px) {
+@media only screen and (max-width: 1380px) {
     .navbar .navbar-inner {
         .brand {
             font-size: 380%;
             margin-top: 42px;
+            .subtitle {
+                font-size: 12px;
+            }
         }
-
         .nav > li > a {
             width: 200px;
             padding-top: 54px;
+            small {
+                font-size: 12px;                
+            }
         }
     }
 }
@@ -157,7 +177,9 @@
             .brand {
                 margin: 27px 0 0 20px;
                 font-size: 280%;
-                letter-spacing: -2px;
+                .subtitle {
+                    font-size: 10px;                
+                }
             }
 
             .beta {

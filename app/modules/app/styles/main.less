@@ -21,7 +21,7 @@ select {
     font-size: 1em; 
 }
 
-.brand span {
+.brand .divider {
     font-weight: 400;
     padding: 0 2px;
     color: @grayLight;
@@ -63,7 +63,9 @@ select {
     right: 0;
     bottom: 0;
     left: 0;
-    background: transparent url(/modules/app/img/white-85pc.png) repeat;
+    background: url(/modules/app/img/white-85pc.png) repeat;
+    background-color: rgba(255,255,255,0);
+    background-color: transparent;
     z-index: 1000;
     text-align: center;
     padding-top: 60px;
@@ -294,11 +296,8 @@ aside {
 
 /* Style modal a little better */
 
-
 @modalBorderRadius: 6px;
-.modal {
-    .border-radius(@modalBorderRadius);
-}
+.modal { .border-radius(@modalBorderRadius); }
 
 .modal-header{
   width: 100%;
@@ -345,8 +344,6 @@ aside {
   height: auto;
   height: 28px;
 }
-
-
 
 @import "../../nav/styles/navbar.less";
 @import "../../members/styles/members.less";
