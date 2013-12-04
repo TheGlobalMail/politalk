@@ -201,6 +201,13 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
                 html += 'Explore by Popular Phrase';
             } 
 
+            // date range
+            if (this.fromDate && this.toDate){
+              html += ' from ' +
+                _.map([this.fromDate, this.toDate], function(date){
+                  return '<strong>' +date.format('MMM D, YYYY') + '</strong>';
+                }).join(' to ');
+            }
             // entity name 
             if (entity === 'Independent') {
               html += ' by <strong>Independents</strong>';
@@ -212,14 +219,6 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
                 }
             } else {
                 // no entity selected
-            }
-
-            // date range
-            if (this.fromDate && this.toDate){
-              html += ' from ' +
-                _.map([this.fromDate, this.toDate], function(date){
-                  return '<strong>' +date.format('MMM D, YYYY') + '</strong>';
-                }).join(' to ');
             }
 
             $('.keywords-status').html(html);
