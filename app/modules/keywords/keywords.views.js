@@ -206,7 +206,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             if (this.fromDate && this.toDate){
               html += ' from ' +
                 _.map([this.fromDate, this.toDate], function(date){
-                  return '<strong>' +date.format('MMM D, YYYY') + '</strong>';
+                  return '<strong>' + date + '</strong>';
                 }).join(' to ');
             }
             // entity name 
