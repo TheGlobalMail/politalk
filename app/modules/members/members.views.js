@@ -130,7 +130,9 @@ PolitalkApp.module('Members.Views', function(Views, App) {
         {
             _.bindAll(this);
             this.datePickerDefaults = {
-                format: 'd/m/yyyy',
+                format: 'yyyy',
+                viewMode: 'years',
+                minViewMode: 'years',
                 autoclose: true
             };
 
@@ -197,15 +199,15 @@ PolitalkApp.module('Members.Views', function(Views, App) {
         onDateChange: function()
         {
             var format = this.datePickerDefaults.format.toUpperCase();
-            var from   = moment(this.$fromDate.val(), format);
-            var to     = moment(this.$toDate.val(), format);
+            var from   = this.$fromDate.val();
+            var to     = this.$toDate.val();
 
-            App.vent.trigger('members:period', from.format('YYYY-MM-DD'), to.format('YYYY-MM-DD'));
+            App.vent.trigger('members:period', from, to);
         },
 
         formatMoment: function(m)
         {
-            return moment(m).format('D/M/YYYY');
+            return moment(m).format('YYYY');
         },
 
         updateDates: function(from, to)

@@ -22,8 +22,6 @@
     });
 
     PolitalkApp.on("initialize:after", function() {
-      console.error('looking for cookie')
-      console.error(document.cookie)
       if (document.cookie.indexOf('intro') === -1){
         var expiration = new Date();
         var cookie = '';

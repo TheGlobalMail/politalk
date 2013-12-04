@@ -66,6 +66,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             var data = this.model.toJSON();
             data.url = this.url();
             data.OAurl = this.OAurl();
+            data.shortText = _.first(_.sortBy(data.terms.split(','), 'length'));
             return data;
         }
 
@@ -170,8 +171,8 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         },
 
         updateDates: function(from, to){
-          this.fromDate = moment(from);
-          this.toDate = moment(to);
+          this.fromDate = from;
+          this.toDate = to;
           this.updateStatus();
         },
 
@@ -220,7 +221,7 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
             } else {
                 // no entity selected
             }
-
+            
             $('.keywords-status').html(html);
 
             if (!this.currentSpeaker) {
@@ -308,7 +309,9 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         {
             _.bindAll(this);
             this.datePickerDefaults = {
-                format: 'd/m/yyyy',
+                format: 'yyyy',
+                viewMode: 'years',
+                minViewMode: 'years',
                 autoclose: true
             };
 
@@ -376,17 +379,17 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         onDateChange: function()
         {
             var format = this.datePickerDefaults.format.toUpperCase();
-            var from   = moment(this.$fromDate.val(), format);
-            var to     = moment(this.$toDate.val(), format);
+            var from   = this.$fromDate.val();
+            var to     = this.$toDate.val();
 
             if (this.datesLoaded){
-              App.vent.trigger('phrases:period', from.format('YYYY-MM-DD'), to.format('YYYY-MM-DD'));
+              App.vent.trigger('phrases:period', from, to);
             }
         },
 
         formatMoment: function(m)
         {
-            return moment(m).format('D/M/YYYY');
+            return moment(m).format('YYYY');
         },
 
         updateDates: function(from, to)

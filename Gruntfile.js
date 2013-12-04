@@ -321,7 +321,7 @@ module.exports = function (grunt) {
             staging: {
                 options: { flatten: true },
                 src: ['<%= cdn.dist.src %>'],
-                cdn: 'http://politalk-staging-assets.theglobalmail.org'
+                cdn: 'http://staging-politalk-assets.theglobalmail.org'
             }
         },
         s3: {
@@ -443,7 +443,7 @@ module.exports = function (grunt) {
       // Deploy bucket
       var buckets = {
         production: 'politalk.theglobalmail.org',
-        staging: 'politalk-staging.theglobalmail.org'
+        staging: 'staging-politalk.theglobalmail.org'
       };
 
       // Deploy targets

@@ -17,8 +17,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 
   buffer += "<td class=\"text\">\n	<span class=\"keyword-text\">";
-  if (stack1 = helpers.text) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.text; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (stack1 = helpers.shortText) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.shortText; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + "</span> \n	<div class=\"search-links\">\n		View context on\n		<a title=\"Search for “";
   if (stack1 = helpers.text) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
@@ -108,7 +108,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<label class=\"input-prepend\">\n    <span class=\"add-on\">From:</span>\n    <input type=\"text\" name=\"fromDate\" class=\"date input-small\" placeholder=\"dd/mm/yyyy\">\n</label>\n<label class=\"input-prepend\">\n    <span class=\"add-on\">To:</span>\n    <input type=\"text\" name=\"toDate\" class=\"date input-small\" placeholder=\"dd/mm/yyyy\">\n</label>";
+  return "<label class=\"input-prepend\">\n    <span class=\"add-on\">From:</span>\n    <input type=\"text\" name=\"fromDate\" class=\"date input-small\" placeholder=\"yyyy\">\n</label>\n<label class=\"input-prepend\">\n    <span class=\"add-on\">To:</span>\n    <input type=\"text\" name=\"toDate\" class=\"date input-small\" placeholder=\"yyyy\">\n</label>\n";
   });
 
 this["PolitalkApp"]["Templates"]["keywords/templates/keywords-sidebar"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -239,7 +239,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<label class=\"input-prepend\">\n    <span class=\"add-on\">From:</span>\n    <input type=\"text\" name=\"fromDate\" class=\"date input-small\" placeholder=\"dd/mm/yyyy\">\n</label>\n<label class=\"input-prepend\">\n    <span class=\"add-on\">To:</span>\n    <input type=\"text\" name=\"toDate\" class=\"date input-small\" placeholder=\"dd/mm/yyyy\">\n</label>";
+  return "<label class=\"input-prepend\">\n    <span class=\"add-on\">From:</span>\n    <input type=\"text\" name=\"fromDate\" class=\"date input-small\" placeholder=\"yyyy\">\n</label>\n<label class=\"input-prepend\">\n    <span class=\"add-on\">To:</span>\n    <input type=\"text\" name=\"toDate\" class=\"date input-small\" placeholder=\"yyyy\">\n</label>\n";
   });
 
 this["PolitalkApp"]["Templates"]["members/templates/members-sidebar"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
