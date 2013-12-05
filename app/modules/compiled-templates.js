@@ -7,7 +7,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"container\">\n    <div class=\"about\">\n        <a href=\"/\" class=\"brand\">Poli<span class=\"divider\">/</span>talk</a>\n        <p>An ongoing analysis of <a href=\"http://www.openaustralia.org\" target=\"_blank\">Hansard transcripts</a> with the aim of making what is said more transparent and (possibly) more entertaining.</p>\n        <a class=\"link\" href=\"#\" data-target=\"#about-tool-modal\" data-toggle=\"modal\">About</a>\n    </div>\n\n    <div class=\"credit\">\n        <p>Designed and developed by <a href=\"http://www.theglobalmail.org\" class=\"tgm\" target=\"_blank\">The Global Mail</a></p>\n\n        <p>Partially based on data from <a href=\"http://www.openaustralia.org\" target=\"_blank\">www.openaustralia.org</a></p>\n    </div>\n</div>\n";
+  return "<div class=\"container\">\n    <div class=\"about\">\n        <a href=\"/\" class=\"brand\">Poli<span class=\"divider\">/</span>talk</a>\n        <p>Linking politicians to their lines, using federal Hansard transcripts.</p>\n        <a class=\"link\" href=\"#\" data-target=\"#about-tool-modal\" data-toggle=\"modal\">About</a>\n    </div>\n\n    <div class=\"credit\">\n        <p>Designed and developed by <a href=\"http://www.theglobalmail.org\" class=\"tgm\" target=\"_blank\">The Global Mail</a></p>\n\n        <p>Partially based on data from <a href=\"http://www.openaustralia.org\" target=\"_blank\">www.openaustralia.org</a></p>\n    </div>\n</div>\n";
   });
 
 this["PolitalkApp"]["Templates"]["keywords/templates/keyword-item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -89,7 +89,7 @@ function program3(depth0,data) {
   buffer += "\n</select>\n\n<h3>By Party</h3>\n\n<select name=\"party\" data-placeholder=\"Pick a party...\" width=\"220\">\n    <option value=\"\"></option>\n    ";
   stack1 = helpers.each.call(depth0, depth0.parties, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</select>\n";
+  buffer += "\n</select>\n\n<div class=\"seehow\"><a href=\"\" target=\"_BLANK\">See how The Global Mail is using PoliTalk.</a></div>\n";
   return buffer;
   });
 
@@ -220,7 +220,7 @@ function program3(depth0,data) {
   buffer += "\n</div>\n\n<div class=\"parties filter-group\">\n    ";
   stack1 = helpers.each.call(depth0, depth0.parties, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    <label>Speakers <input type=\"checkbox\" name=\"noSpeakers\" value=\"true\"></label>\n</div>";
+  buffer += "\n    <label>Speakers <input type=\"checkbox\" name=\"noSpeakers\" value=\"true\"></label>\n</div>\n\n<div class=\"seehow\"><a href=\"\" target=\"_BLANK\">See how The Global Mail is using PoliTalk.</a></div>\n";
   return buffer;
   });
 
