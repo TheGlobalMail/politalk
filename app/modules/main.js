@@ -16,7 +16,7 @@
           // Bit of hack to make this run after all other member:fetched
           // handlers have run 
           setTimeout(function(){
-            $('#initial-loader').removeClass('loading');
+            $('#initial-loader').remove();
             Backbone.history.start();
           }, 0);
         });
