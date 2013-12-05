@@ -117,7 +117,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"politalk-sidebar\">\n	Linking politicians to their lines, using federal Hansard transcripts.\n	<a href=\"#\">\n		More about this tool &rarr;\n	</a>\n</div>\n<div class=\"member-info-container\"></div>\n<div class=\"period-container\"></div>\n<div class=\"filters-container\"></div>";
+  return "<div class=\"politalk-sidebar\">\n	Linking politicians to their lines, using federal Hansard transcripts.\n	<a href=\"http://www.theglobalmail.org/blog/look-whos-talking/767/\" target=\"_BLANK\">\n		More about this tool &rarr;\n	</a>\n</div>\n<div class=\"member-info-container\"></div>\n<div class=\"period-container\"></div>\n<div class=\"filters-container\"></div>\n";
   });
 
 this["PolitalkApp"]["Templates"]["keywords/templates/keywords-table"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
@@ -248,7 +248,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"politalk-sidebar\">\n	Linking politicians to their lines, using federal Hansard transcripts.\n	<a href=\"#\">\n		More about this tool &rarr;\n	</a>\n</div>\n<div class=\"period-container\"></div>\n<div class=\"filters-container\"></div>";
+  return "<div class=\"politalk-sidebar\">\n	Linking politicians to their lines, using federal Hansard transcripts.\n	<a href=\"http://www.theglobalmail.org/blog/look-whos-talking/767/\" target=\"_BLANK\">\n		More about this tool &rarr;\n	</a>\n</div>\n<div class=\"period-container\"></div>\n<div class=\"filters-container\"></div>\n";
   });
 
 this["PolitalkApp"]["Templates"]["members/templates/members-table"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
