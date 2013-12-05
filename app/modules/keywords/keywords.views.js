@@ -46,7 +46,8 @@ PolitalkApp.module('Keywords.Views', function(Views, App) {
         url: function()
         {
             var searchTerm = this.model.get('terms').split(',')[0];
-            return 'http://partylines.theglobalmail.org/search/' + searchTerm.replace(/\s/g, '+');
+            // hack to link to "climate change" rather tha "climate chang"
+            return 'http://partylines.theglobalmail.org/search/' + searchTerm.replace(/\s/g, '+').replace(/\+chang$/, '+change');
         },
 
         OAurl: function(){
