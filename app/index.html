@@ -58,6 +58,9 @@
             Using Hansard records crunched by OpenAustralia, the tools include every word (of about 80 million, and counting) spoken in Parliament since 2006. The database is updated each morning by loading the previous day’s Hansard.
         </p>
         <p>
+        <strong>Note:</strong> Poli/talk won’t pull in single words, only defining phrases of two words or more. The word “economy” for example, never shows up in Kevin Rudd’s list of most-used phrases. But that’s not because the former prime minister rarely discussed the subject; rather, Poli/talk will only pick up “economy” when used in conjunction with other words, such as “economic crisis” or “two-speed economy”. We’ve also done our best to filter out common phrases, such as “prime minister” — but you’ll still see other phrases that don’t necessarily pertain to issues (“Labor Party”, “New South Wales”, “Northern Territory”), which are nevertheless captured by Poli/talk’s algorithm. 
+        </p>
+        <p>
             Politalk uses an automated text-mining algorithm to extract the phrases. This code is <a href="https://github.com/bxjx/gramophone" target="_blank">open-source and available on Github</a>. See <a href="http://powerhouse.theglobalmail.org/party-lines-and-talking-heads-how-the-interactive-features-work/" target="_blank">our post on PartyLines</a> to learn more about our methodology.
         </p>
 
