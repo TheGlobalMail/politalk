@@ -126,7 +126,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<table class=\"table table-sortable keywords-table table-hover\">\n    <thead>\n        <tr>\n            <th class=\"text\" data-sortable=\"text\">Phrase</th>\n            <th class=\"frequency\" data-sortable=\"frequency\">Frequency</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr class=\"loading\">\n            <td colspan=\"2\">Loading...</td>\n        </tr>\n    </tbody>\n</table>";
+  return "<table class=\"table table-sortable keywords-table table-hover\">\n    <thead>\n        <tr>\n            <th class=\"text\" data-sortable=\"text\">Phrase</th>\n            <th class=\"frequency\" data-sortable=\"frequency\">Mentions</th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr class=\"loading\">\n            <td colspan=\"2\">Loading...</td>\n        </tr>\n    </tbody>\n</table>";
   });
 
 this["PolitalkApp"]["Templates"]["members/templates/member-item"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
