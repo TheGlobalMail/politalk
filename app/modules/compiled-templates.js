@@ -89,7 +89,7 @@ function program3(depth0,data) {
   buffer += "\n</select>\n\n<h3>By Party</h3>\n\n<select name=\"party\" data-placeholder=\"Pick a party...\" width=\"220\">\n    <option value=\"\"></option>\n    ";
   stack1 = helpers.each.call(depth0, depth0.parties, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n</select>\n\n<div class=\"seehow\"><a href=\"\" target=\"_BLANK\">See how The Global Mail is using PoliTalk.</a></div>\n";
+  buffer += "\n</select>";
   return buffer;
   });
 
@@ -220,7 +220,7 @@ function program3(depth0,data) {
   buffer += "\n</div>\n\n<div class=\"parties filter-group\">\n    ";
   stack1 = helpers.each.call(depth0, depth0.parties, {hash:{},inverse:self.noop,fn:self.program(3, program3, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    <label>Speakers <input type=\"checkbox\" name=\"noSpeakers\" value=\"true\"></label>\n</div>\n\n<div class=\"seehow\"><a href=\"\" target=\"_BLANK\">See how The Global Mail is using PoliTalk.</a></div>\n";
+  buffer += "\n    <label>Speakers <input type=\"checkbox\" name=\"noSpeakers\" value=\"true\"></label>\n</div>";
   return buffer;
   });
 
