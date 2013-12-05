@@ -5,6 +5,7 @@
 @wordsColor: #1072b6;
 @filterColor: #444444;
 @heroUnitHeight: 180px;
+@sansFontFamily: "open-sans", "Open Sans", Helvetica, Arial, sans-serif;
 
 * {
     position: relative;
@@ -216,6 +217,23 @@ aside {
     }
 }
 
+.politalk-sidebar {
+    font-size: 18px;
+    font-weight: bold;
+    color: @grayDark;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 1em;
+
+    a {
+        display: block;
+        font-size: 14px;
+        font-weight: normal;
+        font-style: italic;
+        margin: 1em 0;
+    } 
+
+}
+
 .footer {
     #gradient.vertical-three-colors(#222,#333,4%,#343539);
     color: #a4a4a5;
@@ -301,7 +319,11 @@ aside {
 /* Style modal a little better */
 
 @modalBorderRadius: 6px;
-.modal { .border-radius(@modalBorderRadius); }
+.modal { 
+    .border-radius(@modalBorderRadius); 
+    width: 750px;
+    margin-left: (750px / -2);
+}
 
 .modal-header{
   width: 100%;
